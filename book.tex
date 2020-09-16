@@ -1,0 +1,125 @@
+\documentclass[graybox,envcountchap,sectrefs]{svmono_mod}
+%\documentclass[envcountsame,envcountchap]{svmono}
+
+% choose options for [] as required from the list
+% in the Reference Guide
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathptmx}
+\usepackage{helvet}
+\usepackage{courier}
+%
+\usepackage{type1cm}         
+%\usepackage{epsfig}
+\usepackage{makeidx}         % allows index generation
+\usepackage{graphicx}        % standard LaTeX graphics tool
+                             % when including figure files
+\graphicspath{{Figures/}}
+\usepackage{multicol}        % used for the two-column index
+\usepackage[bottom]{footmisc}% places footnotes at page bottom
+\usepackage{array,booktabs,calc}
+
+\usepackage{listings}
+\usepackage[final]{pdfpages}
+% see the list of further useful packages
+% in the Reference Guide
+
+%\usepackage{anyfontsize}
+\usepackage{enumerate}
+%\usepackage{rotating}
+%\usepackage{psfrag}
+%\usepackage{color}
+%\usepackage{framed}
+%\usepackage{t1enc}
+%\usepackage{times}
+%\usepackage{fancyhdr}
+%\usepackage{float}
+%\usepackage{marvosym}
+\usepackage{tikz,pgfplots}
+\usetikzlibrary{arrows.meta,quotes}
+%\usepackage[mode=tex]{standalone}
+\usepackage[mode=buildnew]{standalone}
+
+\input{format.tex}
+
+%%% 2) Operadores de decision
+\def\dunodcero{\begin{array}{c} D=1 \\ \gtrless \\ D=0 \end{array}}
+\def\dceroduno{\begin{array}{c} D=0 \\ \gtrless \\ D=1 \end{array}}
+%%%
+%%% 3) Abreviaturas para PFA, PM  y PD.
+\newcommand{\pfa}{P_{\text{FA}}} 
+\newcommand{\pmis}{P_{\text{M}}} 
+\newcommand{\pdet}{P_{\text{D}}} 
+\newcommand{\appropto}{\mathrel{\vcenter{\offinterlineskip\halign{\hfil$##$\cr \propto\cr\noalign{\kern2pt}\sim\cr\noalign{\kern-2pt}}}}}
+
+\makeindex             % used for the subject index
+                       % please use the style svind.ist with
+                       % your makeindex program
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\px}{p_X(x)}
+\newcommand{\py}{p_Y(y)}
+
+\begin{document}
+
+\author{Jer\'onimo Arenas-Garc\'ia, Jes\'us Cid-Sueiro, Vanessa G\'omez-Verdejo, Miguel L\'azaro-Gredilla and David Ram\'irez Garc\'ia}
+\title{Estimation and Detection Theory}
+\subtitle{Year 2019-20}
+\maketitle
+
+\frontmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\include{Contents/dedic}
+%\include{Contents/foreword}
+%\include{Contents/preface}
+%\include{Contents/acknow}
+
+%\pagestyle{empty}
+
+\tableofcontents
+%\include{Contents/acronym}
+
+\mainmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\include{Contents/part0}
+\chapter{Statistical Estimation Theory}
+\input{Contents/MC1}  % Input instead of include to avoid newpage after the title
+\include{Contents/MC2}
+\include{Contents/MC3}
+\include{Contents/MC4}
+\include{Contents/MC5}
+\include{Contents/MC6}
+\include{Contents/MC7_problems}
+
+% Chapter: Filtering
+\include{Contents/MC8_filtering}
+
+% Chapter: Spectral estimation
+\include{Contents/MC9_PSD}
+
+%\include{Contents/Labo_est}
+
+\chapter{Statistical Detection Theory}
+\label{ch:SDT}
+\include{Contents/M2}
+\include{Contents/M3}
+%\includepdf[pages=-]{Contents/LRT_Labo_Clas_problem}
+
+% Appendix
+\include{Contents/appendix}
+%\include{Contents/chapter1}
+
+
+\backmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\include{Contents/glossary}
+%\include{Contents/solutions}
+\printindex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+
+
+
+
+

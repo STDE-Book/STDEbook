@@ -1,0 +1,304 @@
+\newcommand{\x}{{\mathbf x}}
+\newcommand{\s}{{\mathbf s}}
+\newcommand{\uu}{{\mathbf u}}
+\newcommand{\UU}{{\mathbf U}}
+\newcommand{\PP}{{\mathbf P}}
+\newcommand{\Ruu}{{\mathbf R}_{uu}}
+\newcommand{\rux}{{\mathbf r}_{ux}}
+\newcommand{\hRuu}{\hat{\mathbf R}_{uu}}
+\newcommand{\hrux}{\hat {\mathbf r}_{ux}}
+
+
+\newcommand{\pp}{{\mathbf r}}
+\newcommand{\eye}{{\mathbf I}}
+\newcommand{\Normal	}{{\mathcal N}}
+\newcommand{\bigO	}{{\mathcal O}}
+
+%\def\dunodcero{\begin{array}{c} D=1 \\ \gtrless \\ D=0 \end{array}}
+%\def\dceroduno{\begin{array}{c} D=0 \\ \gtrless \\ D=1 \end{array}}
+%\newcommand{\pfa}{P_{\text{FA}}} 
+%\newcommand{\pmis}{P_{\text{M}}} 
+%\newcommand{\pdet}{P_{\text{D}}} 
+\newcommand{\argmax}[1]{\underset{#1}{\operatorname{argmax}}~}  % Example \argmax{i}f(i)
+\newcommand{\argmin}[1]{\underset{#1}{\operatorname{argmin}}~}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Linear Filtering}
+\label{cha:FiltradoLinea}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+
+A common problem in estimation is that of wanting to determine the coefficients of a linear filter with $M$ coefficients from the mere observation of its inputs and outputs. This task, as well as related ones, is known by the generic name of ``linear filtering''. In this block we will show how the techniques described in block B1 can be used to design ML, MAP, MAD and MMSE estimators of the coefficients of said filter, as well as of future filter outputs if the corresponding inputs are known.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The filtering problem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Assume that a finite impulse response filter (FIR) $s[n]$, with $s[n]=0$, for $n$ other than $0,1, \ldots, M-1$ is used to filter a signal $u[n]$. The result is added a certain Gaussian noise $\varepsilon[n]$, which is i.i.d. zero-mean stochastic process with variance $\sigma_\varepsilon^2 $, giving rise to an observation $x[n]$. That is, the corresponding entries are
+\begin{align}
+x[n] &= u[n]*s[n] + \varepsilon[n]\\
+     & = u[n]s[0] + u[n-1]s[1] + \ldots + u[n-M+1]s[M-1] + \varepsilon[n].
+\end{align}
+
+Joining the nonzero coefficients in vector $\s = [s[0], s[1], \ldots, s[M-1]]^\top$ and compacting every $M$-length sequence of consecutive input values into vectors $\uu[n] = [u[n], u[n-1], \ldots, u[n-M+1]]^\top$, we can write
+\begin{equation}
+x[n] = \uu[n]^\top \s+  \varepsilon[n].
+\end{equation}
+
+The filtering problem consists in estimating the filter coefficients $\s$ from a set of observed inputs and outputs, as well as estimating the output $x_*$ corresponding to a new input $\uu_*$.
+
+If we have the signals $u[n]$ and $x[n]$ in the range $0\leq n \leq N-1$ and assuming that both signals are null for $n <0$, we will have a total of $N$ input-output pairs, $\{\uu[n], x[n]\}_{n=0}^{N-1}$. We can group these input-output couples in the $\x$ and $\UU$ matrices:
+
+\begin{align}
+\x &= \left[\begin{array}{l}
+                 x[0] \\ x[1] \\ \vdots \\ x[M-1] \\ \vdots \\ x[N-1] \\
+            \end{array} \right]_{N\times 1},  \\
+\nonumber
+\UU &= [\uu[0]~~\uu[1]~\ldots~\uu[M-1]~\ldots~\uu[N-1] ]\\
+    &= \left[\begin{array}{llllll}
+                u[0]  & u[1]   & \ldots & u[M-1] & \ldots & u[N-1] \\
+                0     & u[0]   & \ldots & u[M-2] & \ldots & u[N-2] \\
+               \vdots & \vdots & \ddots & \vdots & \ldots & \vdots \\
+               0      & 0      & \ldots & u[0]   & \ldots & u[N-M] \\
+              \end{array} \right]_{M\times N},
+\end{align}
+which will allow to obtain compact expressions in the following sections.
+
+Note: Along the subsequent derivations, signal $u[n]$ signal and therefore matrix $\UU$ matrix are considered as observed and deterministic values, to which all probabilistic expressions are implicitly conditioned.
+
+% Versión traspuesta, otra opción razonable de hacer las cosas...
+%\begin{equation}
+%\UU = 
+%\left[ \begin{array}{l}
+%\uu[0]  \\
+%\uu[1]  \\
+%\uu[M-1]  \\
+%\vdots  \\
+%\uu[N-1]  \\
+%\end{array} \right]
+%=
+%\left[ \begin{array}{llll}
+%u[0] & 0 & \ldots & 0 \\
+%u[1] & u[0] & \ldots & 0 \\
+%u[M-1] & u[M-2] & \ldots & u[0] \\
+%\vdots & \vdots & \ddots & \vdots \\
+%u[N-1] & u[N-2] & \ldots& u[N-M] \\
+%\end{array} \right]
+%\end{equation}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+\section{ML solution}
+%%%%%%%%%%%%%%%%%%%%%
+
+The problem statement itself provides us the likelihood of the $\s$ filter coefficients given the $n$-th observation:
+The problem statement povides
+\begin{equation}
+p(x[n] | \s ) = \Normal(x[n]| \uu[n]^\top\s, \sigma_\varepsilon^2),
+\end{equation}
+%
+where the notation $\Normal(a | \ mu, v) $ is used to refer to a \emph{normal} (Gaussian) pdf of a random variable $a$ with mean $\mu$ and variance $v$.
+
+Given a set of observations, we simply take the product of the previous likelihoods, since the noise terms are independent
+
+\begin{equation}
+p(\x | \s) = \prod_{n=0}^{N-1} \Normal(x[n]| \uu[n]^\top\s, \sigma_\varepsilon^2) = \Normal(\x| \UU^\top\s, \sigma_\varepsilon^2\eye).
+\end{equation}
+
+The value of $\s$ that maximizes $p(\x | \s)$ is
+\begin{align}
+\hat\s_\text{ML} 
+   &= \argmax{\s} p( \x | \s ) 
+    = \argmax{\s} \log p( \x | \s ) \nonumber \\
+   &= \argmin{\s} \frac{1}{2} (\x - \UU^\top\s)^\top(\sigma_\varepsilon^2\eye)^{-1}
+                              (\x - \UU^\top\s) 
+                + \frac{1}{2} \log|\sigma_\varepsilon^2\eye|+\frac{N}{2}\log(2\pi) 
+                \nonumber \\
+   &= \argmin{\s} ||\x - \UU^\top\s||^2\\
+   &= (\UU \UU^\top)^{-1} \UU\x.
+\label{sml}
+\end{align}
+
+The last step is simply the least squares solution seen in the regression chapter. This minimum can be easily obtained by taking the gradient with respect to $\s$, equalizing to zero and clearing.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Bayesian Solution}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+To obtain a Bayesian estimator of $\s$ we need to know its a priori probability $p(\s)$. Although this is generally unknown, it is sensible to use
+\begin{equation}
+p(\s) = \Normal(\s | \mathbf{0}, \sigma_s^2\eye),
+\end{equation}
+since it considers acceptable any set of real coefficients, and assumes that these have a null mean and a dispersion set by $\sigma_s^2 $. It is also possible to set $\sigma_s^2 \rightarrow \infty$ to achieve a uniform distribution. In any case, the use of this distribution a priori allows to obtain the distribution a posteriori analytically.
+
+Given the likelihood, $p(\x | \s)$, and the a priori distribution $p(\s)$, we can obtain the posterior distribution $p(\s | \x) $. To do this, we could directly apply Bayes' theorem and simplify the quotient as much as possible, but this is a very tedious process. Instead, we will get the result in two steps.
+
+First we will find the joint fdp of $\s$ and $\x$. A simple way to do this is to observe that
+\begin{equation}
+\left[\begin{array}{l} \s \\ \x \\ \end{array}\right] =
+\left[\begin{array}{l} \eye \\ \UU^\top \\ \end{array}\right] \s + 
+\left[\begin{array}{l} \bf 0 \\ {\boldsymbol \varepsilon} \\ \end{array}\right]
+\text{  with  }
+{\boldsymbol \varepsilon}  = [\varepsilon[0],\ldots,\varepsilon[N-1]]^\top,
+\end{equation}
+%
+that is, vector $[\s^\top~\x^\top]^\top$ is a linear combination of r.v. with Gaussian pdf plus an indpendent white Gaussian noise with variance $\sigma_\varepsilon^2$ and, thus, it is jointly Gaussian. The computation of the mean and the variance of $[\s^\top~\x^\top]^\top$ is straightforward:
+%
+\begin{equation}
+\left[\begin{array}{l} \s \\ \x \end{array}\right]
+    = \Normal\left(
+    	\left[\begin{array}{l}  \bf 0 \\ \bf 0 \end{array}\right],
+        \left[\begin{array}{ll} \sigma_s^2\eye     & \sigma_s^2\UU \\
+                                \sigma_s^2\UU^\top & \sigma_s^2\UU^\top\UU + 
+                                                     \sigma_\varepsilon^2 \eye
+              \end{array}\right] \right)
+\label{eq:jointsx}
+\end{equation}
+and using the Gaussian conditioning formula in he previous chapter, we get
+\begin{equation}
+p(\s|\x) 
+	= \Normal(\s \mid \sigma_s^2 \UU(\sigma_s^2\UU^\top\UU + \sigma_\varepsilon^2\eye)^{-1} \x,~~
+\sigma_s^2\eye - \sigma_s^2\UU(\sigma_s^2\UU^\top\UU + \sigma_\varepsilon^2\eye)^{-1} \UU^\top \sigma_s^2
+) ,
+\end{equation}
+%
+Using the matrix investion lemma and some algebra, this can be show to be equivalent to the followinglo expression, whichis computationally more efficient for $M<N$:
+\begin{equation}
+p(\s|\x) = \Normal(\s~|~ \PP \UU \x,~~ \sigma_\varepsilon^2\PP) ,
+\end{equation}
+where
+\begin{align}
+\PP = (\UU\UU^\top  + \tfrac{\sigma_\varepsilon^2}{\sigma_s^2}\eye)^{-1}
+\end{align}.
+Thus the MMSE and MAP estimates of $\s$ are:
+\begin{equation}
+\hat\s_\text{MMSE} =\hat\s_\text{MAP} =\hat\s_\text{MAD} = \PP  \UU \x
+\label{smmse}
+\end{equation}
+Note that taking $\sigma_s^2\rightarrow\infty$ (which can be interpreted as assuming an infinitely uniform prior) the MAP solution becomes equvalent to the ML in \eqref{sml}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Probabilistic prediction of the filter output}
+
+Once we have resolved several estimators of filter $\s$ filter, we now begin to consider the problem of estimating a new output $x_*$ corresponding to a new entry $ \uu_*$. Continuing with the Bayesian perspective, we will obtain the fdp a posteriori of the variable to be estimated, $x_*$, in view of the outputs already observed, $\x$. That is, we want to calculate $p (x_* | \x)$.
+
+First, it should be noted that $\x, x_*$ and $\s$ are jointly Gaussian. This follows from Eq. \eqref{eq:jointsx}, which can be extended to any arbitrary number of outputs, including $x_*$. This necessarily implies that $\x$ and $x_*$ are jointly Gaussian (when marginalizing $\s$) and finally that $p(x_* | \x) $ must be Gaussian. Since
+\begin{equation}
+x_* = \uu_*^\top\s+\varepsilon_*
+\end{equation}
+is a linear transformation of $\s$ with independent white noise, we can easily compute the mean, $\mathbb{E}[x_*|\x]$, and the variance, $\mathbb{V}[x_*|\x]$, of this Gaussian posterior distribution using $p(\s|\x)$, obtaining
+%
+\begin{equation}
+p(x_*|\x) = \Normal(x_*~|~ \uu_*^\top\PP  \UU \x,~~
+                    \sigma_\varepsilon^2+\sigma_\varepsilon^2\uu_*^\top\PP \uu_*)
+\end{equation}.
+that inmediatly provides the following estimators for $x_*$:
+\begin{equation}
+\hat{x}_{*\text{MMSE} } =\hat{x}_{*\text{MAP} } =\hat{x}_{*\text{MAD} }  =  \uu_*^\top\PP  \UU \x = \uu_*^\top\hat\s_\text{MMSE}.
+\end{equation}
+
+We observe, thus, that in order to obtaine the estimators, for the new out $x_*$, we only need to know the new input, $\uu_*$, and the estimator $\s_\text{MMSE}$.
+
+% Para ello, calculamos
+%\begin{align*}
+%p(x_*|\x) &= \int_{\mathbb{R}^M} p(x_*, \s | \x) d\s ~~~~\text{      (marginalización de  $\s$)} \\
+%&= \int_{\mathbb{R}^M} p(x_*|\s,\x) p(\s|\x) d\s~~~~\text{      (conjunta como producto de  condicional y marginal)} \\
+%&= \int_{\mathbb{R}^M} p(x_*|\s) p(\s|\x) d\s~~~~\text{      (dado el filtro $\s$, las salidas son independientes entre sí)}. 
+%\end{align*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Online calculus}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+It is possible to obtain the above solutions online, that is, as new input-output pairs are obtained. While complete calculations could be repeated each time a new sample arrives, there are often more efficient ways to do this.
+
+Note that estimating $\s$ using Eqs. ~\eqref{sml} or ~\eqref{smmse} requires inverting an $M \times M$ matrix. This has a cost $\bigO (M^3)$, that is, if we double the size of the filter, $M$ we multiply its computational cost by eight. Suppose now that you want to estimate $\s$ as new input-output pairs are received, that is, we are given first $\{u[0], x[0] \}$, then $\{u[1], x[1] \} $ and so on. In this case, we could reuse the results of the previous estimate to calculate the new updated estimate of $\s$, thus reducing the cost $\bigO(M^3) $ that would have a ``naive'' method that simply recalculates everything again every time a sample arrives.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Bayesian solution}
+
+$\hat\s_\text{MMSE}$ can be obtained exactly as more samples are available (i.e. as $N$ increases) without redoing all calculations, by reusing the previous solution. To do this, it is defined
+\begin{align}
+\PP_N &= (\UU \UU^\top + \tfrac{\sigma_\varepsilon^2}{\sigma_s^2}\eye)^{-1}, \\ \pp_N &= \UU \x
+\end{align}
+and the following recursive calculation is used (the first equation corresponds to the direct application of the matrix inversion lemma to the $\PP$ update):
+\begin{align*}
+\PP_{N+1} 
+	&= \PP_N -\frac{\PP_N\uu[N+1]\uu[N+1]^\top 
+	   \PP_N}{1  +\uu[N+1]^\top  \PP_N\uu[N+1]}  \\
+\pp_{N+1} 
+    &= \pp_N  +\uu[N+1] x[N+1] \\
+\s_{N+1}
+    &= \PP_{N+1}\pp_{N+1} ,
+\end{align*}
+which only has a cost $\bigO(M^2)$ per step (as opposed to applying the complete original equation at each step, which would cost $\bigO(M^3) $). This algorithm is called \emph{recursive least squares} (RLS).
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{ML solution}
+
+An online approximation to $\hat\s_\text{ML}$ with computational cost $\bigO(M)$ can be obtained just by noting that
+\begin{equation}
+\hat\s_\text{ML} = \argmax{\s} p(\x|\s) =  \argmin{\s} ||\x - \UU^\top\s||^2
+\end{equation}
+and then use stochastic gradient to minimize $||\x - \UU^\top \s ||^2$.
+
+Notice that
+\begin{equation}
+||\x - \UU^\top\s||^2 = \sum_{n=0}^{N-1} (x[n] - \uu[n]^\top\s)^2,
+\end{equation}
+so a gradient descent method would calculate the gradient of that expression and iteratively shift the estimate of the minimum in the opposite direction of the gradient in each step. A descent by stochastic gradient performs the same operation, but considering only one of the additions of the mentioned sum in each step. So,
+the updating of coefficients that must be iterated to perform the minimization is in this case
+\begin{equation}
+\hat\s_{N+1} = \hat\s_N + \mu \left(x[n] - \uu[n]^\top \hat\s_N\right)\uu[n],
+\end{equation}
+where $\mu$ is an adaptation step that should be ``small enough''. This algorithm is called \emph{least mean squares} (LMS).
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\section{Wiener filter}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+The Wiener filter $\s_\text{Wiener}$ is the filter that minimizes the expected square error between a desired output $x[n]$ and the output produced when used to filter the input $u[n]$. In this section, both $x[n]$ and $u[n]$ are considered null half signals and $u[n]$ is treated as a stochastic process and not as a deterministic signal, as has been done up to now.
+
+This problem can be posed as a linear estimation problem of minimum mean square error (MMSE), so the formulation of the previous chapter can be used to give rise to the following solution:
+\begin{equation}
+\s_\text{Wiener} = \Ruu^{-1}\rux,
+\end{equation}
+where $\Ruu$ is the autocorrelation matrix of the input signal $u[n]$ and $\rux$ is the cross-correlation vector between $u[n]$ and $x[n]$. Unfortunately, these two quantities are generally unknown, so in most cases, the Wiener filter cannot be calculated. However, it is common to use the above expression using sample estimates for the correlation matrix $\hRuu = \tfrac{1}{N} \UU \UU^\top $ and the cross-correlation vector $\hrux = \tfrac{1}{N} \UU \x$. The result is an approximation to the Wiener filter $\hat\s_\text{Wiener} = \hRuu^{-1}\hrux$ that minimizes the sample quadratic error (often called ``least-squares estimate'') and which matches the ML solution, that is $\hat\s_\text{Wiener} = \hat \s_\text{ML}$.
+
+As the number of samples available for the estimation of the $\Ruu$ and $\rux$ statistics increases, these estimates become more precise, so that $\hat\s_\text {Wiener}$ and therefore $\hat\s_\text{ML}$ match asymptotically with the exact Wiener filter.
+
+
+%%%%%%%%%%%%%%%%%%
+\section{Problems}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%
+\begin{prob}
+\label{ProbFiltrado}
+
+Consider the sequence
+$$
+u[1] \ldots u[7] \equiv 0.7,~-0.1,~0.7,~-0.2,~-0.1,~1.5,~-1.1
+$$
+which is fed as input to a linear filter of three coefficients, $\s = [s_1, s_2, s_3]^\top$. The following elements of the output sequence are known, (corrupted with Gaussian noise of variance 0.25):
+$$
+x[1] \ldots x[6] \equiv  -0.60,~1.13,~0.57,~0.42,~1.25,~-2.58
+$$
+
+\begin {itemize}
+\item [a)] What is the ML estimate of $\s$? (Wiener filter based on approximate statistics).
+\item [b)] Use the obtained filter to predict $x[7]$, $\hat{x}_\text{ML}$.
+\item [c)] Calculate the MMSE, MAP and MAD estimates of $\s$ assuming that the a priori pdf of its components is $s_i \sim \Normal(0,1)$.
+\item [d)] Get the MMSE estimate of $x[7]$, $\hat{x}_\text{MMSE}$.
+\item [e)] Calculate the expected square error in prediction b). (That is, the hope of $ (\hat{x}_\text{ML} -x[7])^2$ in view of the available data).
+\item [f)] Calculate the expected square error in prediction d). (That is, the hope of $(\hat{x}_\text{MMSE} -x[6])^2 $ in view of the available data)
+\end{itemize}
+
+\end{prob}
+%%%%%%%%%%

@@ -1,0 +1,234 @@
+
+%%%%%%%%%%%%%%%%%%%
+\section{Problems}
+%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%
+\begin{prob}
+\label{MAPmulticlas1}
+
+The posterior distribution of $S$ given $X$ is 
+\[p_{S|X}(s|x) = x^2 \exp(-x^2 s), \qquad s\ge 0
+\]
+Compute estimators $\hat{S}_{\text{MMSE}}$, $\hat{S}_{\text{MAD}}$ y $\hat{S}_{\text{MAP}}$.
+
+\end{prob}
+%%%%%%%%%%
+
+
+%%%%%%%%%%%%%
+\begin{prob}
+\label{ProbSexponencial}
+
+Consider an estimation problem givne by the following posterior distribution:
+\begin{equation}
+p_{S|{X}}(s|{x}) = x \exp({-x s}),\;\; s>0
+\end{equation}
+Compute estimators $\hat{S}_{\text{MMSE}}$, $\hat{S}_{\text{MAD}}$ y $\hat{S}_{\text{MAP}}$.
+
+\end{prob}
+%%%%%%%%%%
+
+
+%%%%%%%%%%%%
+\begin{prob}
+\label{ProbEstLMSE}
+
+A r.v. $S$ must be estimated from the observation of another r.v. $X$ by means of a linear mean square error estimator given by:
+\[\hat S_{\text{LMSE}} = w_0 + w_1 X \]
+Knowing that $\mathbb E \lbrace X \rbrace= 1$, $\mathbb E \lbrace S \rbrace= 0$, $\mathbb E \lbrace X^2 \rbrace= 2$, $\mathbb E \lbrace S^2 \rbrace= 1$ y $\mathbb E \lbrace SX \rbrace= 1/2$, compute:
+\begin{enumerate}[a)]
+\item The values for $w_0$ y $w_1$.
+\item The mean square error of the estimator, $\mathbb E \left\lbrace  \left( S-\hat S_{\text{LMSE}}\right)^2 \right\rbrace$.
+\end{enumerate}
+
+\end{prob}
+%%%%%%%%%%
+
+
+%%%%%%%%%%%%
+\begin{prob}
+\label{ProbEstMSE+Sesgo}
+
+Let $X$ and $S$ be two random variables with joint pdf
+\[
+p_{X,S}(x,s) \left \{ \begin{array}{ll} 2 & 0<x<1, 0<s<x\\ 0 & \mbox{resto} \end{array} \right.
+\]
+\begin{enumerate}[a)]
+\item Compute the minimum mean square error estimate of $S$ given $X$, $\hat S_{\text{MMSE}}$.
+\item Compute the risk of estimator $\hat S_\text{MMSE}$.
+\end{enumerate}
+
+\end{prob}
+%%%%%%%%%%
+
+
+% Ejercicios ABET estimación ML de parámetros deterministas
+%%%%%%%%%%%%
+\begin{prob}
+\label{ProbEstImagen}
+
+A digitized image of dimensions $8x8$ is available, whose luminance values are statistically independent and evenly distributed between $0$ (white) and $1$ (black); the image has been modified by applying a transformation of the form $Y = X^r$ on each pixel; $r>0$, where $X$ is the r.v. associated with the pixels of the original image and $Y$ is associated with the transformed image. Obtain the expression that allows to estimate $r$ by maximum likelihood given the $64$ pixel values of the transformed image $\{y^{(k)}\}_{k=1}^{64}$, without knowing the original image.
+
+\end{prob}
+%%%%%%%%%%
+
+
+%%%%%%%%%%%%
+\begin{prob}
+\label{ProbEstCanal}
+
+For the design of a communication system it is desired to estimate the signal attenuation between the transmitter and the receiver, as well as the noise power introduced by the channel when this noise is Gaussian of zero mean and independent of the transmitted signal. For this, the transmitter sends a signal with a constant amplitude of $1$ and the receiver collects a set of $K$ observations available at its input.
+
+\begin{enumerate}[a)]
+\item Estimate the channel attenuation, $\alpha$, and the noise variance, $v_r$, by maximum likelihood, when the available observations on the receiver are
+$$
+\{0.55,\, 0.68,\, 0.27,\, 0.58,\, 0.53,\, 0.37,\, 0.45,\, 0.53,\, 0.86,\, 0.78 \}. 
+$$
+\item If the system is to be used for the transmission of digital signals with unipolar coding (a $A$ signal level is used to transmit a bit $1$ and the signal level is maintained at $0$ for the transmission of bit $0$), considering equiprobability between symbols, indicate the minimum level of signal that should be used in the coding, $A_{\min}$, to guarantee a SNR level in the receiver of $3$ dB.
+\end{enumerate}
+
+\end{prob}
+%%%%%%%%%%
+
+%%%%%%%%%%%%
+\begin{prob}
+\label{ProbEstLab}
+
+Company {\em Like2Call} offers hosting services for call centers. In order to dimension the staff of operators the company is designing a statistical model to characterize the activity in the hosted call centers. One of the components of such model relies on the well-known fact that the times between incoming calls follow an exponential distribution
+$$p_{X|S}(x|s) = s \; \exp(-s\; x), \qquad x>0$$
+where random variable $X$ represents the time before a new call arrives, and $S$ is the parameter of such distribution, that depends on the time of the day and each particular call-center service (e.g., attention to the clients of an insurance company, customers of an on-line bank, etc). 
+
+For random variable $S$, the following {\em a priori} model is assumed:
+$$p_S(s) = \exp(-s), \qquad s>0.$$
+
+With this information, we would like to design an estimator of S that is based on the first $K$ incoming calls for each implemented service and time interval, i.e., the observation vector is given by ${\bf x} = \left[x^{(0)}, x^{(1)}, \cdots, x^{(K-1)}\right]$, where all observations in the vector are assumed i.i.d.
+
+\begin{enumerate}[a)]
+    \item Obtain the maximum likelihood estimator or $S$ based on the observation vector $\bf X$, and verify that it depends just on the sum of all observations, $z=\sum_{k=0}^{K-1} x^{(k)}$.
+    
+    \item Calculate the posterior distribution of $S$ given $\bf X$, $p_{S|{\bf X}}(s|{\bf x})$.
+    
+    \item Obtain the maximum {\em a posteriori} estimator of $S$ given $\bf X$, ${\hat s}_\text{MAP}$.
+    
+    \item Obtain the minimum mean square error estimator of $S$ given $\bf X$, ${\hat s}_\text{MSE}$.
+    
+    \item Calculate the mean square error given ${\bf X}$ of a generic estimator $\hat S$, and particularize the result for estimators of the following analytical shape $\hat{s}_c = \frac{c}{z+1}$.
+
+    \item Find expressions for the following probability density functions: $p_{Z|S}(z|s)$, $p_{Z,S}(z,s)$, and $p_{Z}(z)$.
+    
+    \item Calculate the mean square error of a generic estimator $\hat{s}_c = \frac{c}{z+1}$. Study how the result changes with $c$ and $K$.
+    
+%    \item Repeat the two previous sections for an estimator of shape $\hat{s}_c = \frac{c}{z}$.
+    
+\end{enumerate}
+
+You can use the following results:
+\begin{enumerate}[i.]
+%    \item[i.] The distribution of $Z$ given $S$ can be shown to be
+%    $$p_{Z|S}(z|s) = \frac{s^{K}\;z^{K-1}}{K-1 !} \exp(-s \; z), \qquad z>0$$
+    \item $$\int_{0}^{\infty} x^N \exp(-x) dx = N!$$
+    \item If $f(x) = a\;exp(-a\;x), \;x>0$ then 
+    $$\underbrace{f(x)\ast f(x) \ast \cdots \ast f(x)}_\text{$N$ times} = \displaystyle\frac{a^N \; x^{N-1}}{(N-1)!} exp(-a\;x), \; x>0$$
+    \item For $K$ an integer
+    $$\int_0^\infty \frac{K\;x^{K-1}}{(x+1)^{K+3}} dx = \displaystyle\frac{2}{(K+2)(K+1)}  $$
+\end{enumerate} 
+
+\end{prob}
+%%%%%%%%%%
+
+
+\begin{solution}
+~
+\begin{enumerate}[a)]
+    \item 
+    \begin{align}
+    & p_{{\bf X}|S}({\bf x}|s) = s^K \; \exp(-s\; z), \qquad z>0 \nonumber\\
+    & \ln{p_{{\bf X}|S}({\bf x}|s)} = K \ln{s} - s\; z \nonumber\\ 
+    & \frac{d}{ds} \ln{p_{{\bf X}|S}({\bf x}|s)} = \frac{K}{s} - z \nonumber\\
+    & {\hat s}_\text{ML} = \frac{K}{z} \nonumber
+    \end{align}
+
+    \item
+    \begin{align}
+        & p_{{\bf X},S}({\bf x},s) = p_{{\bf X}|S}({\bf x}|s) p_S(s) = s^K \; \exp[-s(z+1)] \nonumber \\
+        & \text{(note the expression above is not the joint pdf of $Z$ and $S$)} \nonumber \\
+        & p_{\bf X}({\bf x}) = \int p_{{\bf X},S}({\bf x},s)\; ds = \int_0^\infty s^K \; \exp[-s(z+1)]\;ds \nonumber
+    \end{align}
+    With the change of variable $s' = s(z+1)$ the previous integral can be simplified using expression (i), and we get
+    \begin{align}
+        & p_{S|{\bf X}}(s|{\bf x}) = \displaystyle\frac{p_{{\bf X},S}({\bf x},s)}{p_{\bf X}({\bf x})} = \displaystyle\frac{(z+1)^{K+1}\;p_{{\bf X},S}({\bf x},s)}{K !} = \displaystyle\frac{s^K(z+1)^{K+1}\; \exp[-s(z+1)]}{K !} \nonumber
+    \end{align}
+
+    \item
+    \begin{align}
+        & {\hat s}_\text{MAP} = \arg\max_s p_{S|{\bf X}}(s|{\bf x}) = \arg\max_s p_{{\bf X},S}({\bf x},s) \nonumber \\
+        & \ln{p_{{\bf X},S}({\bf x},s)} = K \ln{s} - s\;(z+1) \nonumber \\
+        & \frac{d}{ds} \ln{p_{{\bf X},S}({\bf x},s)} = \frac{K}{s} - (z+1) \nonumber\\
+    & {\hat s}_\text{MAP} = \frac{K}{z+1} \nonumber
+    \end{align}
+    
+    \item
+    \begin{align}
+        \hat{s}_\text{MSE} = & \mathbb{E}\left\{ S | {\bf x}\right\} = \int s\; p_{S|{\bf X}}(s|{\bf x})\; ds = \displaystyle\frac{(z+1)^{K+1}}{K!} \int_{0}^{\infty} s^{K+1} \; \exp[-s(z+1)]\; ds \nonumber
+    \end{align}
+    Replacing again $s' = s(z+1)$ and using expression (i), we get $$\hat{s}_\text{MSE} = \frac{K+1}{z+1}$$
+    
+    \item The calculation is somehow tedious, but can be summarized as follows:
+    \begin{align}
+        \mathbb{E}\left\{ (S-\hat{s})^2|X\right\} & = \int_0^\infty (s-\hat{s})^2 \; p_{S|X}(s|x) ds \nonumber \\
+        & = \frac{(z+1)^{K+1}}{K!}\left[ \frac{(K+2) !}{(z+1)^{K+3}} + \hat{s}^2 \frac{K!}{(z+1)^{K+1}} - 2\hat{s} \frac{(K+1) !}{(z+1)^{K+2}}\right] \nonumber \\
+        & = \frac{(K+2)(K+1) + c^2 - 2 c(K+1)}{(z+1)^2} \nonumber
+    \end{align}
+    
+    For the MAP and MSE estimators the expressions are substantially simplified:
+    \begin{align}
+        \mathbb{E}\left\{ (S-\hat{s}_{MAP})^2|z\right\} & = \displaystyle\frac{K+2}{(z+1)^2} \nonumber \\
+        {E}\left\{(S-\hat{s}_{MSE})^2|z\right\} & = \displaystyle\frac{K+1}{(z+1)^2} \nonumber 
+    \end{align}
+    
+    \item Using the fact that $Z$ is the sum of $K$ i.i.d. variables (given $S$):
+    $$p_{Z|S}(z|s) = \underbrace{[s\; \exp(-s\;z)]\ast \cdots \ast[s\; \exp(-s\;z)]}_\text{$K$ times} = \frac{s^{K}\;z^{K-1}}{(K-1)!} \exp(-s \; z), \qquad z>0$$
+    
+    The joint pdf of $Z$ and $S$ can now be obtained as
+    $$p_{Z,S}(z,s) = p_{Z|S}(z|s)p_S(s) = \frac{s^{K}\;z^{K-1}}{(K-1) !} \exp[-s \; (z+1)], \qquad s,z>0$$
+    
+    Finally, integrating $s$ out, we have
+    $$p_Z(z) = \int p_{Z,S}(z,s) ds = \frac{z^{K-1}}{(K-1) !}\int_0^\infty s^K \exp[-s \; (z+1)] = \frac{K\;z^{K-1}}{(z+1)^{K+1}},\;\; z>0$$
+    
+    \item
+    $$\mathbb{E}\left\{ (S-\hat{S}_c)^2\right\} = \int \mathbb{E}\left\{ (S-\hat{s}_c)^2|z\right\} \; p_Z(z) dz$$
+    
+    Using the results from the previous two sections we can obtain an expression that depends on the value of an integral over $z$:
+    
+    $$\mathbb{E}\left\{ (S-\hat{S}_c)^2\right\} = \left[(K+2)(K+1) + c^2 - 2 c(K+1)\right] \int_0^\infty \frac{K\;z^{K-1}}{(z+1)^{K+3}} dz$$
+    
+%    The integral can be evaluated numerically in python using the following code fragment:
+    
+%    \begin{lstlisting}
+%        from scipy.integrate import quad
+%        import numpy as np
+%        
+%        # Define function to integrate
+%        f = lambda z,K : K*z**(K-1)/(z+1)**(K+3)
+        
+%        # Evaluation of the integral for different
+%        # values of K
+%        for idx in np.arange(5)+1:
+%            value, err = quad(f, 0, np.inf, args=(idx,))
+%            print(idx, value)
+%    \end{lstlisting}
+    
+    The value of the integral is given in (iii). Simplifying also for the MAP and MSE estimators:
+\begin{align}
+\mathbb{E}\left\{ (S-\hat{S}_{MAP})^2\right\} & = \displaystyle\frac{2}{K+1}  \nonumber \\
+{E}\left\{(S-\hat{S}_{MSE})^2\right\} & = \displaystyle\frac{2}{K+2}  \nonumber 
+\end{align}
+
+\end{enumerate}
+\end{solution}
+
+
+
+
+
