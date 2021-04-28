@@ -46,6 +46,7 @@ x[n] &= u[n]*s[n] + \varepsilon[n]\\
 
 Joining the nonzero coefficients in vector $\s = [s[0], s[1], \ldots, s[M-1]]^\top$ and compacting every $M$-length sequence of consecutive input values into vectors $\uu[n] = [u[n], u[n-1], \ldots, u[n-M+1]]^\top$, we can write
 \begin{equation}
+\label{eq:signal_model}
 x[n] = \uu[n]^\top \s+  \varepsilon[n].
 \end{equation}
 
@@ -55,7 +56,7 @@ If we have the signals $u[n]$ and $x[n]$ in the range $0\leq n \leq N-1$ and ass
 
 \begin{align}
 \x &= \left[\begin{array}{l}
-                 x[0] \\ x[1] \\ \vdots \\ x[M-1] \\ \vdots \\ x[N-1] \\
+                 x[0] \\ x[1] \\ \vdots \\ x[N-1] \\
             \end{array} \right]_{N\times 1},  \\
 \nonumber
 \UU &= [\uu[0]~~\uu[1]~\ldots~\uu[M-1]~\ldots~\uu[N-1] ]\\
@@ -66,7 +67,18 @@ If we have the signals $u[n]$ and $x[n]$ in the range $0\leq n \leq N-1$ and ass
                0      & 0      & \ldots & u[0]   & \ldots & u[N-M] \\
               \end{array} \right]_{M\times N},
 \end{align}
-which will allow to obtain compact expressions in the following sections.
+Also, defining the noise vector
+\begin{align}
+\pmb{\epsilon} &= \left[\begin{array}{l}
+                 \varepsilon[0] \\ \varepsilon[1] \\ \vdots \\ \varepsilon[N-1] \\
+            \end{array} \right]_{N\times 1},  \\
+\end{align}
+we can write the signal model \eqref{eq:signal_model} as
+\begin{equation}
+\label{eq:signal_model_vec}
+\x =\UU^\top \s + \pmb{\epsilon}
+\end{equation}
+This matrix form will be useful to obtain compact expressions in the following sections.
 
 Note: Along the subsequent derivations, signal $u[n]$ signal and therefore matrix $\UU$ matrix are considered as observed and deterministic values, to which all probabilistic expressions are implicitly conditioned.
 
@@ -142,9 +154,7 @@ First we will find the joint fdp of $\s$ and $\x$. A simple way to do this is to
 \begin{equation}
 \left[\begin{array}{l} \s \\ \x \\ \end{array}\right] =
 \left[\begin{array}{l} \eye \\ \UU^\top \\ \end{array}\right] \s + 
-\left[\begin{array}{l} \bf 0 \\ {\boldsymbol \varepsilon} \\ \end{array}\right]
-\text{  with  }
-{\boldsymbol \varepsilon}  = [\varepsilon[0],\ldots,\varepsilon[N-1]]^\top,
+\left[\begin{array}{l} \bf 0 \\ \pmb{\varepsilon} \\ \end{array}\right]
 \end{equation}
 %
 that is, vector $[\s^\top~\x^\top]^\top$ is a linear combination of r.v. with Gaussian pdf plus an indpendent white Gaussian noise with variance $\sigma_\varepsilon^2$ and, thus, it is jointly Gaussian. The computation of the mean and the variance of $[\s^\top~\x^\top]^\top$ is straightforward:
