@@ -1,0 +1,243 @@
+% This file was created by matlab2tikz v0.4.7 running on MATLAB 8.4.
+% Copyright (c) 2008--2014, Nico Schlmer <nico.schloemer@gmail.com>
+% All rights reserved.
+% Minimal pgfplots version: 1.3
+% 
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\usepackage{grffile}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{plotmarks}
+\usepackage{amsmath}
+\usepackage{luacode}
+
+\begin{luacode*}
+-- Gamma function
+function gamma(x)
+    assert(x > 0, "Invalid input")
+
+    -- Split the function domain into three intervals:
+    -- (0, 0.001), [0.001, 12), and (12, infinity)
+
+    ---------------------------------------------------------------------------
+    -- First interval: (0, 0.001)
+    --
+    -- For small x, 1/Gamma(x) has power series x + gamma x^2  - ...
+    -- So in this range, 1/Gamma(x) = x + gamma x^2 with error on the order of x^3.
+    -- The relative error over this interval is less than 6e-7.
+
+    local gamma = 0.577215664901532860606512090 -- Euler's gamma constant
+
+    if x < 0.001 then
+        return 1.0/(x*(1.0 + gamma*x))
+    end
+
+    ---------------------------------------------------------------------------
+    -- Second interval: [0.001, 12)
+
+    if x < 12.0 then
+        -- The algorithm directly approximates gamma over (1,2) and uses
+        -- reduction identities to reduce other arguments to this interval.
+        
+        y = x
+        n = 0
+        arg_was_less_than_one = (y < 1.0)
+
+        -- Add or subtract integers as necessary to bring y into (1,2)
+        -- Will correct for this below
+        if arg_was_less_than_one then
+            y = y + 1.0
+        else
+            n = math.floor(y) - 1  -- will use n later
+            y = y - n
+        end
+
+        -- numerator coefficients for approximation over the interval (1,2)
+        p = {
+            -1.71618513886549492533811E+0,
+             2.47656508055759199108314E+1,
+            -3.79804256470945635097577E+2,
+             6.29331155312818442661052E+2,
+             8.66966202790413211295064E+2,
+            -3.14512729688483675254357E+4,
+            -3.61444134186911729807069E+4,
+             6.64561438202405440627855E+4
+        }
+
+        -- denominator coefficients for approximation over the interval (1,2)
+        q = {
+            -3.08402300119738975254353E+1,
+             3.15350626979604161529144E+2,
+            -1.01515636749021914166146E+3,
+            -3.10777167157231109440444E+3,
+             2.25381184209801510330112E+4,
+             4.75584627752788110767815E+3,
+            -1.34659959864969306392456E+5,
+            -1.15132259675553483497211E+5
+        }
+
+        num = 0.0
+        den = 1.0
+
+        z = y - 1
+        for i = 1, 8 do
+            num = (num + p[i])*z
+            den = den*z + q[i]
+        end
+        result = num/den + 1.0
+
+        -- Apply correction if argument was not initially in (1,2)
+        if arg_was_less_than_one then
+            -- Use identity gamma(z) = gamma(z+1)/z
+            -- The variable "result" now holds gamma of the original y + 1
+            -- Thus we use y-1 to get back the orginal y.
+            result = result / (y-1.0)
+        else
+            -- Use the identity gamma(z+n) = z*(z+1)* ... *(z+n-1)*gamma(z)
+            for i = 1, n do
+                result = result * y
+                y = y + 1
+            end
+        end
+
+        return result
+    end
+
+    ---------------------------------------------------------------------------
+    -- Third interval: [12, infinity)
+
+    if x > 171.624 then
+        -- Correct answer too large to display. 
+        return 1.0/0 -- float infinity
+    end
+
+    return math.exp(log_gamma(x))
+end
+
+function log_gamma(x)
+    assert(x > 0, "Invalid input")
+
+    if x < 12.0 then
+        return math.log(math.abs(gamma(x)))
+    end
+
+    -- Abramowitz and Stegun 6.1.41
+    -- Asymptotic series should be good to at least 11 or 12 figures
+    -- For error analysis, see Whittiker and Watson
+    -- A Course in Modern Analysis (1927), page 252
+
+    c = {
+         1.0/12.0,
+        -1.0/360.0,
+         1.0/1260.0,
+        -1.0/1680.0,
+         1.0/1188.0,
+        -691.0/360360.0,
+         1.0/156.0,
+        -3617.0/122400.0
+    }
+    z = 1.0/(x*x)
+    sum = c[8]
+    for i = 7, 1, -1 do
+        sum = sum * z
+        sum = sum + c[i]
+    end
+    series = sum/x
+
+    halfLogTwoPi = 0.91893853320467274178032973640562
+    logGamma = (x - 0.5)*math.log(x) - x + halfLogTwoPi + series
+    return logGamma
+end
+-- PDF of a Chi^2 random variable by numerical integration
+function f(x,k)
+    return x^(k/2 - 1) * math.exp(-x/2)/(2^(k/2) * gamma(k/2))
+end
+-- CDF of a Chi^2 random variable by numerical integration (Simpson's method). Some problems when k = 1
+function F(x,k,npoints)
+    local x0 = 0
+    if k==1 then
+        x0 = 0.000001
+    end
+    
+    local h = (x-x0)/npoints
+    local sum1 = f(x0 + h/2,k)
+    local sum2 = 0
+    for i = 1, npoints-1 do
+        sum1 = sum1 + f(x0 + h * i + h/2,k)
+        sum2 = sum2 + f(x0 + h * i,k)
+    end
+    return (h/6) * (f(x0,k) + f(x,k) + 4*sum1 + 2*sum2)
+end
+-- Code to write PGFplots data as coordinates
+
+function print_cost(p_ini,p_end,n,cg,npoints,npointsint,option)
+    local h = (p_end - p_ini)/(npoints - 1)
+    local p = p_ini
+    local pfa = 1 
+    local pm = 0
+    if p>=1/(2^n + 1) then
+        pfa = 1 - F((math.log(p/(1-p)) + n*math.log(2))*(8/3),n,npointsint)
+        pm = F((math.log(p/(1-p)) + n*math.log(2))*(2/3),n,npointsint)
+     end
+    local y = p * pfa + (1 - p) * pm + n * cg
+    if option~=[[]] then
+        tex.sprint("\\addplot[" .. option
+                   .. "] coordinates{")
+    else
+        tex.sprint("\\addplot coordinates{")
+    end
+    tex.sprint("("..p..","..y..")")
+    for i=1, npoints do
+      p = p + h
+      if p>=1/(2^n + 1) then
+         pfa = 1 - F((math.log(p/(1-p)) + n*math.log(2))*(8/3),n,npointsint)
+         pm = F((math.log(p/(1-p)) + n*math.log(2))*(2/3),n,npointsint)
+     end
+      y = p * pfa + (1 - p) * pm + n * cg
+      tex.sprint("("..p..","..y..")")
+    end
+    tex.sprint("}")
+end
+
+\end{luacode*}
+
+\newcommand\addLUADEDplotcdf[7][]{%
+  \directlua{print_cost(#2,#3,#4,#5,#6,#7,[[#1]])}%
+}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=7cm,
+height=5.25cm,
+scale only axis,
+separate axis lines,
+every outer x axis line/.append style={white!15!black},
+every x tick label/.append style={font=\color{white!15!black}},
+xmin=0,
+xmax=1,
+xlabel=$p$,
+xtick={0,0.2,0.4057,0.6,0.7403,0.8,1}, 
+xticklabels={$0$,$0.2$,$p_L$,$0.6$,$p_U$,,$1$}, 
+every outer y axis line/.append style={white!15!black},
+every y tick label/.append style={font=\color{white!15!black}},
+ymin=0,
+ymax=0.55,
+ylabel=Expected cost,
+legend style={draw=white!15!black,fill=white,legend cell align=left,legend pos=outer north east},
+]
+\addplot[blue,thick,domain=0:0.55,samples = 100] {x};
+\addplot[red,thick,domain=0.45:1,samples = 100] {1 - x};  
+\addLUADEDplotcdf[color=green,thick,smooth]{0}{1}{1}{0.05}{200}{100000};
+\addplot[mark=*,forget plot] coordinates {(0.4057,0.4057)};
+\addplot[dashed,forget plot] coordinates {(0.4057,0)(0.4057,0.4057)};
+\addplot[mark=*,forget plot] coordinates {(0.7403,1-0.7403)};
+\addplot[dashed,forget plot] coordinates {(0.7403,0)(0.7403,1-0.7403)};
+\legend{Cost of $D = 0$,Cost of $D = 1$,$\overline{C}_{1,G}(p)$};
+\end{axis}
+\end{tikzpicture}%
+
+
+\end{document}
