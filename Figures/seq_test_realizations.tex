@@ -1,0 +1,116 @@
+% This file was created by matlab2tikz v0.4.7 running on MATLAB 8.4.
+% Copyright (c) 2008--2014, Nico Schlmer <nico.schloemer@gmail.com>
+% All rights reserved.
+% Minimal pgfplots version: 1.3
+% 
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\usepackage{grffile}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{plotmarks}
+\usepackage{amsmath}
+\usepackage{luacode}
+
+\usepgfplotslibrary{fillbetween}
+
+\begin{luacode*}
+-- Likelihood ratio between N(0,4) and N(0,1)
+function LRT(x)
+    return 0.5 * math.exp(3 * x^2 / 8)
+end
+-- Gaussian random number generation
+function randn(mean,variance)
+    -- Generation of a Gaussian variable using the Box–Muller transform (https://en.wikipedia.org/wiki/Box–Muller_transform)
+    local R = math.sqrt(-2 * math.log(math.random())) -- math.random() = Uniform variable between 0 and 1
+    local theta = 2 * math.pi * math.random()
+    z0 = R * math.cos(theta)
+    -- z1 = R * math.sin(theta)
+    -- z0 and z1 are i.i.d. variables distrbuted as N(0,1)
+    return math.sqrt(variance) * z0 + mean
+end
+
+-- Code to write PGFplots data as coordinates
+
+function print_pn(p,pL,pU,H,nmax,seed,option)
+    local n = 0
+    local pn = p
+    local xn = 0
+    local LRTn = 1
+    math.randomseed(os.time()*seed) -- Change the seed
+    if option~=[[]] then
+        tex.sprint("\\addplot[" .. option
+                   .. "] coordinates{")
+    else
+        tex.sprint("\\addplot coordinates{")
+    end
+    tex.sprint("("..n..","..pn..")")
+    for i=1, nmax do
+      n = n + 1
+      if H==1 then
+         xn = randn(0,4)
+      else
+         xn = randn(0,1)
+      end
+      LRTn = LRTn * LRT(xn)
+      pn = p / (p + (1 - p) * LRTn)
+      tex.sprint("("..n..","..pn..")")
+      if pn<=pL or pn>=pU then
+         break
+      end
+    end
+    tex.sprint("}")
+end
+
+\end{luacode*}
+
+\newcommand\addLUADEDplotcdf[7][]{%
+  \directlua{print_pn(#2,#3,#4,#5,#6,#7,[[#1]])}%
+}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=7cm,
+height=5.25cm,
+scale only axis,
+separate axis lines,
+every outer x axis line/.append style={white!15!black},
+every x tick label/.append style={font=\color{white!15!black}},
+xmin=0,
+xmax=6,
+xlabel=$n$,
+every outer y axis line/.append style={white!15!black},
+every y tick label/.append style={font=\color{white!15!black}},
+ymin=0,
+ymax=1,
+ylabel=$p_n$,
+ytick={0,0.2,0.4057,0.5,0.7403,0.8,1}, 
+yticklabels={$0$,$0.2$,$p_L$,$p$,$p_U$,,$1$},
+legend style={draw=white!15!black,fill=white,legend cell align=left,legend pos=south east},
+]
+\addplot[name path=pU, forget plot] coordinates {(0,0.7403)(8,0.7403)};
+\addplot[name path=pL, forget plot] coordinates {(0,0.4057)(8,0.4057)};
+
+\path[name path=axisabove] (axis cs:0,1) -- (axis cs:6,1);
+\path[name path=axisbelow] (axis cs:0,0) -- (axis cs:6,0);
+
+\addplot [thick,color=red,fill=red, fill opacity=0.05,forget plot] fill between[of=pU and axisabove,soft clip={domain=0:6}];
+\addplot [thick,color=blue,fill=blue, fill opacity=0.05,forget plot] fill between[of=pL and axisbelow,soft clip={domain=0:6}];
+
+\addLUADEDplotcdf[color=blue,thick,mark=*]{0.5}{0.4057}{0.7403}{1}{6}{1};
+\addLUADEDplotcdf[color=red,thick,mark=*]{0.5}{0.4057}{0.7403}{0}{6}{2};
+\foreach \i in {3,...,5}
+{
+        \addLUADEDplotcdf[color=blue,thick,dashed,forget plot,mark=*]{0.5}{0.4057}{0.7403}{1}{6}{\i + 3};
+        \addLUADEDplotcdf[color=red,thick,dashed,forget plot,mark=*]{0.5}{0.4057}{0.7403}{0}{6}{\i};
+}
+\legend{$H = 1$,$H = 0$};
+\addplot[no marks] coordinates{(3,0.025)} node[above] {$d = 1$};
+\addplot[no marks] coordinates{(3,1-0.025)} node[below] {$d = 0$};
+\end{axis}
+\end{tikzpicture}%
+
+
+\end{document}

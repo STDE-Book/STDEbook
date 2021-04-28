@@ -6,7 +6,7 @@ Once we have presented some of the main concepts involved in detection problems 
 \subsection{Hypotheses-based problems}
 \label{subsec:hypotheses_problems}
 
-As we have already explained, in this course, we will only cover a particular class of detection or classification problems to which we will refer as {\em hypotheses-based problems}. The goal is to infer the correct hypothesis, which cannot be directly observed, from a set of measurements or observations.  Thus, we consider a scenario with $M$ hypotheses, and denote the random variable that identifies the hypothesis as $H$. This is depicted in Fig. \ref{fig:clas_overview}, where $H \in \{0, 1, \ldots, M-1\}$. We also assume that we have access to an observation vector $\bf x$, which can be considered as the realization of a random variable $\bf X$ lying in observation space $\cal X$. We assume also that there is a certain statistical relationship between $H$ and $\bf X$. Otherwise, i.e., if $H$ and $\bf X$ were independent, it would make no sense to use $\bf x$ to make an informed inference about the value of $H$.
+As we have already explained, in this course, we will only cover a particular class of detection or classification problems to which we will refer as {\em hypotheses-based problems}. The goal is to infer the correct hypothesis, which cannot be directly observed, from a set of measurements or observations.  Thus, we consider a scenario with $M$ hypotheses, and denote the random variable that identifies the hypothesis as $H$. This is depicted in Fig. \ref{fig:clas_overview}, where $H \in \{0, 1, \ldots, M-1\}$. We also assume that we have access to an observation vector $\bf x$, which can be considered as the realization of a random variable $\bf X$ lying in the observation space $\cal X$. We assume also that there is a certain statistical relationship between $H$ and $\bf X$. Otherwise, i.e., if $H$ and $\bf X$ were independent, it would make no sense to use $\bf x$ to make an informed inference about the value of $H$.
 
     \begin{figure}
         \begin{center}
@@ -19,24 +19,24 @@ In this context, a detector or classifier is a function of $\bf x$ that outputs 
 
 \begin{itemize}
     \item We consider that $d = f({\bf x})$ is a deterministic function. This implies that if the same vector is presented several times, the function will output the same value each time. Note that, even though $f(\cdot)$ is deterministic, its output can be modeled as a random variable since the input is the random vector $\bf X$.
-    \item The function is surjective, that is, every input ${\bf x}$ generates one and only one output. Hence, the function divides the observation space into $M$ non-overlapping regions, ${\cal X}_d$, $d = 0, 1, \ldots M-1$, i.e., one region per hypotheses. Moreover, the boundaries between regions are known as decision boundaries.
+    \item The function is surjective, that is, every input ${\bf x}$ generates one and only one output, but several inputs could generate the same output. Hence, the function divides the observation space into $M$ non-overlapping regions, ${\cal X}_d$, $d = 0, 1, \ldots M-1$, i.e., one region per hypotheses. Moreover, the boundaries between regions are known as decision boundaries.
 \end{itemize}
 
 \begin{example}
 The detector $f(x) = u(x^2 -1)$, where $u(\cdot)$ is the step function, is defined for any $x$ on the real line, and is characterized by the following decision regions:
-\begin{align}{\cal X}_0 & = \left\{ x \in \Re | x^2-1 < 0\right\} = (-1,1) \nonumber\\
-{\cal X}_1 & = \left\{ x \in \Re | x^2-1 \geq 0\right\} = (-\infty,-1] \cup [1,\infty) \nonumber
+\begin{align}{\cal X}_0 & = \left\{ x \in \Re | x^2-1 < 0\right\} = (-1,1), \nonumber\\
+{\cal X}_1 & = \left\{ x \in \Re | x^2-1 \geq 0\right\} = (-\infty,-1] \cup [1,\infty). \nonumber
 \end{align}
 where we have assumed $u(0)=1$. In this example, the regions are connected and non-empty.
 \end{example}
 
 \begin{example}
 \label{ex:decisionregions}
-The decisor $f({\bf x}) = \arg\min_i y_i({\bf x})$ defined over ${\cal X} = [0,1]^2$, with
+The detector $f({\bf x}) = \arg\min_i y_i({\bf x})$ defined over ${\cal X} = [0,1]^2$, with
 \begin{align}
-y_0({\bf x}) & = \|{\bf x}\|^2 \nonumber \\
-y_1({\bf x}) & = x_1 - x_0 +1 \nonumber \\
-y_2({\bf x}) & = x_0 - x_1 + 1 \nonumber 
+y_0({\bf x}) & = \|{\bf x}\|^2, \nonumber \\
+y_1({\bf x}) & = x_1 - x_0 +1, \nonumber \\
+y_2({\bf x}) & = x_0 - x_1 + 1, \nonumber 
 \end{align}
 is characterized by the decision regions depicted in Fig. \ref{fig:decisionregions}.
 
@@ -58,7 +58,7 @@ We review now the main distributions that will be employed in detection problems
     $$P_H(h), \qquad \text{ for } \quad h = 0, 1, \ldots,\;M-1.$$
     
     \item Likelihoods of the hypotheses: This represents the probability of the observations given the hypothesis. Note that, even though we refer to these distribution as the likelihoods of the hypotheses, what we actually have is a collection of distributions over the random variable $X$ (unidimensional case) or ${\bf X}$ (multidimensional case), one for each hypothesis,
-    $$p_{{\bf X}|H}({\bf x}|h) \qquad \text{ for } \quad {\bf x} \in {\cal X} \text{ and } h = 0, 1, \ldots,\; M-1.$$
+    $$p_{{\bf X}|H}({\bf x}|h) \qquad \text{ for } \quad {\bf x} \in {\cal X} \text{ and } h = 0, 1, \ldots,\; M-1,$$
     where we have assumed a multidimensional case with continuous observations. Note that random variable $\bf X$ may lie in different regions depending on the hypothesis.
     
     \item {\em A posteriori} distribution of the hypotheses: This distribution provides information about the probabilities of the hypothesis, but conditioning them on each possible value of the observation vector
@@ -74,7 +74,7 @@ Bayes' Theorem shows how observing $\bf x$ modifies the information about the pr
 In the following, we consider two different kinds of problems involving $M$-ary hypothesis testing problems:
 \begin{itemize}
 	\item Analysis of detectors: Here, the detector is given, and the objective is to analyze its performance with respect to certain performance metrics.
-	\item Detector design: The goal is to build a function $f(\bf x)$ to optimize a performance metric.
+	\item Detector design: The goal is to build a function $f(\bf x)$ to optimize a desired performance metric.
 \end{itemize}
 
 \section{Analysis of the detection performance}
@@ -89,9 +89,9 @@ The probability of error is the probability of a wrong decision, i.e., the outpu
     P_e = P(D\neq H) & = 1 - P(D=H) \nonumber \\
     & = 1 - \sum_{h=0}^{M-1} P(D=h, H=h) \nonumber \\
     & = 1 - \sum_{h=0}^{M-1} P(D=h| H=h) P_H(h) \nonumber \\
-    & = 1 - \sum_{h=0}^{M-1} P_H(h) \int_{{\cal X}_h} p_{{\bf X}|H}({\bf x}|h) d{\bf x}\nonumber
+    & = 1 - \sum_{h=0}^{M-1} P_H(h) \int_{{\cal X}_h} p_{{\bf X}|H}({\bf x}|h) d{\bf x},\nonumber
 \end{align}
-where we have exploited that the probability of error is one minus the probability of correct decision. This is , in most cases, more convenient since the number of combinations where $D$ and $H$ are equal is (much) smaller than the number of combinations where they differ. Moreover, the last line of the previous expression follows from
+where we have exploited that the probability of error is one minus the probability of correct decision. This is, in most cases, more convenient since the number of combinations where $D$ and $H$ are equal is (much) smaller than the number of combinations where they differ. Moreover, the last line of the previous expression follows from
 $$P(D=h| H=h) = P({\bf x}\in {\cal X}_d| H=h) = \int_{{\cal X}_h} p_{{\bf X}|H}({\bf x}|h) d{\bf x},$$
 which states that, conditioned on $H=h$, the probability of $D=h$ is precisely the integral of the likelihood of that hypothesis in the region where the given detector decides in favor of hypothesis $h$, i.e., the region ${\cal X}_h$.
 
@@ -106,17 +106,19 @@ In other words, the probability of error at a particular ${\bf x} \in {\cal X}_d
 For the binary case, contrary to the multiple hypotheses test, computing the probability of error  involves as many terms as the probability of a correct decision since
 \begin{align}
     P_e & = P(D=0, H=1) + P(D=1, H=0) \nonumber \\
-    & = P(D=0|H=1) P_H(1) + P(D=1|H=0) P_H(0) \nonumber
+    & = P(D=0|H=1) P_H(1) + P(D=1|H=0) P_H(0). \nonumber
 \end{align}
 In the expression above we find two terms that are normally referred to as the {\em probability of false alarm} (also known as probability of Type I error or significance level) and the {\em probability of missing} (or probability of Type II error):
 \begin{align}
-    P_\text{FA} & = P(D=1|H=0) = \int_{{\cal X}_1} p_{{\bf X}|H}({\bf x}|0) d{\bf x} \nonumber \\
-    P_\text{M} & = P(D=0|H=1) = \int_{{\cal X}_0} p_{{\bf X}|H}({\bf x}|1) d{\bf x} \nonumber
+    P_\text{FA} & = P(D=1|H=0) = \int_{{\cal X}_1} p_{{\bf X}|H}({\bf x}|0) d{\bf x}, \nonumber \\
+    P_\text{M} & = P(D=0|H=1) = \int_{{\cal X}_0} p_{{\bf X}|H}({\bf x}|1) d{\bf x}. \nonumber
 \end{align}
-Similarly, the probability of detection (or power) is defined as
-$$P_\text{D} = P(D=1|H=1) = 1 - P_\text{M}$$
-Using these definitions, the probability of error can now be expressed more compactly as
-$$P_e = P_\text{M} P_H(1) + P_\text{FA} P_H(0)$$
+Similarly, the probability of detection (power or sensitivity) is defined as
+$$P_\text{D} = P(D=1|H=1) = 1 - P_\text{M},$$
+and
+$$P(D=0|H=0) = 1 - P_\text{FA},$$
+is the specificity. Using these definitions, the probability of error can now be expressed more compactly as
+$$P_e = P_\text{M} P_H(1) + P_\text{FA} P_H(0).$$
 Interestingly, for the computation of $P_\text{FA}$ and $P_\text{M}$, only likelihoods are required. However, in order to compute the overall probability of error, we also need to know the {\em a priori} probabilities of the hypothesis.
 
 We also introduce here an important concept for the analysis of binary hypothesis tests: the receiver operating characteristic (ROC) curve. The ROC curve plots the probability of false alarm, $P_\text{FA}$, against the probability of detection, $P_\text{D}$. Figure \ref{fig:ROC} shows the ROC curves of two different detectors, Detector 1 and Detector 2. As can be seen in this figure, the performance of Detector 2 is clearly better than that of Detector 1, since for each $P_\text{FA}$, the $P_\text{D}$ of Detector 2 is equal or larger than that of Detector 1. Moreover, both detectors perform better than a random decision whose ROC curve is also shown in the figure. One final comment is in order. For almost all detectors it is not possible to increase the probability of detection without increasing the probability of false alarm.
@@ -130,7 +132,7 @@ We also introduce here an important concept for the analysis of binary hypothesi
 
 \subsection{Average (or mean) cost}
 
-Using the probability of error as the unique measure of the detector's performance is not a good idea, because there are many practical scenarios where not all errors are equally critical. Imagine, for instance, a detector that discriminates whether there are or not suspicious tumor masses in a medical image. Such detector is used as a pre-diagnosis system, so that patients that can have a tumor are then explored with more accurate (but also invasive) techniques. In this case, there is a clear asymmetry between both kinds of errors: The incorrect decision that tumor masses are present would result in an unnecessary biopsy and inconvenience for the patient,but the opposite error could delay the diagnosis until a time when the process is irreversible.
+Using the probability of error as the unique measure of the detector's performance is not a good idea, because there are many practical scenarios where not all errors are equally critical. Imagine, for instance, a detector that discriminates whether there are or not suspicious tumor masses in a medical image. Such detector is used as a pre-diagnosis system, so that patients that can have a tumor are then explored with more accurate (but also invasive) techniques. In this case, there is a clear asymmetry between both kinds of errors: The incorrect decision that tumor masses are present would result in an unnecessary biopsy and inconvenience for the patient, but the opposite error could delay the diagnosis until a time when the process is irreversible.
 
 To assign a penalty to different kinds of errors, we can define a cost function $$c_{DH}, \qquad D,H = 0, \ldots, M-1.$$ Such function will take as many values as combinations of decisions and hypotheses, in such a way that each particular value $c_{dh}$ is the cost of deciding $D=d$ when hypothesis $H=h$ is the true one. As already pointed out, we assume deterministic costs in this course, in the sense that the cost for each particular $d$ and $h$ is fixed. However, since the cost is a function of the random variables $D$ and $H$, it is a random variable as well, and its expected value can be computed as
 $$\mathbb{E}\left\{ c_{DH}\right\} = \sum_{h=0}^{M-1} \sum_{d=0}^{M-1} c_{dh} P(D=d, H=h).$$
@@ -178,10 +180,10 @@ These detectors proceed as follows. Designing a detector is equivalent to specif
 Finally, there are two properties that are worth considering with respect to these detectors:
 \begin{enumerate}
     \item When the {\em a priori} probabilities of the hypothesis are the same, i.e., $P_H(h) = 1/M$, the ML and MAP detectors are identical. This can be shown from the Bayes' Theorem, since in this case
-    $$d_{MAP} = \arg\max_h P_{H|{\bf X}}(h|{\bf x}) = \arg\max_h \frac{p_{{\bf X}|H}({\bf x}|h) P_H(h)}{p_{\bf X}(\bf x)} = \arg\max_h p_{{\bf X}|H}({\bf x}|h) = d_{ML}$$
+    $$d_{MAP} = \arg\max_h P_{H|{\bf X}}(h|{\bf x}) = \arg\max_h \frac{p_{{\bf X}|H}({\bf x}|h) P_H(h)}{p_{\bf X}(\bf x)} = \arg\max_h p_{{\bf X}|H}({\bf x}|h) = d_{ML}.$$
     
     \item The MAP detector minimizes the probability of error. Note that according to \eqref{eq:Pe_x} the probability of error for a given $\bf x$ can be expressed as
-    $$P(D\neq H|{\bf x}) = 1 - P_{ H|{\bf X}}(h|{\bf x})$$
+    $$P(D\neq H|{\bf x}) = 1 - P_{ H|{\bf X}}(h|{\bf x}).$$
     Since the MAP detector selects for every $\bf x$ the hypothesis that maximizes $P_{H|{\bf X}}(h|{\bf x})$, it therefore minimizes the probability of error for each vector of the observation space. Thus, as the probability of error is minimized for each point of the observation space, it is also minimized overall. That is,
     $$P(D\neq H) = \int_{\mathcal{X}} P(D\neq H|{\bf x}) p_{\bf X}(\bf x) d{\bf x},$$
     and we can check that the value of the integral (the probability of error) is minimized if, for each $\bf x$, the decisions minimize $P(D\neq H|{\bf x})$, i.e., the MAP detector.
@@ -223,15 +225,15 @@ Now, the NP detector can be derived as the solution to
 \begin{equation*}
 	\text{maximize } P_\text{D}, \quad \text{subject to } P_\text{FA} = \alpha,
 \end{equation*}
-which is an optimization problem with constraints. The solution this kind of problems is obtained from the Lagrangian, which is given by
+which is an optimization problem with constraints. The solution to this kind of problems is obtained from the Lagrangian, which is given by
 \begin{align}
 \mathcal{L}(\mathcal{X}_1,\eta) &= P_\text{D} - \eta (P_\text{FA} - \alpha) \nonumber \\
 &= \int_{{\cal X}_1} p_{{\bf X}|H}({\bf x}|1) d{\bf x}  - \eta \left(\int_{{\cal X}_1} p_{{\bf X}|H}({\bf x}|0) d{\bf x} - \alpha \right) \nonumber \\
-&= \int_{\mathcal{X}_1} \left( p_{{\bf X}|H}({\bf x}|1) - \eta p_{{\bf X}|H}({\bf x}|0)  \right) d  {\bf x} + \eta \alpha \nonumber
+&= \int_{\mathcal{X}_1} \left( p_{{\bf X}|H}({\bf x}|1) - \eta p_{{\bf X}|H}({\bf x}|0)  \right) d  {\bf x} + \eta \alpha. \nonumber
 \end{align}
 Note, that the optimization variable is the region where we decide $d=1$. Next, we need to maximize the Lagrangian, and therefore the $P_\text{D}$, which is achieved by maximizing the above integral. To do so, and taken into account that an integral may be seen as a sum, we need to design ${\cal X}_1$ such that the integrand is positive, i.e.
 \begin{equation*}
-	\mathcal{X}_1 = \{\mathbf{x} |p_{{\bf X}|H}({\bf x}|1) - \eta p_{{\bf X}|H}({\bf x}|0) \geq 0 \} \Rightarrow \frac{p_{{\bf X}|H}({\bf x}|1)}{p_{{\bf X}|H}({\bf x}|0)} \dunodcero \eta
+	\mathcal{X}_1 = \{\mathbf{x} |p_{{\bf X}|H}({\bf x}|1) - \eta p_{{\bf X}|H}({\bf x}|0) \geq 0 \} \Rightarrow \frac{p_{{\bf X}|H}({\bf x}|1)}{p_{{\bf X}|H}({\bf x}|0)} \dunodcero \eta,
 \end{equation*}
 and $\eta$ is selected to achieve the desired probability of false alarm.
 
@@ -239,29 +241,29 @@ and $\eta$ is selected to achieve the desired probability of false alarm.
 
 As we have already studied, sometimes it makes more sense to measure the performance of a detector in terms of the expected cost. Therefore, it is important to tackle the problem of designing a detector that is optimum with respect to the expected cost.
 
-Remember that the expected cost of a detector deciding $d$ for an observation ${\bf x}$ is given by equation \eqref{eq:cost_x}, which we reproduce here for convenience:
+Remember that the expected cost of a detector deciding $d$ for an observation ${\bf x}$ is given by Equation \eqref{eq:cost_x}, which we reproduce here for convenience:
 \begin{equation}
-    \mathbb{E}\left\{ c_{dH}\right|{\bf x}\} = \sum_{h=0}^{M-1} c_{dh} P_{H|X}(h|{\bf x}) \label{eq:mean_x_2}.
+    \mathbb{E}\left\{ c_{dH}\right|{\bf x}\} = \sum_{h=0}^{M-1} c_{dh} P_{H|\bf X}(h|{\bf x}) \label{eq:mean_x_2}.
 \end{equation}
 Minimizing the expected cost over the whole observation space requires that decisions for each observation minimize the conditional expected cost. That is, for each ${\bf x}$ the above expression should be minimized, and the expression of the minimum mean cost detector can be stated as follows:
-$$d^\star = \arg\min_{d} \sum_{h=0}^{M-1} c_{dh} P_{H|X}(h|{\bf x})$$
+$$d^\star = \arg\min_{d} \sum_{h=0}^{M-1} c_{dh} P_{H|\bf X}(h|{\bf x}).$$
 Hence, when designing the detector, we need to evaluate the cost of the different decisions for each observation vector, and select the decision for which the expected cost is minimized.
 
 It is interesting to point out that when the cost function penalizes equally all kinds of errors, i.e.,
 $$c_{dh} = \left\{\begin{array}{ll} 0, & \;\;\;\;d=h \\ c, & \;\;\;\;d\neq h\end{array}\right.$$
 the detector with minimum expected cost becomes the MAP one. This is easily proved by replacing these costs into the expression for the minimum expected cost detector
 \begin{align}
-    d^\star & = \arg\min_{d} \sum_{h=0}^{M-1} c_{dh} P_{H|X}(h|{\bf x}) \nonumber \\
-            & = \arg\min_{d} \ c \sum_{h\neq d} P_{H|X}(h|{\bf x}) \nonumber \\
-            & = \arg\min_{d} \sum_{h\neq d} P_{H|X}(h|{\bf x}) \nonumber \\
-            & = \arg\min_{d} 1 - P_{H|X}(d|{\bf x}) \nonumber \\
-            & = \arg\max_{d} P_{H|X}(d|{\bf x}) \nonumber \\
+    d^\star & = \arg\min_{d} \sum_{h=0}^{M-1} c_{dh} P_{H|\bf X}(h|{\bf x}) \nonumber \\
+            & = \arg\min_{d} \ c \sum_{h\neq d} P_{H|\bf X}(h|{\bf x}) \nonumber \\
+            & = \arg\min_{d} \sum_{h\neq d} P_{H|\bf X}(h|{\bf x}) \nonumber \\
+            & = \arg\min_{d} 1 - P_{H|\bf X}(d|{\bf x}) \nonumber \\
+            & = \arg\max_{d} P_{H|\bf X}(d|{\bf x}) \nonumber \\
             & = d_{MAP}.
 \end{align}
 
 \subsubsection{Binary case: Minimum expected cost detector}
 
-In the binary case, we can also express the optimum detector with respect to a cost function as an LRT. Let us start by particularizing \eqref{eq:mean_x_2} for $d=0$ and $d=1$, and then follow the criterion of deciding in favor of the minimum cost, i.e.,
+In the binary case, we can also express the optimum detector with respect to a cost function as a LRT. Let us start by particularizing \eqref{eq:mean_x_2} for $d=0$ and $d=1$, and then follow the criterion of deciding in favor of the minimum cost, i.e.,
 $$\mathbb{E}\left\{ c_{0H}\right|{\bf x}\} \dunodcero \mathbb{E}\left\{ c_{1H}\right|{\bf x}\}.$$
 Now, using the definition of expectation, the criterion becomes
 $$c_{00}P_{H|{\bf X}}(0|{\bf x}) + c_{01} P_{H|{\bf X}}(1|{\bf x})\dunodcero c_{10}P_{H|{\bf X}}(0|{\bf x}) + c_{11} P_{H|{\bf X}}(1|{\bf x}),$$
@@ -273,14 +275,14 @@ and corresponds to yet another point of the ROC curve of the LRT.
 
 \subsection{The Gaussian case}
 
-In this section, we will derive the likelihood ratio test for Gaussian observation under several assumptions. Then, depending on the threshold, we would obtain the different detectors: NP, ML, MAP, and minimum cost.
+In this section, we will derive the likelihood ratio test for Gaussian observations under several assumptions. Then, depending on the threshold, we would obtain the different detectors: NP, ML, MAP, and minimum cost.
 
 Before proceeding, we introduce the multivariate real Gaussian probability density function (PDF), which is given by
-\begin{equation}
+\begin{equation*}
 P_{{\bf X}}({\bf x}) = \frac{1}{(2\pi)^{N/2} |{\bf V}|^{1/2}}
-\exp\left(-\frac{1}{2}({\bf x}-{\bf m})^T {\bf V}^{-1}({\bf x}-{\bf m})\right)
+\exp\left(-\frac{1}{2}({\bf x}-{\bf m})^T {\bf V}^{-1}({\bf x}-{\bf m})\right),
 \label{pXGauss}
-\end{equation}
+\end{equation*}
 where ${\bf x}$ is an $N$-dimensional vector, ${\bf m}$ is the mean vector, and ${\bf V}$ is the cross-covariance matrix. Then, under hypothesis $h = 0$, the likelihood is
 \begin{equation*}
 P_{{\bf X}|H}({\bf x}|0) = \frac{1}{(2\pi)^{N/2} |{\bf V}_0|^{1/2}}
@@ -314,7 +316,7 @@ with $\eta$ being a threshold selected according to the performance criterion.
 
 After a careful look at \eqref{eq:logLRTGauss}, it can be shown that the optimal detector in the Gaussian case is given by a second-order polynomial function. Hence, the decision boundaries\footnote{We obtain the decision boundaries for the equality in \eqref{eq:logLRTGauss}.} are quadratic surfaces. For instance, for 2D problems ($N = 2$), these boundaries are hyperbolas, parabolas, ellipses or straight lines.
 
-In the following sections, we consider a few particular cases, but we conclude this section with two examples.
+In the following sections, we consider a few particular cases, and we conclude this section with two examples.
 
 \begin{example}
 	Figure \ref{fig:DecGauss2Dhip} shows the decision boundaries for the ML detector ($\eta = 1$ in \eqref{eq:logLRTGauss}), for a detection problem with 2D Gaussian observations with the following means and cross-covariance matrices:
@@ -339,7 +341,7 @@ In the following sections, we consider a few particular cases, but we conclude t
 \end{example}
 
 \begin{example}
-	Figure \ref{fig:DecGauss2Delip} shows an equivalent figure that of the previous example, but for a problem with the following means and cross-covariance matrices:
+	Figure \ref{fig:DecGauss2Delip} shows an equivalent figure to that of the previous example, but for a problem with the following means and cross-covariance matrices:
 		\begin{equation*}
 	{\bf m}_0 =  \left(\begin{array}{l}  0\\0  \end{array}\right), {\bf V}_0 = 
 	\left(\begin{array}{ll} 0.7 & 0 \\ 0 & 0.7 \end{array} \right),
@@ -395,8 +397,8 @@ The label of each decision boundary is $\log(\eta)$. Then, $\log(\eta) = 0$ corr
 	\end{figure}
 \end{example}
 
-\begin{example}[Mathed filter]
-	In this example, we derive one of the most well known detectors, the mathed filter (MF). The MF is the LLRT to the detection of a known signal contaminated by zero-mean Gaussian noise. Concretely, under hypothesis $h=0$, the observations are given by noise only:
+\begin{example}[Matched filter]
+	In this example, we derive one of the most well-known detectors, the matched filter (MF). The MF is the LLRT to the detection of a known signal contaminated by zero-mean Gaussian noise. Concretely, under hypothesis $h=0$, the observations are given by noise only:
 	\begin{equation*}
 	x[n] = w[n], \quad n = 0, \ldots, N-1,
 	\end{equation*}
@@ -433,7 +435,7 @@ Hence, the detection problem is that of Gaussian observations with identical cov
 \begin{equation*}
 ({\bf m}_1-{\bf m}_0)^T {\bf V}^{-1}{\bf x} = \frac{1}{\sigma^2} {\bf s}^T {\bf x} \dunodcero \tilde{\mu} \Rightarrow \underbrace{\sum_{n = 0}^{N-1} s[n]x[n]}_{MF} \ \dunodcero \sigma^2 \tilde{\mu}.
 \end{equation*}
-Alternatively, and the motivation for the term matched filter, is because the above detector can be rewritten as a filtering of then signal $x[n]$ with the filter $h[n] = s[N-1 - n]$, followed by sampling every $N$ samples. Finally, we also would like to point out that the matched filter is a filter that maximizes the signal-to-noise ratio.
+Alternatively, and the motivation for the term matched filter, is because the above detector can be rewritten as a filtering of the signal $x[n]$ with the filter $h[n] = s[N-1 - n]$, followed by sampling every $N$ samples. Finally, we also would like to point out that the matched filter is a filter that maximizes the signal-to-noise ratio.
 
 \end{example}
 
