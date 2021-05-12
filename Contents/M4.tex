@@ -8,7 +8,7 @@ In the following, we will study the problem of sequential detection in a simple 
 
 \subsection{Example 1: Sequential detection with no gathering cost}
 
-Here, we present a simple example to motivate the problem of sequential detection. Consider an experiment in which the observation at time $n$ under hypothesis $h = 0$ follows a zero-mean Gaussian distribution with variance $\sigma^2 = 1$, and under hypothesis $h = 1$, the observation follows a zero-mean Gaussian distribution with variance $\sigma^2 = 4$. That is, the likelihoods are
+Here, we present a simple example to motivate the problem of sequential detection. Consider an experiment in which the observation at time $n$ under hypothesis $H = 0$ follows a zero-mean Gaussian distribution with variance $\sigma^2 = 1$, and under hypothesis $H = 1$, the observation follows a zero-mean Gaussian distribution with variance $\sigma^2 = 4$. That is, the likelihoods are
 \begin{equation}
 	\label{eq:likelihood_0}
 	p_{X[n] | H} (x[n] | 0) = \frac{1}{\sqrt{2 \pi}} \exp \left(-\frac{x^2[n]}{2}\right),
@@ -57,11 +57,11 @@ We shall start by considering no observations, $n = 0$, and derive the detector 
 	&= P(D = 1, H = 0) +  P(D = 0, H = 1) \\ &= P(D = 1 | H = 0) P_H(0) +  P(D = 0 |H = 1) P_H(1)
 	\\ &= P(D = 1 | H = 0) p +  P(D = 0 |H = 1) (1 - p),
 \end{align*}
-where we have defined, for the sake of notation, $P_H(0) = p$ and $P_H(1) = 1 - p$. The probabilities $P(D = 1 | H = 0)$ and $P(D = 0 | H = 1)$ are determined by the detector. However, since there are no observations, the detector must always decide the same hypothesis, making one of the aforementioned probabilities one and the other zero. Then, for $0 \leq p \leq 1/2$, we should always decide $d = 1$, which yields $P(D = 1 | H = 0) = 1$, $P(D = 0 | H = 1) = 0$, and
+where we have defined, for the sake of notation, $P_H(0) = p$ and $P_H(1) = 1 - p$. The probabilities $P(D = 1 | H = 0)$ and $P(D = 0 | H = 1)$ are determined by the detector. However, since there are no observations, the detector must always decide the same hypothesis, making one of the aforementioned probabilities one and the other zero. Then, for $0 \leq p \leq 1/2$, we should always decide $D = 1$, which yields $P(D = 1 | H = 0) = 1$, $P(D = 0 | H = 1) = 0$, and
 \begin{equation*}
 	\overline{C}_0 = p.
 \end{equation*}
-If we had decided always $d = 0$, we would have $P(D = 1 | H = 0) = 0$, $P(D = 0 | H = 1) = 1$, and
+If we had decided always $D = 0$, we would have $P(D = 1 | H = 0) = 0$, $P(D = 0 | H = 1) = 1$, and
 \begin{equation*}
 	\overline{C}_0 = 1 - p,
 \end{equation*}
@@ -106,19 +106,19 @@ where we have explicitly written the dependence of the minimum average cost  wit
 
 Let us now consider an arbitrary number of observations $n$, with $n >0$, and derive again the minimum expected cost detector, which minimizes the expected cost. This cost is denoted by $\overline{C}_n(p)$, to highlight that it depends on the number of observations and the prior probability $p$. Before proceeding, let us define $\mathbf{x}_n = (x[1], \ldots, x[n])^T$ as the vector that contains all available observations. Now, the sought detector is given by the likelihood ratio test (LRT), that is,
 \begin{equation*}
-	\frac{P_{{\bf X}_n|H}({\bf x}_n|1)}{P_{{\bf X}_n|H}({\bf x}_n|0)}\dunodcero \frac{c_{10}-c_{00}}{c_{01}-c_{11}} \frac{P_H(0)}{P_H(1)} = \frac{p}{1 - p}.
+	\frac{p_{{\bf X}_n|H}({\bf x}_n|1)}{p_{{\bf X}_n|H}({\bf x}_n|0)}\dunodcero \frac{c_{10}-c_{00}}{c_{01}-c_{11}} \frac{P_H(0)}{P_H(1)} = \frac{p}{1 - p}.
 \end{equation*}
 To compute the likelihood of the $n$ observations, we can use the i.i.d. assumption and, therefore,
 \begin{equation*}
-	P_{{\bf X}_n|H}({\bf x}_n|h) = \prod_{i = 1}^{n} P_{X[i]|H}( x[i] | h).
+	p_{{\bf X}_n|H}({\bf x}_n|h) = \prod_{i = 1}^{n} p_{X[i]|H}( x[i] | h).
 \end{equation*}
 Using the likelihoods in \eqref{eq:likelihood_0} and \eqref{eq:likelihood_1}, we get
 \begin{equation*}
-	P_{{\bf X}_n|H}({\bf x}_n|0) = \prod_{i = 1}^{n} P_{X[i]|H}( x[i] | 0) = \prod_{i = 1}^{n} \frac{1}{\sqrt{2 \pi}} \exp \left(-\frac{x^2[i]}{2}\right) = \frac{1}{(2 \pi)^{n/2}} \exp \left(-\frac{1}{2} \sum_{i = 1}^{n} x^2[i]\right),
+	p_{{\bf X}_n|H}({\bf x}_n|0) = \prod_{i = 1}^{n} p_{X[i]|H}( x[i] | 0) = \prod_{i = 1}^{n} \frac{1}{\sqrt{2 \pi}} \exp \left(-\frac{x^2[i]}{2}\right) = \frac{1}{(2 \pi)^{n/2}} \exp \left(-\frac{1}{2} \sum_{i = 1}^{n} x^2[i]\right),
 \end{equation*}
 and
 \begin{equation*}
-	P_{{\bf X}_n|H}({\bf x}_n|1) = \prod_{i = 1}^{n} P_{X[i]|H}( x[i] | 1) = \prod_{i = 1}^{n} \frac{1}{\sqrt{8 \pi}} \exp \left(-\frac{x^2[i]}{8}\right) = \frac{1}{(8 \pi)^{n/2}} \exp \left(-\frac{1}{8} \sum_{i = 1}^{n} x^2[i]\right).
+	p_{{\bf X}_n|H}({\bf x}_n|1) = \prod_{i = 1}^{n} p_{X[i]|H}( x[i] | 1) = \prod_{i = 1}^{n} \frac{1}{\sqrt{8 \pi}} \exp \left(-\frac{x^2[i]}{8}\right) = \frac{1}{(8 \pi)^{n/2}} \exp \left(-\frac{1}{8} \sum_{i = 1}^{n} x^2[i]\right).
 \end{equation*}
 Then, the LRT becomes
 \begin{equation*}
@@ -157,13 +157,13 @@ We shall start by considering a transformation of the random variables $y[i], i 
 \end{equation*}
 which is distributed as a Chi-squared random variable with $I$ degrees of freedom, denoted as $Z \sim \chi^2_{I}$. The probability density function of $Z$ is
 \begin{equation*}
-	f_Z(z) = \begin{cases} \frac{1}{2^{I/2} \Gamma(I/2)} z^{I/2 - 1} \exp(-z/2), & z >0, \\ 0, & \text{otherwise,} \end{cases}
+	p_Z(z) = \begin{cases} \frac{1}{2^{I/2} \Gamma(I/2)} z^{I/2 - 1} \exp(-z/2), & z >0, \\ 0, & \text{otherwise,} \end{cases}
 \end{equation*}
 and its cumulative distribution function is
 \begin{equation*}
 	F_Z(z) = \frac{\gamma(I/2,z/2)}{\Gamma(I/2)},
 \end{equation*}
-where $\Gamma(\cdot)$ is the gamma function and $\gamma(\cdot,\cdot)$ is the lower incomplete gamma function.\footnote{For positive integer values of the argument, the gamma function is given by $\Gamma(a) = (a - 1)!$. To compute the incomplete gamma function, it is necessary to resort to (uni-dimensional) numerical integration.} Figure \ref{fig:pdf_chi2} depicts $f_Z(z)$ and $F_Z(z)$ for a different number of degrees of freedom.
+where $\Gamma(\cdot)$ is the gamma function and $\gamma(\cdot,\cdot)$ is the lower incomplete gamma function.\footnote{For positive integer values of the argument, the gamma function is given by $\Gamma(a) = (a - 1)!$. To compute the incomplete gamma function, it is necessary to resort to (uni-dimensional) numerical integration.} Figure \ref{fig:pdf_chi2} depicts $p_Z(z)$ and $F_Z(z)$ for a different number of degrees of freedom.
 
 \begin{figure}[t]
 	\begin{center}
@@ -179,7 +179,7 @@ Using the Chi-squared distribution, we can compute $P_{\text{FA}}$ and $P_{\text
 	&= P \left(\left. \frac{1}{n} \sum_{i = 1}^{n} x^2[i]  > \frac{8}{3} \left[ \frac{1}{n}  \log \left(\frac{p}{1 - p}  \right) + \log 2 \right] \right| H = 0 \right) \\ 
 	&= P \left(\left. \sum_{i = 1}^{n} x^2[i]  > \frac{8}{3} \left[\log \left(\frac{p}{1 - p}  \right) + n \log 2 \right] \right| H = 0 \right),
 \end{align*}
-and taking into account that, under $h = 0$, $x[i]$ are i.i.d. Gaussian variables with zero mean and unit variance, $P_{\text{FA}}$ is the probability that a $\chi^2_n$ random variable is larger than $8/3 \left[\log \left(p/(1 - p)  \right) + n \log 2\right]$. That is,
+and taking into account that, under $H = 0$, $x[i]$ are i.i.d. Gaussian variables with zero mean and unit variance, $P_{\text{FA}}$ is the probability that a $\chi^2_n$ random variable is larger than $8/3 \left[\log \left(p/(1 - p)  \right) + n \log 2\right]$. That is,
 \begin{equation*}
 	P_{\text{FA}} = 1 - \frac{\gamma \left(n/2,\frac{8}{3} \left[\log \left(\frac{p}{1 - p}\right) + n \log 2 \right]\right)}{\Gamma(n/2)}.
 \end{equation*}
@@ -189,7 +189,7 @@ We can proceed similarly for $P_{\text{M}}$ as follows
 	&= P \left(\left. \frac{1}{n} \sum_{i = 1}^{n} x^2[i]  \leq \frac{8}{3} \left[ \frac{1}{n}  \log \left(\frac{p}{1 - p}  \right) + \log 2 \right] \right| H = 1 \right) \\ 
 	&= P \left(\left. \sum_{i = 1}^{n} \left(\frac{x[i]}{2}\right)^2  \leq \frac{2}{3} \left[\log \left(\frac{p}{1 - p}  \right) + n \log 2 \right] \right| H = 1 \right).
 \end{align*}
-Under $h = 1$, $x[i]/2$ are i.i.d. Gaussian variables with zero mean and unit variance, and $P_{\text{M}}$ is therefore the probability that a $\chi^2_n$ random variable is smaller than $2/3 \left[\log \left(p/(1 - p)  \right) + n \log 2\right]$, which can be expressed as
+Under $H = 1$, $x[i]/2$ are i.i.d. Gaussian variables with zero mean and unit variance, and $P_{\text{M}}$ is therefore the probability that a $\chi^2_n$ random variable is smaller than $2/3 \left[\log \left(p/(1 - p)  \right) + n \log 2\right]$, which can be expressed as
 \begin{equation*}
 	P_{\text{M}} = \frac{\gamma \left(n/2,\frac{2}{3} \left[\log \left(\frac{p}{1 - p}  \right) + n \log 2 \right]\right)}{\Gamma(n/2)}.
 \end{equation*}
@@ -257,20 +257,20 @@ We have used the previous examples to motivate sequential detection, but such st
 	\label{fig:average_cost3_n}
 \end{figure}
 
-Consider there are no observations available, that is $n = 0$. At this time instant, we need to decide between $H = 0$, $H = 1$, or take another sample. Since there are no available samples, the cost of always deciding $d = 1$ is $p$, the prior probability of $H = 0$, the cost of always deciding $d = 0$ is $1 - p$, the prior probability of $H = 1$, and the minimum expected cost with $n = 1$ sample is $\overline{C}_{1,G}(p)$. These three costs are depicted in Figure \ref{fig:average_cost3_n}, which shows that they intersect at two points. The first of these two points, $p_L$, can be obtained as the largest value of $p$ for which $\overline{C}_{1,G}(p)$ is still larger than the cost of always deciding $d = 1$. Mathematically, $p_L$ is obtained as
+Consider there are no observations available, that is $n = 0$. At this time instant, we need to decide between $H = 0$, $H = 1$, or take another sample. Since there are no available samples, the cost of always deciding $D = 1$ is $p$, the prior probability of $H = 0$, the cost of always deciding $D = 0$ is $1 - p$, the prior probability of $H = 1$, and the minimum expected cost with $n = 1$ sample is $\overline{C}_{1,G}(p)$. These three costs are depicted in Figure \ref{fig:average_cost3_n}, which shows that they intersect at two points. The first of these two points, $p_L$, can be obtained as the largest value of $p$ for which $\overline{C}_{1,G}(p)$ is still larger than the cost of always deciding $D = 1$. Mathematically, $p_L$ is obtained as
 \begin{equation*}
 	p_L = \sup_{p} \ \{p \mid \overline{C}_{1,G}(p) > p\}.
 \end{equation*}
-Similarly, $p_U$ is the smallest value of $p$ where $\overline{C}_{1,G}(p)$ starts to be larger than the cost of always deciding $d = 0$, that is,
+Similarly, $p_U$ is the smallest value of $p$ where $\overline{C}_{1,G}(p)$ starts to be larger than the cost of always deciding $D = 0$, that is,
 \begin{equation*}
 	p_U = \inf_{p} \  \{p \mid \overline{C}_{1,G}(p) > 1 - p\}.
 \end{equation*}
-Hence, for $p \in [0,p_L]$, with $p_L = 0.4057$ in our example, the cost of always deciding $d = 1$ is the smallest, whereas for $p \in [p_U,1]$, with $p_U = 0.7403$, the cost of always deciding $d = 0$ is the smallest. However, for $p \in (p_L,p_U)$, neither the cost of always deciding $d = 0$, nor the cost of always deciding $d = 1$ is the smallest, and we must take another sample. Summarizing, at time $n = 0$, the sequential test must\footnote{Although this sequential test was obtained for a particular example, it is a general result since $\overline{C}_{1,G}(p)$ is a concave function of $p$ in $[0,1]$ for any likelihood and any other costs $c_{DH}$ and $c_{G}$. Nevertheless, the derived values of $p_L$ and $p_U$ would be different.}
+Hence, for $p \in [0,p_L]$, with $p_L = 0.4057$ in our example, the cost of always deciding $D = 1$ is the smallest, whereas for $p \in [p_U,1]$, with $p_U = 0.7403$, the cost of always deciding $D = 0$ is the smallest. However, for $p \in (p_L,p_U)$, neither the cost of always deciding $D = 0$, nor the cost of always deciding $D = 1$ is the smallest, and we must take another sample. Summarizing, at time $n = 0$, the sequential test must\footnote{Although this sequential test was obtained for a particular example, it is a general result since $\overline{C}_{1,G}(p)$ is a concave function of $p$ in $[0,1]$ for any likelihood and any other costs $c_{DH}$ and $c_{G}$. Nevertheless, the derived values of $p_L$ and $p_U$ would be different.}
 \begin{equation}
 \label{eq:seq_test_n0}
 \begin{array}{l}
-	\text{decide } d = 1 \text{ for } p \leq p_L, \\
-	\text{decide } d = 0 \text{ for } p \geq p_U, \\
+	\text{decide } D = 1 \text{ for } p \leq p_L, \\
+	\text{decide } D = 0 \text{ for } p \geq p_U, \\
 	\text{take another sample for } p_L < p < p_U.
 \end{array}
 \end{equation}
@@ -278,8 +278,8 @@ Hence, for $p \in [0,p_L]$, with $p_L = 0.4057$ in our example, the cost of alwa
 The question that remains to be answered is: What do we have to do if we have decided to take another sample? To answer this question, we must note that at $n = 1$, we have already taken the sample, i.e., the gathering cost has been already spent. Moreover, the possible decisions at $n = 1$ are exactly those of $n = 0$: decide between $H = 0$, $H = 1$, or take another sample. That is, the effect of having already taken one sample does not modify the test as there are still an infinite number of available samples. However, there is one important difference. The value of $x[1]$ provides some (partial) knowledge about the hypothesis. Then, conditioned on having observed $x[1]$, we should repeat the sequential test in \eqref{eq:seq_test_n0}, but instead of using the prior probability $P(H = 0) = p$, we must use the posterior probability $P(H = 0 | X[1] = x[1]) = p_1$, i.e.,
 \begin{equation*}
 	\begin{array}{l}
-		\text{decide } d = 1 \text{ for } p_1 \leq p_L, \\
-		\text{decide } d = 0 \text{ for } p_1 \geq p_U, \\
+		\text{decide } D = 1 \text{ for } p_1 \leq p_L, \\
+		\text{decide } D = 0 \text{ for } p_1 \geq p_U, \\
 		\text{take another sample for } p_L < p < p_U.
 	\end{array}
 \end{equation*}
@@ -287,8 +287,8 @@ Similarly, at a generic time $n$, the sequential test is
 \begin{equation}
 	\label{eq:seq_test}
 	\begin{array}{l}
-		\text{decide } d = 1 \text{ for } p_n \leq p_L, \\
-		\text{decide } d = 0 \text{ for } p_n \geq p_U, \\
+		\text{decide } D = 1 \text{ for } p_n \leq p_L, \\
+		\text{decide } D = 0 \text{ for } p_n \geq p_U, \\
 		\text{take another sample for } p_L < p < p_U,
 	\end{array}
 \end{equation}
@@ -303,20 +303,20 @@ with $p_0 = P(H = 0) = p$. To conclude the derivation of the sequential test, we
 Applying now the law of total probability to the denominator, $p_n$ becomes
 \begin{align}
 	p_n &= \frac{P(X[1] = x[1], \ldots, X[n] = x[n] | H = 0) P(H = 0)}{\displaystyle \sum_{h = 0}^{1} P(X[1] = x[1], \ldots, X[n] = x[n] | H = h) P_H(h)} \nonumber \\ &= 
-	\frac{P_{\mathbf{X}_n | H}(\x_n | 0) p}{P_{\mathbf{X}_n | H}(\x_n | 0) p + P_{\mathbf{X}_n | H}(\x_n | 1) (1 - p)}, \label{eq:pn_pre}
+	\frac{p_{\mathbf{X}_n | H}(\x_n | 0) p}{p_{\mathbf{X}_n | H}(\x_n | 0) p + p_{\mathbf{X}_n | H}(\x_n | 1) (1 - p)}, \label{eq:pn_pre}
 \end{align}
 which is a function of both likelihoods, $P_{\mathbf{X}_n | H}(\x_n | 0)$ and $P_{\mathbf{X}_n | H}(\x_n | 1)$, and $p$. Finally, taking into account the i.i.d. assumption, we can simplify \eqref{eq:pn_pre} as
 \begin{equation}
 	\label{eq:pn}
-	p_n = \frac{p}{\displaystyle p +  (1 - p) \frac{P_{\mathbf{X}_n | H}(\x_n | 1)}{P_{\mathbf{X}_n | H}(\x_n | 0)}} = \frac{p}{\displaystyle p +  (1 - p) \prod_{i = 1}^{n} \frac{P_{X[i] | H}(x[i] | 1)}{P_{X[i] | H}(x[i] | 0)}},
+	p_n = \frac{p}{\displaystyle p +  (1 - p) \frac{p_{\mathbf{X}_n | H}(\x_n | 1)}{p_{\mathbf{X}_n | H}(\x_n | 0)}} = \frac{p}{\displaystyle p +  (1 - p) \prod_{i = 1}^{n} \frac{p_{X[i] | H}(x[i] | 1)}{p_{X[i] | H}(x[i] | 0)}},
 \end{equation}
 where, for the sake of consistency, we define $\prod_{i = 1}^{0} = 1$.
 
 Finally, and continuing with our example, where
 \begin{equation*}
-	\frac{P_{X[i] | H}(x[i] | 1)}{P_{X[i] | H}(x[i] | 0)} = \frac{1}{2} \exp \left(\frac{3 }{8} x^2[i] \right), \ i = 1, 2, \ldots,
+	\frac{p_{X[i] | H}(x[i] | 1)}{p_{X[i] | H}(x[i] | 0)} = \frac{1}{2} \exp \left(\frac{3 }{8} x^2[i] \right), \ i = 1, 2, \ldots,
 \end{equation*}
-Figure \ref{fig:seq_test_realizations} shows several realizations of the sequential test in \eqref{eq:seq_test} for this example, when $p = 0.5$. Some of these realizations were obtained for $x[n]$ generated under $H = 0$ and other realizations for  $x[n]$ generated under $H = 1$. In this figure, we can see that as soon as $p_n$ is above $p_U$ or below $p_L$, the detector stops the acquisition of more observations. In the former case, the decision is $d = 0$, whereas in the latter, it is $d = 1$.
+Figure \ref{fig:seq_test_realizations} shows several realizations of the sequential test in \eqref{eq:seq_test} for this example, when $p = 0.5$. Some of these realizations were obtained for $x[n]$ generated under $H = 0$ and other realizations for  $x[n]$ generated under $H = 1$. In this figure, we can see that as soon as $p_n$ is above $p_U$ or below $p_L$, the detector stops the acquisition of more observations. In the former case, the decision is $D = 0$, whereas in the latter, it is $D = 1$.
 \begin{figure}[t]
 	\begin{center}
 		\includestandalone{Figures/seq_test_realizations}
@@ -331,14 +331,14 @@ Using \eqref{eq:pn}, the sequential test in \eqref{eq:seq_test} is
 \begin{equation}
 	\label{eq:seq_SPRT_mincost}
 	\begin{array}{l}
-		\text{decide } d = 1 \text{ for } \phi_n \geq \frac{p (1 - p_L)}{p_L(1 - p)}, \\
-		\text{decide } d = 0 \text{ for } \phi_n \leq  \frac{p (1 - p_U)}{p_U (1 - p)}, \\
+		\text{decide } D = 1 \text{ for } \phi_n \geq \frac{p (1 - p_L)}{p_L(1 - p)}, \\
+		\text{decide } D = 0 \text{ for } \phi_n \leq  \frac{p (1 - p_U)}{p_U (1 - p)}, \\
 		\text{take another sample for } \frac{p (1 - p_U)}{p_U (1 - p)} < \phi_n < \frac{p (1 - p_L)}{p_L(1 - p)},
 	\end{array}
 \end{equation}
 where
 \begin{equation*}
-	\phi_n = \prod_{i = 1}^{n} \frac{P_{X[i] | H}(x[i] | 1)}{P_{X[i] | H}(x[i] | 0)}.
+	\phi_n = \prod_{i = 1}^{n} \frac{p_{X[i] | H}(x[i] | 1)}{p_{X[i] | H}(x[i] | 0)}.
 \end{equation*}
 % \begin{align}
 %	 \eta_U &= \frac{p (1 - p_L)}{p_L(1 - p)},  & \eta_L &= \frac{p (1 - p_U)}{p_U (1 - p)}. \label{eq:eta_mincost}
@@ -353,8 +353,8 @@ Actually, \eqref{eq:seq_SPRT_mincost} is just one example of the SPRT for a part
 \begin{equation}
 	\label{eq:seq_SPRT}
 	\begin{array}{l}
-		\text{decide } d = 1 \text{ for } \phi_n \geq \eta_U, \\
-		\text{decide } d = 0 \text{ for } \phi_n \leq  \eta_L, \\
+		\text{decide } D = 1 \text{ for } \phi_n \geq \eta_U, \\
+		\text{decide } D = 0 \text{ for } \phi_n \leq  \eta_L, \\
 		\text{take another sample for } \eta_L < \phi_n < \eta_U,
 	\end{array}
 \end{equation}
@@ -362,16 +362,16 @@ where the thresholds should satisfy
 \begin{equation*}
 	0 < \eta_L < 1 < \eta_U < \infty.
 \end{equation*}
-Intuitively, for larger values of $\eta_U$, it is more unlikely to decide $d = 1$. This implies that it will take longer to decide $d = 1$, while at the same time, it will be more unlikely to decide $d = 1$ when $h = 0$. Similarly, for smaller values of $\eta_L$, it is more unlikely to decide $d = 0$ and, therefore, it will take longer to decide $d = 0$, while at the same time, it will be more unlikely to decide $d = 0$ when $h = 1$. These suggests that there are three metrics at play: the probability of false alarm ($P_{\text{FA}} = P(D = 1 | H = 0)$), the probability of missing ($P_{\text{M}} = P(D = 0 | H = 1)$), and the sample size $N$, which is defined as
+Intuitively, for larger values of $\eta_U$, it is more unlikely to decide $D = 1$. This implies that it will take longer to decide $D = 1$, while at the same time, it will be more unlikely to decide $D = 1$ when $H = 0$. Similarly, for smaller values of $\eta_L$, it is more unlikely to decide $D = 0$ and, therefore, it will take longer to decide $D = 0$, while at the same time, it will be more unlikely to decide $D = 0$ when $H = 1$. These suggests that there are three metrics at play: the probability of false alarm ($\pfa = P(D = 1 | H = 0)$), the probability of missing ($\pmis = P(D = 0 | H = 1)$), and the sample size $N$, which is defined as
 \begin{equation*}
 	\label{eq:sample_size}
 	N =  \min_{n} \ \{n \mid \phi_n \geq \eta_U \text{ or } \phi_n \leq \eta_L\}. 
 \end{equation*}
-Thus,  the most established objective is to design the SPRT, i.e., the thresholds $\eta_L$ and $\eta_U$ in \eqref{eq:seq_SPRT}, that minimizes $N$ while guaranteeing that $P_{\text{FA}} \geq \alpha$ and $P_{\text{M}} \geq \beta$, where $\alpha$ and $\beta$ are the target values of probability of false alarm and probability of missing, respectively. In the following, we will derive $P_{\text{FA}}$ and $P_{\text{M}}$ as a function of the thresholds.
+Thus,  the most established objective is to design the SPRT, i.e., the thresholds $\eta_L$ and $\eta_U$ in \eqref{eq:seq_SPRT}, that minimizes $N$ while guaranteeing that $\pfa \geq \alpha$ and $\pmis \geq \beta$, where $\alpha$ and $\beta$ are the target values of probability of false alarm and probability of missing, respectively. In the following, we will derive $\pfa$ and $\pmis$ as a function of the thresholds.
 
 Let us start by the probability of false alarm, which is defined as
 \begin{equation*}
-	P_{\text{FA}} = P(D = 1 | H = 0) = \int_{\mathcal{X}_1} P_{\mathbf{X}_{\infty} | H} (\mathbf{x}_{\infty} | 0) d \mathbf{x}_{\infty},
+	\pfa = P(D = 1 | H = 0) = \int_{\mathcal{X}_1} p_{\mathbf{X}_{\infty} | H} (\mathbf{x}_{\infty} | 0) d \mathbf{x}_{\infty},
 \end{equation*}
 where $\mathbf{x}_{\infty} \in \mathbb{R}^{\infty}$ and
 \begin{equation*}
@@ -385,31 +385,31 @@ with
 \begin{equation*}
 	\mathcal{X}_{1,n} = \{ \mathbf{x}_{\infty} \in \mathbb{R}^{\infty} |N = n \text{ and } \phi_{n} \geq  \eta_U  \}.
 \end{equation*}
-That is, we decide $d = 1$ when we decide $d = 1$ at $n = 1$, or at $n = 2$, or at $n = 3$, $\ldots$ Moreover, taking into account that if we decide $d = 1$ at $n$, we could not decide it at a different time instant $m$, with $n \neq m$, the sets $\mathcal{X}_{1,n}$ and $\mathcal{X}_{1,m}$ are mutually exclusive, i.e., they do not overlap, allowing us to write
+That is, we decide $D = 1$ when we decide $D = 1$ at $n = 1$, or at $n = 2$, or at $n = 3$, $\ldots$ Moreover, taking into account that if we decide $D = 1$ at $n$, we could not decide it at a different time instant $m$, with $n \neq m$, the sets $\mathcal{X}_{1,n}$ and $\mathcal{X}_{1,m}$ are mutually exclusive, i.e., they do not overlap, allowing us to write
 \begin{align*}
-	P_{\text{FA}} &= \int_{\mathcal{X}_1} P_{\mathbf{X}_{\infty} | H} (\mathbf{x}_{\infty} | 0) d \mathbf{x}_{\infty} 
-	= \int_{\cup_{n = 1}^{\infty} \mathcal{X}_{1,n}} P_{\mathbf{X}_{\infty} | H} (\mathbf{x}_{\infty} | 0) d \mathbf{x}_{\infty} 
-	= \sum_{n = 1}^{\infty}  \int_{\mathcal{X}_{1,n}} P_{\mathbf{X}_{n} | H} (\mathbf{x}_{n} | 0) d \mathbf{x}_{n} \\
-	&= \sum_{n = 1}^{\infty}  \int_{\mathcal{X}_{1,n}} \prod_{i = 1}^{n} P_{X[i] | H}(x[i] | 0)  d \mathbf{x}_{n}.
+	\pfa &= \int_{\mathcal{X}_1} p_{\mathbf{X}_{\infty} | H} (\mathbf{x}_{\infty} | 0) d \mathbf{x}_{\infty} 
+	= \int_{\cup_{n = 1}^{\infty} \mathcal{X}_{1,n}} p_{\mathbf{X}_{\infty} | H} (\mathbf{x}_{\infty} | 0) d \mathbf{x}_{\infty} 
+	= \sum_{n = 1}^{\infty}  \int_{\mathcal{X}_{1,n}} p_{\mathbf{X}_{n} | H} (\mathbf{x}_{n} | 0) d \mathbf{x}_{n} \\
+	&= \sum_{n = 1}^{\infty}  \int_{\mathcal{X}_{1,n}} \prod_{i = 1}^{n} p_{X[i] | H}(x[i] | 0)  d \mathbf{x}_{n}.
 \end{align*}
 Using now that
 \begin{equation*}
-	\phi_n \geq \eta_U \Rightarrow   \prod_{i = 1}^{n} P_{X[i] | H}(x[i] | 0) \leq \eta_U^{-1} \prod_{i = 1}^{n} P_{X[i] | H}(x[i] | 1)
+	\phi_n \geq \eta_U \Rightarrow   \prod_{i = 1}^{n} p_{X[i] | H}(x[i] | 0) \leq \eta_U^{-1} \prod_{i = 1}^{n} p_{X[i] | H}(x[i] | 1)
 \end{equation*}
 for $\mathbf{x}_n \in \mathcal{X}_{1,n}$, we have 
 \begin{equation*}
-	P_{\text{FA}} \leq  \eta_U^{-1} \sum_{n = 1}^{\infty}  \int_{\mathcal{X}_{1,n}}  \prod_{i = 1}^{n} P_{X[i] | H}(x[i] | 1)  d \mathbf{x}_{n}.
+	\pfa \leq  \eta_U^{-1} \sum_{n = 1}^{\infty}  \int_{\mathcal{X}_{1,n}}  \prod_{i = 1}^{n} p_{X[i] | H}(x[i] | 1)  d \mathbf{x}_{n}.
 \end{equation*}
 Since the probability of detection is
 \begin{align*}
-	P_{\text{D}} &= \int_{\mathcal{X}_1} P_{\mathbf{X}_{\infty} | H} (\mathbf{x}_{\infty} | 1) d \mathbf{x}_{\infty} 
-	= \sum_{n = 1}^{\infty}  \int_{\mathcal{X}_{1,n}} \prod_{i = 1}^{n} P_{X[i] | H}(x[i] | 1)  d \mathbf{x}_{n} \\
-	&= 1 - P_{\text{M}},
+	\pdet &= \int_{\mathcal{X}_1} p_{\mathbf{X}_{\infty} | H} (\mathbf{x}_{\infty} | 1) d \mathbf{x}_{\infty} 
+	= \sum_{n = 1}^{\infty}  \int_{\mathcal{X}_{1,n}} \prod_{i = 1}^{n} p_{X[i] | H}(x[i] | 1)  d \mathbf{x}_{n} \\
+	&= 1 - \pmis,
 \end{align*}
 we get
 \begin{equation}
 	\label{eq:bound_pfa}
-	P_{\text{FA}} \leq  \eta_U^{-1} \left(1 - P_{\text{M}}\right).
+	\pfa \leq  \eta_U^{-1} \left(1 - \pmis\right).
 \end{equation}
 
 To compute the probability of missing, it is possible to follow a similar approach. Define
@@ -422,29 +422,29 @@ where
 \end{equation*}
 Hence, the probability of missing is
 \begin{equation*}
-	P_{\text{M}} = P(D = 0 | H = 1) = \int_{\mathcal{X}_0} P_{\mathbf{X}_{\infty} | H} (\mathbf{x}_{\infty} | 1) d \mathbf{x}_{\infty} = \sum_{n = 1}^{\infty}  \int_{\mathcal{X}_{0,n}} \prod_{i = 1}^{n} P_{X[i] | H}(x[i] | 1)  d \mathbf{x}_{n}.
+	\pmis = P(D = 0 | H = 1) = \int_{\mathcal{X}_0} p_{\mathbf{X}_{\infty} | H} (\mathbf{x}_{\infty} | 1) d \mathbf{x}_{\infty} = \sum_{n = 1}^{\infty}  \int_{\mathcal{X}_{0,n}} \prod_{i = 1}^{n} p_{X[i] | H}(x[i] | 1)  d \mathbf{x}_{n}.
 \end{equation*}
 The above expression can be bounded as
 \begin{equation*}
-	P_{\text{M}} \leq  \eta_L \sum_{n = 1}^{\infty}  \int_{\mathcal{X}_{0,n}}  \prod_{i = 1}^{n} P_{X[i] | H}(x[i] | 0)  d \mathbf{x}_{n},
+	\pmis \leq  \eta_L \sum_{n = 1}^{\infty}  \int_{\mathcal{X}_{0,n}}  \prod_{i = 1}^{n} p_{X[i] | H}(x[i] | 0)  d \mathbf{x}_{n},
 \end{equation*}
 since
 \begin{equation*}
-	\phi_n \leq \eta_L \Rightarrow   \prod_{i = 1}^{n} P_{X[i] | H}(x[i] | 1) \leq \eta_L \prod_{i = 1}^{n} P_{X[i] | H}(x[i] | 0),
+	\phi_n \leq \eta_L \Rightarrow   \prod_{i = 1}^{n} p_{X[i] | H}(x[i] | 1) \leq \eta_L \prod_{i = 1}^{n} p_{X[i] | H}(x[i] | 0),
 \end{equation*}
 for $\mathbf{x}_n \in \mathcal{X}_{0,n}$. Finally, we get
 \begin{equation}
 	\label{eq:bound_pm}
-	P_{\text{M}} \leq  \eta_L (1 - P_{\text{FA}}),
+	\pmis \leq  \eta_L (1 - \pfa),
 \end{equation}
 where we have taken into account that
 \begin{equation*}
-	\sum_{n = 1}^{\infty}  \int_{\mathcal{X}_{0,n}}  \prod_{i = 1}^{n} P_{X[i] | H}(x[i] | 0)  d \mathbf{x}_{n} = 1 - \sum_{n = 1}^{\infty}  \int_{\mathcal{X}_{1,n}}  \prod_{i = 1}^{n} P_{X[i] | H}(x[i] | 0)  d \mathbf{x}_{n} = 1 - P_{\text{FA}}.
+	\sum_{n = 1}^{\infty}  \int_{\mathcal{X}_{0,n}}  \prod_{i = 1}^{n} p_{X[i] | H}(x[i] | 0)  d \mathbf{x}_{n} = 1 - \sum_{n = 1}^{\infty}  \int_{\mathcal{X}_{1,n}}  \prod_{i = 1}^{n} p_{X[i] | H}(x[i] | 0)  d \mathbf{x}_{n} = 1 - \pfa.
 \end{equation*}
 
 The bounds for the probabilities of false alarm and missing in \eqref{eq:bound_pfa} and \eqref{eq:bound_pm} allow us to obtain the values $\eta_L$ and $\eta_U$ that achieve the desired value for $P_{\text{FA}}$ and $P_{\text{M}}$. Concretely, we only need to solve the inequalities in \eqref{eq:bound_pfa} and \eqref{eq:bound_pm}, which yields
 \begin{align*}
-	\eta_L &\geq \frac{P_{\text{M}}}{1 - P_{\text{FA}}},  &  \eta_U &\leq  \frac{1 - P_{\text{M}}}{P_{\text{FA}}},
+	\eta_L &\geq \frac{\pmis}{1 - \pfa},  &  \eta_U &\leq  \frac{1 - \pmis}{\pfa},
 \end{align*}
 which are, in fact, only bounds. To avoid the inequalities and derive (approximate) equalities, we need to assume that when $\phi_N$ crosses the boundaries $\eta_L$ and $\eta_U$, the excess over the boundaries is negligible. That is,
 \begin{align*}
@@ -452,16 +452,16 @@ which are, in fact, only bounds. To avoid the inequalities and derive (approxima
 \end{align*}
 with $\epsilon_i$ arbitrarily small positive constants. Under these assumptions, which are very accurate for large $N$, we get 
 \begin{align*}
-	\eta_L &\approx \frac{P_{\text{M}}}{1 - P_{\text{FA}}},  &  \eta_U &\approx  \frac{1 - P_{\text{M}}}{P_{\text{FA}}},
+	\eta_L &\approx \frac{\pmis}{1 - \pfa},  &  \eta_U &\approx  \frac{1 - \pmis}{\pfa},
 \end{align*}
 which are known as Wald's approximations. Interestingly, and contrary to what happens with the LRT, the thresholds required to achieve the desired probabilities of false alarm and missing do not depend on the likelihoods. Nevertheless, the SPRT does depend on the likelihoods, and so do the sample size, $N$, and the expected sample size, $\mathbb{E}\{N\}$.
 
-We conclude the topic of sequential detection by presenting the Wald-Wolfowitz theorem. Let us denote the probabilities of false alarm and missing of the SPRT $P_{\text{FA}}(\phi)$ and $P_{\text{M}}(\phi)$, and its sample size $N(\phi)$. Consider an alternative sequential decision rule with probabilities of false alarm and missing $P_{\text{FA}}(\psi)$ and $P_{\text{M}}(\psi)$, which satisfy
+We conclude the topic of sequential detection by presenting the Wald-Wolfowitz theorem. Let us denote the probabilities of false alarm and missing of the SPRT $\pfa(\phi)$ and $\pmis(\phi)$, and its sample size $N(\phi)$. Consider an alternative sequential decision rule with probabilities of false alarm and missing $\pfa(\psi)$ and $\pmis(\psi)$, which satisfy
 \begin{align*}
-	P_{\text{FA}}(\psi) &\leq P_{\text{FA}}(\phi), & P_{\text{M}}(\psi) &\leq P_{\text{M}}(\phi).
+	\pfa(\psi) &\leq \pfa(\phi), & \pmis(\psi) &\leq \pmis(\phi).
 \end{align*}
 Then, the Wald-Wolfowitz theorem states that
 \begin{equation*}
 	\mathbb{E} \{N(\psi)\} \geq \mathbb{E} \{N(\phi)\},
 \end{equation*}
-where $N(\psi)$ is the sample size of the alternative decision rule. Hence, for a desired level of performance ($P_{\text{FA}} \leq \alpha$ and $P_{\text{M}} \leq \beta$), there does not exist any sequential decision rule that achieves an expected sample size smaller than that of the SPRT. Interestingly, since a fixed-sample-size detector can be seen as a (very particular) sequential decision rule, the average sample size of the SPRT can not be larger than the sample size of any fixed-sample-size detector  with the same level of performance. Alternatively, the Wald-Wolfowitz theorem also states that, for a fixed expected sample size, there is no sequential rule that achieves smaller $P_{\text{FA}}$ and $P_{\text{M}}$ than those of the SPRT.
+where $N(\psi)$ is the sample size of the alternative decision rule. Hence, for a desired level of performance ($\pfa \leq \alpha$ and $\pmis \leq \beta$), there does not exist any sequential decision rule that achieves an expected sample size smaller than that of the SPRT. Interestingly, since a fixed-sample-size detector can be seen as a (very particular) sequential decision rule, the average sample size of the SPRT can not be larger than the sample size of any fixed-sample-size detector  with the same level of performance. Alternatively, the Wald-Wolfowitz theorem also states that, for a fixed expected sample size, there is no sequential rule that achieves smaller $\pfa$ and $\pmis$ than those of the SPRT.

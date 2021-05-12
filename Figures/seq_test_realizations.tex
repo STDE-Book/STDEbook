@@ -103,12 +103,12 @@ legend style={draw=white!15!black,fill=white,legend cell align=left,legend pos=s
 \addLUADEDplotcdf[color=red,thick,mark=*]{0.5}{0.4057}{0.7403}{0}{6}{2};
 \foreach \i in {3,...,5}
 {
-        \addLUADEDplotcdf[color=blue,thick,dashed,forget plot,mark=*]{0.5}{0.4057}{0.7403}{1}{6}{\i + 3};
-        \addLUADEDplotcdf[color=red,thick,dashed,forget plot,mark=*]{0.5}{0.4057}{0.7403}{0}{6}{\i};
+        \addLUADEDplotcdf[color=blue,thick,dashed,forget plot,mark=*,mark options=solid]{0.5}{0.4057}{0.7403}{1}{6}{\i + 3};
+        \addLUADEDplotcdf[color=red,thick,dashed,forget plot,mark=*,mark options=solid]{0.5}{0.4057}{0.7403}{0}{6}{\i};
 }
 \legend{$H = 1$,$H = 0$};
-\addplot[no marks] coordinates{(3,0.025)} node[above] {$d = 1$};
-\addplot[no marks] coordinates{(3,1-0.025)} node[below] {$d = 0$};
+\addplot[no marks] coordinates{(3,0.025)} node[above] {$D = 1$};
+\addplot[no marks] coordinates{(3,1-0.025)} node[below] {$D = 0$};
 \end{axis}
 \end{tikzpicture}%
 
