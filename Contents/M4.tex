@@ -367,7 +367,7 @@ Intuitively, for larger values of $\eta_U$, it is more unlikely to decide $D = 1
 	\label{eq:sample_size}
 	N =  \min_{n} \ \{n \mid \phi_n \geq \eta_U \text{ or } \phi_n \leq \eta_L\}. 
 \end{equation*}
-Thus,  the most established objective is to design the SPRT, i.e., the thresholds $\eta_L$ and $\eta_U$ in \eqref{eq:seq_SPRT}, that minimizes $N$ while guaranteeing that $\pfa \geq \alpha$ and $\pmis \geq \beta$, where $\alpha$ and $\beta$ are the target values of probability of false alarm and probability of missing, respectively. In the following, we will derive $\pfa$ and $\pmis$ as a function of the thresholds.
+Thus,  the most established objective is to design the SPRT, i.e., the thresholds $\eta_L$ and $\eta_U$ in \eqref{eq:seq_SPRT}, that minimizes $N$ while guaranteeing that $\pfa \leq \alpha$ and $\pmis \leq \beta$, where $\alpha$ and $\beta$ are the target values of probability of false alarm and probability of missing, respectively. In the following, we will derive $\pfa$ and $\pmis$ as a function of the thresholds.
 
 Let us start by the probability of false alarm, which is defined as
 \begin{equation*}
