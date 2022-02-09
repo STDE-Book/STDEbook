@@ -1889,7 +1889,8 @@ to\z@{\kern0.55\wd0\vrule\@height0.45\ht0\hss}\box0}}}}
     \vskip 1.5em               % Vertical space after date.
   \fi
  \vfill
- {\Large Universidad Carlos III de Madrid \par}
+ {\Large Universidad Carlos III de Madrid \\ \par}
+ \includegraphics{Figures/by-nc.png}
 %\vskip 5\p@
 %\large
 %  Berlin\enspace Heidelberg\enspace New\kern0.1em York\\
