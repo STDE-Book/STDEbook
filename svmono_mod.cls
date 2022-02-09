@@ -1890,7 +1890,7 @@ to\z@{\kern0.55\wd0\vrule\@height0.45\ht0\hss}\box0}}}}
   \fi
  \vfill
  {\Large Universidad Carlos III de Madrid \\ \par}
- \includegraphics{Figures/by-nc.png}
+ \includegraphics{Figures/by-nc-sa.png}
 %\vskip 5\p@
 %\large
 %  Berlin\enspace Heidelberg\enspace New\kern0.1em York\\
