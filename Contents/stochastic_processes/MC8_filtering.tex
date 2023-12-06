@@ -177,7 +177,7 @@ p(\s|\x)
 ) ,
 \end{equation}
 %
-Using the matrix investion lemma and some algebra, this can be show to be equivalent to the followinglo expression, whichis computationally more efficient for $M<N$:
+Using the matrix inversion lemma and some algebra, this can be show to be equivalent to the following expression, which is computationally more efficient for $M<N$:
 \begin{equation}
 p(\s|\x) = \Normal(\s~|~ \PP \UU \x,~~ \sigma_\varepsilon^2\PP) ,
 \end{equation}
@@ -190,13 +190,13 @@ Thus the MMSE and MAP estimates of $\s$ are:
 \hat\s_\text{MMSE} =\hat\s_\text{MAP} =\hat\s_\text{MAD} = \PP  \UU \x
 \label{smmse}
 \end{equation}
-Note that taking $\sigma_s^2\rightarrow\infty$ (which can be interpreted as assuming an infinitely uniform prior) the MAP solution becomes equvalent to the ML in \eqref{sml}.
+Note that taking $\sigma_s^2\rightarrow\infty$ (which can be interpreted as assuming an infinitely uniform prior) the MAP solution becomes equivalent to the ML in \eqref{sml}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Probabilistic prediction of the filter output}
 
-Once we have resolved several estimators of filter $\s$ filter, we now begin to consider the problem of estimating a new output $x_*$ corresponding to a new entry $ \uu_*$. Continuing with the Bayesian perspective, we will obtain the fdp a posteriori of the variable to be estimated, $x_*$, in view of the outputs already observed, $\x$. That is, we want to calculate $p (x_* | \x)$.
+Once we have resolved several estimators of filter $\s$ filter, we now begin to consider the problem of estimating a new output $x_*$ corresponding to a new entry $ \uu_*$. Continuing with the Bayesian perspective, we will obtain the a posteriori pdf of the variable to be estimated, $x_*$, in view of the outputs already observed, $\x$. That is, we want to calculate $p (x_* | \x)$.
 
 First, it should be noted that $\x, x_*$ and $\s$ are jointly Gaussian. This follows from Eq. \eqref{eq:jointsx}, which can be extended to any arbitrary number of outputs, including $x_*$. This necessarily implies that $\x$ and $x_*$ are jointly Gaussian (when marginalizing $\s$) and finally that $p(x_* | \x) $ must be Gaussian. Since
 \begin{equation}
