@@ -6,35 +6,34 @@ Sometimes we may be interested in estimating the parameters of a probability dis
 
 In these cases, the prior distribution of these variables is not usually known, even more, in many cases, these parameters are said to be deterministic and they are not treated them as random parameters. However, if a set of observations generated from these distributions is available, we can obtain the likelihood of these variables and estimate their values with a maximum likelihood criteria.
 
-Note that in order to use some Bayesian estimator, it would be necessary to know the posterior and without having information on the prior of these parameters we cannot know the posterior. Therefore, the only estimator we can apply in this scenario is the maximum likelihood estimator.
-
+% Note that in order to use some Bayesian estimator, it would be necessary to know the posterior and without having information on the prior of these parameters we cannot know the posterior. Therefore, the only estimator we can apply in this scenario is the maximum likelihood estimator.
 
 %%%%%%%%%%%%%%%
 \begin{example}[ML estimate of the mean and variance of a one-dimensional Gaussian distribution]
 \label{ex:gauss_ML}
 
-It is known that the weight of individuals of a family of mollusks follows a Gaussian distribution, whose mean and variance is to be estimated. It is available for the estimation of the weights of $l$ individuals taken independently, $\{X^{(k)}\}_{k=1}^l$.
+The weight of individuals of a family of mollusks is known to obey a Gaussian distribution, but the mean and variance are unknown. The weight of $l$ individuals taken independently, $\{X^{(k)}\}_{k=1}^l$, is available.
 
- The likelihood of the mean and the variance, in this case, consists simply of the probability distribution of the observations, which is given by:
+The likelihood of the mean and the variance for a single observation $x$, in this case, is given by:
 \begin{equation}
 p_{X}(x) = p_{X|m,v}(x|m,v) = \frac{1}{\sqrt{2\pi v}} \exp\left[-\frac{(x-m)^2}{2 v}\right]
 \end{equation}
-for each observation. Since we must construct the estimator based on the joint observation of $l$ observations, we will need to calculate the joint distribution of all of them which, being independent observations, is obtained as the product of individual observations:
-
+Since we must construct the estimator based on the joint observation of $l$ observations, we will need to calculate the joint distribution of all of them which, being independent observations, is obtained as the product of individual observations:
 \begin{equation}
 \label{ec:conjunta_est_ML_gauss}
 \begin{split}
-p_{\{X^{(k)}\}|m,v}(\{x^{(k)}\}|m,v) & = \prod_{k=1}^l p_{X|m,v}(x^{(k)}|m,v) \\ &= \frac{1}{(2\pi v)^{l/2}} \prod_{k=1}^l \exp\left[-\frac{(x^{(k)}-m)^2}{2 v}\right]
+p_{\{X^{(k)}\}|m,v}(\{x^{(k)}\}|m,v) 
+	& = \prod_{k=1}^l p_{X|m,v}(x^{(k)}|m,v) \\ 
+		&= \frac{1}{(2\pi v)^{l/2}} \prod_{k=1}^l \exp\left[-\frac{(x^{(k)}-m)^2}{2 v}\right]
 \end{split}
 \end{equation}
-The maximum likelihood estimators of $m$ and $v$ will be the values of those parameters that make the above expression maximum. The analytical form of \eqref{ec:conjunta_est_ML_gauss} suggests the use of the logarithm function to simplify the maximization process:
-
+The ML estimators of $m$ and $v$ will be the values maximizing \eqref{ec:conjunta_est_ML_gauss}. The analytical form of this function suggests the use of the logarithm to simplify the maximization:
 \begin{equation}
 \label{ec:conjunta_est_ML_gauss_log}
 L = \ln \left[ p_{\{X^{(k)}\}|m,v}(\{x^{(k)}\}|m,v) \right] = -\frac{l}{2} \ln(2\pi v) - \frac{1}{2v} \sum_{k=1}^l (x^{(k)}-m)^2
 \end{equation}
 
-To obtain the maximum likelihood estimators we will proceed to derive \eqref{ec:conjunta_est_ML_gauss_log} with respect to $m$ and $v$, and to equal the result with respect to 0. Thus, the system of equations to solve is
+Differentiating \eqref{ec:conjunta_est_ML_gauss_log} with respect to $m$ and $v$, we get the system of equations to solve
 \begin{equation}
 \begin{split}
 \left.\frac{d\;L}{d\;m} \right|_{\begin{array}{l} m = \hat m_{\text{ML}} \\ v = \hat v_{\text{ML}} \end{array}} & = \left. -\frac{1}{v} \sum_{k=1}^{l} (x^{(k)} - m)\right|_{\begin{array}{l} m = \hat m_{\text{ML}} \\ v = \hat v_{\text{ML}} \end{array}}= 0\\
@@ -42,22 +41,19 @@ To obtain the maximum likelihood estimators we will proceed to derive \eqref{ec:
 \end{split}
 \end{equation}
 
-The first of these equations allows to obtain the estimator of the mean in a simple way as the sample average of the observations, i.e., 
+Solving for $m$ the first equation we get
 \begin{equation}
 \hat m_{\text{ML}} = \frac{1}{l} \sum_{k=1}^l x^{(k)}
 \end{equation}
-On the other hand, we can solve the second equation of the system for the ML estimator of the variance, obtaining
+which is the sample average of the observations. On the other hand, we can solve the second equation for $v$ to get
 \begin{equation}
 \hat v_{\text{ML}} = \frac{1}{l} \sum_{k=1}^l (x^{(k)}-\hat m_{\text{ML}})^2
 \end{equation}
-
-Note that, if instead of applying the estimation function (of $m$ or $v$) on some specific observations we did it on generic values $\{X^{(k)}\}$, the estimators could be treated as random variables, i.e.,
-\begin{equation}
-\hat M_{\text{ML}} = \frac{1}{l} \sum_{k=1}^l X^{(k)}
-\end{equation}
-\begin{equation}
-\hat V_{\text{ML}} = \frac{1}{l} \sum_{k=1}^l [X^{(k)}-\hat M_{\text{ML}}]^2
-\end{equation}
+which is the sample variance. Note that, if instead of applying the estimation function (of $m$ or $v$) on some specific observations we did it on generic values $\{X^{(k)}\}$, the estimators could be treated as random variables, i.e.,
+\begin{align}
+\hat M_{\text{ML}} &= \frac{1}{l} \sum_{k=1}^l X^{(k)}   \\
+\hat V_{\text{ML}} &= \frac{1}{l} \sum_{k=1}^l [X^{(k)}-\hat M_{\text{ML}}]^2
+\end{align}
 
 
 \end{example}\vspace{0.4cm}

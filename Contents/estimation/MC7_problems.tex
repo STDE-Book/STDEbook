@@ -20,7 +20,7 @@ Compute estimators $\hat{S}_{\text{MMSE}}$, $\hat{S}_{\text{MAD}}$ y $\hat{S}_{\
 \begin{prob}
 \label{ProbSexponencial}
 
-Consider an estimation problem givne by the following posterior distribution:
+Consider an estimation problem given by the following posterior distribution:
 \begin{equation}
 p_{S|{X}}(s|{x}) = x \exp({-x s}),\;\; s>0
 \end{equation}
@@ -44,6 +44,16 @@ Knowing that $\mathbb E \lbrace X \rbrace= 1$, $\mathbb E \lbrace S \rbrace= 0$,
 
 \end{prob}
 %%%%%%%%%%
+
+%%%%%%%%%%%%%%%%
+\begin{prob}[Linear estimation of minimum mean squared error]
+We want to construct a linear estimator of minimum mean squared error that will allow us to estimate the random variable $S$ from the random variables $X_1$ and $X_2$. Knowing that
+\begin{equation}
+\begin{array}{lll} \mathbb{E}\{S\} = 1/2 & \mathbb{E}\{X_1\} = 1 & \mathbb{E}\{X_2\} = 0 \\ \mathbb{E}\{S^2\} = 4 & \mathbb{E}\{X_1^2\} = 3/2 & \mathbb{E}\{X_2^2\} = 2 \\ \mathbb{E}\{S X_1\} = 1 \;\;\;\;& \mathbb{E}\{S X_2\} = 2 \;\;\;\; & \mathbb{E}\{X_1 X_2\} = 1/2 \end{array}\nonumber
+\end{equation}
+get the weights from the desired estimator and calculate its squared mean error. Calculate the estimated value for the observation vector: $[X_1,X_2] = [3, 1]$.
+\end{prob}
+%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%

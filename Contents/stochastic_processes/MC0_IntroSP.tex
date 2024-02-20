@@ -1,32 +1,31 @@
 
-\textit{\textbf{Note}: Secs 1.1-1.4 in this document are an adaptation of material taken from \cite{MITcourse} (Creative Commons license BY-NC-SA 4.0). Sec. 1.5 is a translation, summary and adaptation of a chapter in \cite{ComDig2007} made by the author with permission of the co-authors. Secs. 1.1-1.4 is published under license BY-NC-SA 4.0. Sec. 1.5 cannot be published or redistributed in any form. It cannot be transformed or used partially without permission of the original authors}
-\vspace{2cm}
-
 
 This document introduces the concept of stochastic process and analyzes some important examples.
+
+\vspace{2cm}
 
 %%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 %%%%%%%%%%%%%%%%%%%%%%
 
-A stochastic process (SP) is a collection of random variables $\{X_n\}$ indexed by time, $n$. Depending on the nature of the time variable, we will consider different types of SP:
+A stochastic process (SP) is a collection of random variables $\{X_n\}$ indexed by time, $n$. Depending on the nature of the time variable, there are two types of SP:
 \begin{itemize}
-\item \textbf{Discrete-time} SP: when the time variable is a real number ($n \in \mathbb{R}$)
-\item \textbf{Continuous-time} SP: when the time variable is integer ($n \in \mathbb{Z}$).
+\item \textbf{Continuous-time} SP: when the time variable is a real number ($n \in \mathbb{R}$)
+\item \textbf{Discrete-time} SP: when the time variable is an integer ($n \in \mathbb{Z}$).
 \end{itemize}
 
-This chapter discusses discrete-time processes only. Thus, under contrary stated, all SP will be assumed to be discrete.
+This chapter discusses discrete-time processes only. Thus, unless contrary stated, all SP will be assumed to be discrete.
 
 Depending on the range of the time variable, two types of SP will be considered:
 \begin{itemize}
-\item \textbf{One-side} SP: $\{X_n, n \ge 0\}$. Note that a one-side SP is a sequence of random variables.
-\item \textbf{Two-side} SP: $\{X_n, n\in \mathbb{Z}\}$, the SP is defined for all integer times.
+\item \textbf{One-sided} SP: $\{X_n, n \ge 0\}$. A one-sided SP is a sequence of random variables.
+\item \textbf{Two-sided} SP: $\{X_n, n\in \mathbb{Z}\}$, the SP is defined for all integer times.
 \end{itemize}
 
-%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% 
 \begin{example}
 
-Consider the one-side stochastic process $X_n$ such that, for all $n$, $X_n \in \{-n, n\}$ with $P\{X_n=n\}=P\{X_n=-n\}$ and all variables in the collection are mutually independent.
+Consider the one-sided stochastic process $X_n$ such that, for all $n$, $X_n \in \{-n, n\}$ with $P\{X_n=n\}=P\{X_n=-n\}=\frac12$ and all variables in the collection are mutually independent.
 
 \end{example}
 %%%%%%%%%%%%%
@@ -35,13 +34,15 @@ A realization of all random variables in an SP defines a signal. For this reason
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{definition}[Stochastic Process]
-A discrete-time stochastic process is a probability measure over a space of (one-side or two-side) discrete-time signals.
+
+A discrete-time stochastic process is a probability measure over a space of (one-sided or two-sided) discrete-time signals.
+
 \end{definition}
 
 %%%%%%%%%%%%%%%
 \begin{example}
 \label{ex:2signals}
-Consider the one-side stochastic process $X_n$ such that
+Consider the one-sided stochastic process $X_n$ such that
 \begin{align}
 X_n = n, 	\quad		\text{for all } n \ge 0
 \end{align}
@@ -49,7 +50,7 @@ or
 \begin{align}
 X_n = -n, 	\quad		\text{for all } n \ge 0
 \end{align}
-with equal probabilities. Note that, the Universe set of this SP if finite, containing only two signals.
+with equal probabilities. Note that the universe set of this SP if finite, containing only two signals.
 
 \end{example}
 %%%%%%%%%%%%%
@@ -58,7 +59,7 @@ with equal probabilities. Note that, the Universe set of this SP if finite, cont
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Characterization of a stochastic process}
 
-Note that the random variables defining a SP can be continuous or discrete. In general, a SP is completely characterized when we can determine the joint distribution $P(X_{n_0},X_{n_1},\ldots, X_{n_{M-1}})$ for any subset of random variables from the process. However, for many SP, the computation of these distributions is unfeasible. We will pay attention to processes satisfying different properties that simplify the characterization.
+In a discrete-time SP, the time variable is discrete, but the random variables defining the SP can be continuous or discrete. In general, a SP is completely characterized when we can determine the joint distribution $P(X_{n_0},X_{n_1},\ldots, X_{n_{M-1}})$ for any subset of random variables from the process. However, for many SP, the computation of these distributions is often unfeasible. We will pay attention to processes satisfying several properties that simplify the characterization.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -66,7 +67,7 @@ Note that the random variables defining a SP can be continuous or discrete. In g
 
 %%%%%%%%%%%%%%%%%%
 \begin{definition}[Independent process]
-A stochastic process $X_n$ is statistically independent (or, simply, independent) if all its random variables are statistically independent, that is, for any $M >0$ and any subset of $M$ random variables $X_{n_0}, X_{n_1}, \ldots, X_{n_{M-1}}$ with $n_0<n_1,\ldots < n_{M-1}$ we have
+A stochastic process $X_n$ is statistically independent (or, simply, independent) if all its random variables are statistically independent, that is, for any integer $M >0$ and any subset of $M$ random variables $X_{n_0}, X_{n_1}, \ldots, X_{n_{M-1}}$ with $n_0<n_1,\ldots < n_{M-1}$ we have
 \begin{equation}
 \label{def_indep}
 P(X_{n_0}, X_{n_1}, \ldots, X_{n_{M-1}}) = \prod_{k=0}^{M-1} P(X_{n_k})
@@ -74,7 +75,7 @@ P(X_{n_0}, X_{n_1}, \ldots, X_{n_{M-1}}) = \prod_{k=0}^{M-1} P(X_{n_k})
 \end{definition}
 %%%%%%%%%%%%%%%%
 
-\textbf{Note}: A quick explanation on the mathematical notation. Eq. \eqref{def_indep} should be interpreted as: the joint distribution of the set of $M$ random variables $X_{n_0}, X_{n_1}, \ldots, X_{n_{M-1}}$ is the product of the marginal distribution of each variable. Thus, for instance, the cumulative distributions gets factorized:
+\textbf{Note}: A quick explanation on the mathematical notation. Eq. \eqref{def_indep} should be interpreted as: the joint distribution of the set of $M$ random variables $X_{n_0}, X_{n_1}, \ldots, X_{n_{M-1}}$ is the product of the marginal distribution of each variable. Thus, for instance, the cumulative distribution functions (CDFs) get factorized as follows:
 \begin{equation}
 \label{Findep}
 F_{X_{n_0}, X_{n_1}, \ldots, X_{n_{M-1}}}(x_{n_0}, x_{n_1}, \ldots, x_{n_{M-1}}) = \prod_{k=0}^{M-1} F_{X_{n_k}}(x_{n_k})
@@ -90,14 +91,14 @@ Also, if the random variables are discrete, this is equivalent to the factorizat
 P_{X_{n_0}, X_{n_1}, \ldots, X_{n_{M-1}}}(x_{n_0}, x_{n_1}, \ldots, x_{n_{M-1}}) = \prod_{k=0}^{M-1} P_{X_{n_k}}(x_{n_k})
 \end{equation}
 
-In general, we will use expressions like \eqref{def_indep} instead of \eqref{Findep}, \eqref{pdf_indep}, or \eqref{pmf_indep} to state some relations between distributions, because it is simpler and encompasses all of them.
+In general, we will use formulations like \eqref{def_indep} instead of \eqref{Findep}, \eqref{pdf_indep}, or \eqref{pmf_indep} to express relationships between distributions, because it is simpler and encompasses all of them.
 
 A particularly interesting case arises when all variables in the SP follow the same distribution.
 
 %%%%%%%%%%%%%%%%%%
 \begin{definition}[IID process]
 
-A stochastic process $X_n$ is independent and identically distributed, or IID, if it is independent and all variables in the process follow the same distribution, i.e. $P(X_n)=P(X_m)$ (which implies, for instance, that $F_{X_n}(x)= F_{X_m}(x)$, for all $x$ and any $n, m$ in the time domain of the process).
+A stochastic process $X_n$ is independent and identically distributed, or IID, if it is independent and all variables in the process follow the same distribution, i.e. $P(X_n)=P(X_m)$. This implies that the CDFs re also identical, i.e., $F_{X_n}(x)= F_{X_m}(x)$, for all $x$ and any $n, m$ in the time domain of the process.
 \end{definition}
 %%%%%%%%%%%%%%%% 
 
@@ -113,7 +114,7 @@ P_{X_n}(x) = p^x (1-p)^{1-x},  \qquad x \in \{0, 1\}
 \end{example}
 %%%%%%%%%%%%%
 
-(Note that Eq. \eqref{SP:Bernoulli} is equivalent to claim that $P\{X_n=1\} = p$ and $P\{X_n=0\} = 1-p$). Bernoulli and other IID processes are commonly used as building blocks of other, more complex, processes.
+Note that Eq. \eqref{SP:Bernoulli} is equivalent to stating that $P\{X_n=1\} = p$ and $P\{X_n=0\} = 1-p$). Bernoulli and other IID processes are commonly used as building blocks of other, more complex, processes.
 
 %%%%%%%%%%%%%%%
 \begin{example}
@@ -140,9 +141,9 @@ Figure \ref{fig:noisy_sin} shows 4 realizations of the independent stochastic pr
 
 %%%%%%%%%%%%%%%%%%
 \begin{definition}[Simple random walk (SRW)]
-Let $Y_n \in \{-1, 1\}$ be a one-sided IID process with $P\{Y_n= 1\}=\frac{1}{2}$. A simple random walk is defined by $X_0 = 0$ and
+Let $B_n \in \{-1, 1\}$ be a one-sided IID process with $P\{B_n= 1\}=\frac{1}{2}$. A simple random walk $\{X_n\}$ is defined by $X_0 = 0$ and
 \begin{equation}
-X_n = \sum_{k=1}^{n} Y_k,    \qquad n>0
+X_n = \sum_{k=1}^n B_k,    \qquad n>0
 \label{sp:srw_def}
 \end{equation}
 %%%%%%%%%%%%%%
@@ -152,10 +153,10 @@ X_n = \sum_{k=1}^{n} Y_k,    \qquad n>0
 
 Note that we can express the random variables in a SRW recursively as
  \begin{equation}
-X_n = X_{n-1} + Y_n,    \qquad  n>0
+X_n = \sum_{k=1}^{n-1} B_k + B_n = X_{n-1} + B_n,    \qquad  n>0
 \label{sp:srw_rec}
 \end{equation}
-Thus, a SRW is not an independent process. It is not an identically distributed process, either, since the range of the random variables in the process grows with $n$. 
+Thus, a SRW is not an independent process. It is not an identically distributed process either, since the domain of the random variables in the process grows with $n$. 
 \begin{align}
 -n \le X_n \le n
 \end{align}
@@ -172,13 +173,13 @@ Fig. \ref{fig:sp_srw} shows several realizations of the SRW. Note that the reali
 
 The mean of the process is given by
 \begin{align}
-\mathbb{E}\{X_n\} = \sum_{k=0}^n \mathbb{E}\{Y_k\} = 0
+\mathbb{E}\{X_n\} = \sum_{k=0}^n \mathbb{E}\{B_k\} = 0
 \end{align}
-and, since $Y_n$ is IID, the variance is given by
+and, since $B_n$ is IID, the variance is given by
 \begin{align}
-\text{var}\{X_n\} = \sum_{k=1}^n \text{var}\{Y_k\} = n
+\text{var}\{X_n\} = \sum_{k=1}^n \text{var}\{B_k\} = n
 \end{align}
-Therefore, the standard deviation is $\sqrt{n}$ and we can expect from the process to lie between the limits $-\sqrt{n}$ and $\sqrt{n}$ most of the time. This can be expressed a bit more precisely, by noting that, since $X_n$ is the sum of $n$ independent random variable with zero-mean and bounded variance, and as a consequence of the central limit theorem, $X_n$ converges in distribution to a zero-mean Gaussian random variable with variance $n$. This implies that, after large $n$, we can expect that $|X_n| < 2\sqrt{n}$ approximately 95\% of time.
+Therefore, the standard deviation is $\sqrt{n}$ and we can expect from the process to lie between the limits $-\sqrt{n}$ and $\sqrt{n}$ most of the time. This can be expressed more precisely by noting that, since $X_n$ is the sum of $n$ independent random variables with zero-mean and bounded variance and, as a consequence of the central limit theorem, $X_n$ converges in distribution to a zero-mean Gaussian random variable with variance $n$. This implies that, after large $n$, we can expect that $|X_n| < 2\sqrt{n}$ approximately 95\% of time.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Properties of random walks}
@@ -191,11 +192,11 @@ Therefore, the standard deviation is $\sqrt{n}$ and we can expect from the proce
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Stopping times}
 
-The SRW can be used as a model of the total winning and losses of a fair game. Assume that we play a game based on repeated trials of flipping a coin. Every time the result is 'heads', we win 1 point while we loose 1 point otherwise. By taking $Y_n=1$ if the $n$-th toss is 'heads', process $X_n$ accounts for the total score after $n$ trials.
+The SRW can be used as a model of the total winning and losses of a fair game. Assume that we play a game based on repeated trials of flipping a coin. Every time the result is 'heads', we win 1 point while we loose 1 point otherwise. By taking $B_n=1$ if the $n$-th toss is 'heads', process $X_n=X_{n-1}+B_n$ is an SRW that accounts for the evolution of the total score with time.
 
 Since the SRW is zero mean, we cannot expect a positive gain after an arbitrary number of steps. One may wonder if there is a way to ensure a positive score by choosing the appropriate stopping time. Let's assume we set an upper and lower limits, $U>0$ and $-L<0$, respectively, such that, when $X_n=U$ or $X_n=-L$, we stop betting. By choosing $L$, we set the maximum loss we can tolerate, by choosing $U$, we set the gains that will make us stop playing.
 
-We can call stopping time, $N$ to the first time where $X_N$ reaches $U$ or $-L$. Note that $N$ is a random variable, because it is a function of the random variables in the SP:
+We define {\em stopping time}, $N$ as the first time where $X_N$ reaches $U$ or $-L$. Note that $N$ is a random variable, because it is a function of the random variables in the SP:
 \begin{align}
 N = \min\{n \mid X_n = U \text{ or } X_n = -L \} 
 \end{align}
@@ -233,18 +234,21 @@ Thus, the is no way to set the bounds $U$ and $L$ in order to expect a positive 
 %%%%%%%%%%%%%%%%%%%%%%%
 \section{Markov Chains}
 
-One important property of the simple random walk is that the effect of the past on the future is summarized only by the current state, rather than the whole history. In other words, the distribution of $X_{n+1}$ depends only on the value of $X_n$ and not on the whole set of values of $X_0, X_1, \ldots, X_n$. A stochastic process with such property is called a \textbf{Markov chain}.
+One important property of the simple random walk is that the effect of the past on the future is summarized only by the current state, rather than the whole history of the process. In other words, the distribution of $X_{n+1}$ depends only on the value of $X_n$ and not on the whole set of values of $X_0, X_1, \ldots, X_n$. A stochastic process with such property is called a \textbf{Markov chain}.
 
 %%%%%%%%%%%%%%%%%%
 \begin{definition}[Markov property]
-Let $X_n$ be a discrete-time SP that, for each $n$, takes value in some discrete set ${\cal S}$, which we call  the \textbf{state space}. We say that the SP has the Markov property if
+Let $X_n$ be a one-sided discrete-time SP that, for each $n$, takes value in some discrete set ${\cal S}$, which we call  the \textbf{state space}. We say that the SP has the Markov property if
 \begin{align}
 P\{X_{n+1} = i | X_n, X_{n-1}, \ldots, X_0\} = P\{X_{n+1} = i | X_n\}
+\label{SP:markov_property}
 \end{align}
 for all $n$ in the time-domain of the process and for all $i \in {\cal S}$. 
 
 \end{definition}
 %%%%%%%%%%%%%%%% 
+
+Note that this definition can be extended to two-sided SP, by conditioning over $\{X_k, k\le n\}$ in the left side of \eqref{SP:markov_property}.
 
 %%%%%%%%%%%%%%%%%%
 \begin{definition}[Markov chain]
@@ -256,7 +260,7 @@ Let $X_n$ be a discrete-time SP. We say that the SP is a Markov chain (MC) if it
 
 We will say that an MC is \textbf{finite} if ${\cal S}$ is a finite set. In this case, we usually take the elements of ${\cal S}$ as consecutive integers. For instance, for a state space with $m$ elements, we will take ${\cal S} = \{0, 1, \ldots, m-1\}$ or ${\cal S} = \{1, 2, \ldots, m\}$ under our convenience.
 
-Note that the SRW is an MC, but it is not finite. 
+Note that the SRW is a one-sided MC, but it is not finite. 
 
 Any finite MC can be described in terms of the transition probabilities
 \begin{equation}
@@ -264,7 +268,7 @@ Any finite MC can be described in terms of the transition probabilities
 p_{ij} = P\{X_{n+1}=j| X_n=i\}
 \end{equation}
 
-All the elements of a MC model can be encoded in a transition probability matrix
+All the elements of a MC model can be encoded in a \textbf{transition probability matrix}
 \begin{align}
 {\bf P} = 
 \begin{pmatrix}
@@ -279,7 +283,7 @@ Using \eqref{SP:state_probs}, it is easy to see that
 \begin{align}
 \sum_{j \in {\cal S}} p_{ij} = 1
 \end{align}
-thus, all rows in ${\bf P}$ sum up to one. For this reason, we say that ${\bf P}$ is a right-stochastic matrix. In matrix form, this property can be expressed as
+thus, all rows in ${\bf P}$ sum up to one. For this reason, we say that ${\bf P}$ is a \textbf{right-stochastic} matrix. In matrix form, this property can be expressed as
 \begin{align}
 {\bf P}\mathbb{1}_m = \mathbb{1}_m
 \label{sp:psum1}
@@ -302,11 +306,11 @@ for any $m$ and $n$ in the time domain of the process.
 %%%%%%%%%%%%%%%
 \begin{example}[Two-state machine]
 A machine can be either working or broken on a given day. If it is working, it will break down in the next day with probability 0.01, and will continue working with probability 0.99. If it breaks down
-on a given day, it will be repaired and be working in the next day with probability 0.8, and will continue to be broken down with probability 0.2. We can model this machine by a Markov chain with two states: working, and broken down. The transition probability matrix is given by
+on a given day, it will be repaired and be working in the next day with probability 0.8, and will continue to be broken down with probability 0.2. We can model this machine by a Markov chain with two states: 0 ("working"), and 1 ("broken down"). The transition probability matrix is given by
 $$
 \begin{pmatrix}
-0.99 & 0.8 \\
-0.01 & 0.2
+0.99 & 0.01 \\
+0.8 & 0.2
 \end{pmatrix}
 $$
 \end{example}
@@ -314,7 +318,7 @@ $$
 
 %%%%%%%%%%%%%%%
 \begin{example}[SRW]
-A simple random walk is an example of an MC. However, there is no transition probability matrix associated with the simple random walk since the sample space is infinite.
+A simple random walk is an example of an MC. However, since its sample space is infinity, it cannot be described by a transition probability matrix.
 \end{example}
 %%%%%%%%%%%%%
 
@@ -439,9 +443,9 @@ The MC in example in \ref{sp:MC3ex} has at least two limiting distributions: $\b
 
 The limiting distributions depend on the initial state: is is easy to verify that 
 \begin{align}
-\lim_{n \rightarrow \infty} {\bf r}_i(n) &= (0, 0, 1)  \\
-\lim_{n \rightarrow \infty} {\bf r}_i(n) &= (0, 1, 0)  \\
-\lim_{n \rightarrow \infty} {\bf r}_i(n) &= \left(0, \frac13, \frac23 \right)
+\lim_{n \rightarrow \infty} {\bf r}_2(n) &= (0, 0, 1)  \\
+\lim_{n \rightarrow \infty} {\bf r}_1(n) &= (0, 1, 0)  \\
+\lim_{n \rightarrow \infty} {\bf r}_0(n) &= \left(0, \frac13, \frac23 \right)
 \end{align}
 
 \end{example}
@@ -450,7 +454,7 @@ The limiting distributions depend on the initial state: is is easy to verify tha
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Computing the stationary distribution}
 
-In general, the stationary distribution are all the solution of the set of equations \eqref{sp:mc_stat_def} and the probabilistic constraint $\mathbb{1}^\intercal {\bf p} =1$, that is
+In general, the stationary distributions are all the solutions of the set of equations \eqref{sp:mc_stat_def} with the probabilistic constraint $\mathbb{1}^\intercal {\bf p} =1$, that is
 \begin{align}
 \label{sp:mc_stat_eq}
 \begin{pmatrix}
@@ -474,10 +478,8 @@ so that the rank of ${\bf P}^\intercal - {\bf I}$ is at most $m-1$. Thus, we can
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Stationary Processes}
+\footnote{This section is copywrighted. It cannot be published or redistributed in any form. It cannot be transformed or used partially without permission of the original authors}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\textit{[\textbf{Note}: This section is copywrighted. It cannot be published or redistributed in any form. It cannot be transformed or used partially without permission of the original authors]}
-\vspace{2cm}
 
 Stationarity refers to the time invariance of some statistical properties of a stochastic process. We have already seen some forms of time invariance in the previous sections: 
 
