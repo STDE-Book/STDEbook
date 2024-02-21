@@ -43,17 +43,17 @@ p_{{\bf X},S}({\bf x},s) = p_{{\bf X}| S}({\bf x}| s) \cdot p_S(s)
                          = p_{S|{\bf X}}(s|{\bf x}) \cdot p_{\bf X}({\bf x}) 
 \end{align}
 
-\textcolor{blue}{In the context of estimation theory, these factors receive specific names:}
+In the context of estimation theory, these factors receive specific names:
 
 %%%%%%%%%%%%%%%
-\textcolor{blue}{\begin{itemize}
+\begin{itemize}
 \item The {\bf likelihood} of $S=s$ for observation ${\bf x}$, $p_{{\bf X}|S}({\bf x}|s)$: it characterizes the generation of observations for each value of the target variable.
 \item The {\bf prior (or \textit{a priori}) distribution}  of $S$, $p_S(s)$: it describes how much is known (or unknown) about the target variable before observing ${\bf X}$. 
 \item The {\bf posterior (or \textit{a posteriori}) distribution} of $S$ given ${\bf X}={\bf x}$, $p_{S|{\bf X}}(s|{\bf x})$: it describes the knowledge (or the uncertainty) about $S$ after observing ${\bf X}$.
 % In the case where the variable to be estimated is deterministic, it does not make sense to condition the probability distribution of the observations to the value of $s$, so the strictly correct thing would be to denote the probability density of the observations simply as $p_{\bf X}({\bf x})$. However, note that for the estimation problem to make sense, the probability density of ${\bf X}$ has to be different depending on the real value of the deterministic parameter. For this reason, we will sometimes abuse notation and denote that dependence on observations with $s$ as $p_{{\bf X}|s}({\bf x}|s)$, referring to that probability density as the plausibility of $s$.
 %\item {\bf Joint distribution} of ${\bf X}$ and $S$: $p_{{\bf X},S}({\bf x},s) = p_{{\bf X}|S}({\bf x}|s) p_S(s)$. It provides the most complete statistical modeling of the joint behavior of $\bf X$ and $S$.
 \item The {\bf evidence} or marginal distribution of ${\bf X}$, $p_{{\bf X}}({\bf x})$.
-\end{itemize}}
+\end{itemize}
 
 %%%%%%%%%%%%%
 
@@ -80,20 +80,20 @@ A cost function $c(s,\hat s)$ is any measure of the discrepancy between the targ
 \item Cross Entropy: $c(s,\hat s) = - s \ln \hat s - (1-s) \ln (1-\hat s)$, for $s,\hat{s}\in [0,1]$
 \end{itemize}
 
-\textcolor{blue}{Since the target variable is unknown, the prediction cannot be computed by the direct minimization of the cost $c(s, \hat s)$, and we have to work with expectations. The expected value of the cost is usually referred as the {\bf risk} of an estimator $\hat{s}=f({\bf x})$:
+Since the target variable is unknown, the prediction cannot be computed by the direct minimization of the cost $c(s, \hat s)$, and we have to work with expectations. The expected value of the cost is usually referred as the {\bf risk} of an estimator $\hat{s}=f({\bf x})$:
 \begin{align}
 \label{Est:coste_medio_gen}
 R_f = \EE\{c(S,\hat S)\} 
     & = \int_{\bf x} \int_s c(s,f({\bf x})) p_{S,{\bf X}}(s,{\bf x}) ds d{\bf x}
 \end{align}
-By the Law of Large Numbers, this is the average cost that we can expect from a given estimator, after a large number of predictions.}
+By the Law of Large Numbers, this is the average cost that we can expect from a given estimator, after a large number of predictions.
 
-\textcolor{blue}{The {\bf conditional risk} is the conditional mean for a given observation
+The {\bf conditional risk} is the conditional mean for a given observation
 \begin{align}
 \label{Est:cond_risk}
 R(\hat s, {\bf x}) = \EE\{c(S, \hat s) |{\bf x}\} 
            & = \int_s c(s,\hat s) p_{S|{\bf X}}(s|{\bf x}) ds
-\end{align}}
+\end{align}
 
 
 %%%%%%%%%%%%%%%
@@ -156,14 +156,21 @@ For the mean absolute error
 \subsection{Bias and variance}
 \label{subsec_funcion_coste}
 
-{The bias of estimator $\hat S$ for a true target $S=s$ is defined as
+The bias of estimator $\hat S$ for a true target $S=s$ is defined as
 \begin{align}
-B = \EE\{\hat S|S=s\} - s
+B(s) = \EE\{\hat S|S=s\} - s
 \end{align}
-and it accounts for the expected deviation of the estimator from the true value of the target variable.}
+and it accounts for the expected deviation of the estimator from the true value of the target variable.
 
-{The variance of estimator $\hat S$ for a true target $S=s$ is defined as
+\textcolor{magenta}{Note that, in general, the variance depends on the target. If a prior model for $S$, is available, we can compute the expected value to get
+\begin{align}
+B = \EE\{B(S)\} = \EE\{\hat S\} - \EE\{S\}
+\end{align}}
+
+The variance of estimator $\hat S$ for a true target $S=s$ is defined as
 \begin{align}
 V = \text{var}\{\hat S|S=s\} 
 \end{align}
-The variance accounts for the spread of the sampling distribution, or in other words, it quantifies how much the estimates vary from one sample ${\bf x}$ to another, for the same realization of $S$. Unlike bias, which assesses systematic deviation from the true parameter value, variance captures the randomness inherent in the estimation process due to sampling variability.}
+The variance accounts for the spread of the sampling distribution, or in other words, it quantifies how much the estimates vary from one sample ${\bf x}$ to another, for the same realization of $S$. Unlike bias, which assesses systematic deviation from the true parameter value, variance captures the randomness inherent in the estimation process due to sampling variability.
+
+
