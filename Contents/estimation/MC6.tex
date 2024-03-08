@@ -4,7 +4,7 @@
 
 Sometimes we may be interested in estimating the parameters of a probability distribution, such as the mean or variance of a Gaussian distribution, the decay parameter that characterizes an exponential distribution, or values $a$ and $b$ delimiting the interval in which a uniform distribution is defined.
 
-In these cases, the prior distribution of these variables is not usually known, even more, in many cases, these parameters are said to be deterministic and they are not treated them as random parameters. However, if a set of observations generated from these distributions is available, we can obtain the likelihood of these variables and estimate their values with a maximum likelihood criteria.
+In these cases, the prior distribution of these variables is not usually known, even more, in many cases, these parameters are said to be deterministic and are not treated as random parameters. However, if a set of observations generated from these distributions is available, we can obtain the likelihood of these variables and estimate their values with maximum likelihood criteria.
 
 % Note that in order to use some Bayesian estimator, it would be necessary to know the posterior and without having information on the prior of these parameters we cannot know the posterior. Therefore, the only estimator we can apply in this scenario is the maximum likelihood estimator.
 
@@ -12,7 +12,7 @@ In these cases, the prior distribution of these variables is not usually known, 
 \begin{example}[ML estimate of the mean and variance of a one-dimensional Gaussian distribution]
 \label{ex:gauss_ML}
 
-The weight of individuals of a family of mollusks is known to obey a Gaussian distribution, but the mean and variance are unknown. The weight of $l$ individuals taken independently, $\{X^{(k)}\}_{k=1}^l$, is available.
+The weight of individuals in a family of molluscs is known to obey a Gaussian distribution, but the mean and variance are unknown. The weight of $l$ individuals taken independently, $\{X^{(k)}\}_{k=1}^l$, is available.
 
 The likelihood of the mean and the variance for a single observation $x$, in this case, is given by:
 \begin{equation}
