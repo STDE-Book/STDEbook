@@ -19,7 +19,7 @@ p_{S,X}(s,x) \sim G\left(\begin{bmatrix} s \\ x \end{bmatrix},
 \end{equation}
 where $\rho$ is the covariance between the two random variables.
 
-From this joint distribution we can obtain any other distribution involving the variables $S$ and $X$; specifically, the posterior distribution can be obtained as:
+From this joint distribution, we can obtain any other distribution involving the variables $S$ and $X$; specifically, the posterior distribution can be obtained as:
 \begin{align}
 \label{Est_psxgauss}
 p_{S|X}(s|x) 
@@ -96,7 +96,7 @@ Generalize the above result for the case where the variables $S$ and $X$ have (n
 \begin{example}[Estimation of a Gaussian signal contaminated by Gaussian noise]
 \label{ex:senialenruido}
 
-In this example we will consider the case in which the observation is the sum of the target variable and an independent noise component: $X = S + R$. Both the target and the noise are zero-mean Gaussian random variables with variances $v_S$ and $v_R$, respectively.
+In this example, we will consider the case in which the observation is the sum of the target variable and an independent noise component: $X = S + R$. Both the target and the noise are zero-mean Gaussian random variables with variances $v_S$ and $v_R$, respectively.
 
 Figure \eqref{fig:estimacion_caso_gauss} represents the situation described for a case with $v_S < v_R$.
 \begin{figure}[htb]
@@ -107,7 +107,7 @@ Figure \eqref{fig:estimacion_caso_gauss} represents the situation described for 
   \end{center}
 \end{figure}
 
-According to \eqref{ec_estimador_caso_gaussiano_final}, for the resolution of the problem we must find the variance of $X$ and the covariance between $S$ and $X$ ($\rho$). The variance $v_X$ is obtained simply as the sum of $v_S$ and $v_R$ because both are independent variables. For the covariance calculation,
+According to \eqref{ec_estimador_caso_gaussiano_final}, for the resolution of the problem, we must find the variance of $X$ and the covariance between $S$ and $X$ ($\rho$). The variance $v_X$ is obtained simply as the sum of $v_S$ and $v_R$ because both are independent variables. For the covariance calculation,
 \begin{equation}
 \rho = \mathbb{E} \{(X-m_X)(S-m_S)\} = \mathbb{E} \{X\;S\} = \mathbb{E} \{(S + R) S\} = \mathbb{E} \{S^2\} + \mathbb{E} \{S\;R\} = v_S
 \end{equation}
@@ -118,7 +118,7 @@ Replacing these results in \eqref{ec_estimador_caso_gaussiano_final} we get
 \hat s_{\text{MSE}} = \frac{v_S}{v_S + v_R} x
 \end{equation}
 
-This result can be interpreted quite intuitively: when the variance of the noise is much lower than that of the signal (high Signal to Noise Ratio (SNR), $v_S \gg v_R$) we get $\hat s_{\text{MSE}} \to x$, which makes sense since the effect of the noise component in this case is not very significant; on the contrary, when the SNR is very small ($v_S \ll v_R$), the observation barely provides information about the $S$ value in each experiment, so the estimator keeps the mean value of the signal component, $\sMSE \to 0$.
+This result can be interpreted quite intuitively: when the variance of the noise is much lower than that of the signal (high Signal to Noise Ratio (SNR), $v_S \gg v_R$) we get $\hat s_{\text{MSE}} \to x$, which makes sense since the effect of the noise component, in this case, is not very significant; on the contrary, when the SNR is very small ($v_S \ll v_R$), the observation barely provides information about the $S$ value in each experiment, so the estimator keeps the mean value of the signal component, $\sMSE \to 0$.
 \end{example} %\vspace{0.4cm}
 %%%%%%%%%%%%%
 
@@ -180,7 +180,7 @@ being ${\bf m_S}$ and ${\bf m_X}$ the means of $ {\bf S}$ and $ {\bf X}$, respec
 %                 -\frac{1}{2} {\bf x}^T{\bf V_X}^{-1}{\bf x} \right]
 %\end{align}
 
-The calculation of the posterior distribution of ${\bf S}$ given ${\bf X}$ is more complex than in the one-dimensional case, but it follows a similar procedure, which we will omit here. It can be shown that the posterior distribution is gaussian with mean
+The calculation of the posterior distribution of ${\bf S}$ given ${\bf X}$ is more complex than in the one-dimensional case, but it follows a similar procedure, which we will omit here. It can be shown that the posterior distribution is Gaussian with mean
 \begin{align}
 {\bf m}_{{\bf S}|{\bf X}} 
       = {\bf m}_{\bf S} + {\bf V}_{\bf SX}{\bf V_X}^{-1}({\bf x}-{\bf m}_{\bf X}) 
