@@ -49,8 +49,16 @@
     output/.style = {coordinate}
 }
 
+%\usepackage{enumitem}
+\usepackage{bbold}
+\usepackage{bm}
+\usepackage{hyperref}
 
-
+% This is to neutralize the \textcolor command
+% (command \usepackage[monochrome]{xcolor} does not work, likely because the cls file
+%  modifies it)
+%\let\oldtextcolor\textcolor
+%\renewcommand{\textcolor}[2]{#2}
 
 \input{format.tex}
 
@@ -75,7 +83,6 @@
 \newcommand{\SMSE}{\hat{S}_\text{MSE}}
 \newcommand{\sMAD}{\hat{s}_\text{MAD}}
 \newcommand{\SMAD}{\hat{S}_\text{MAD}}
-
 \makeindex             % used for the subject index
                        % please use the style svind.ist with
                        % your makeindex program
@@ -84,12 +91,13 @@
 \newcommand{\px}{p_X(x)}
 \newcommand{\py}{p_Y(y)}
 
+
 \begin{document}
 
-\author{Jer\'onimo Arenas-Garc\'ia, Jes\'us Cid-Sueiro, Vanessa G\'omez-Verdejo, Miguel L\'azaro-Gredilla, and David Ram{\'\i}rez}
-\title{Estimation and Detection Theory}
+\author{Jer\'onimo Arenas-Garc\'ia, Jes\'us Cid-Sueiro, Vanessa G\'omez-Verdejo}
+\title{Estimation Theory}
 \subtitle{Year 2021-22}
-\maketitle
+% \maketitle
 
 \frontmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -97,62 +105,39 @@
 %\include{Contents/init/foreword}
 %\include{Contents/init/preface}
 %\include{Contents/init/acknow}
-
 %\pagestyle{empty}
-
-\tableofcontents
 %\include{Contents/init/acronym}
-\mainmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Chapter: Stochastic processes
 %\chapter{Stochastic Processes}
 %\include{Contents/stochastic_processes/MC0_IntroSP}
+%\include{Contents/part0}
+\chapter{Stochastic processes}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Chapter: Estimation theory
-
 %\include{Contents/part0}
 \chapter{Statistical Estimation Theory}
-%\input{Contents/estimation/MC1}  % Input instead of include to avoid newpage after the title
-\include{Contents/estimation/MC2}
-\include{Contents/estimation/MC3}
-\include{Contents/estimation/MC4}
-\include{Contents/estimation/MC5}
-\include{Contents/estimation/MC6}
-\include{Contents/estimation/MC7_problems}
+\label{Estimation Theory}
+%%\input{Contents/estimation/MC1}  % Input instead of include to avoid newpage after the title
+%\include{Contents/estimation/MC2}
+%\include{Contents/estimation/MC3}
+%\include{Contents/estimation/MC4}
+%\include{Contents/estimation/MC5}
+%\include{Contents/estimation/MC6}
+%\include{Contents/estimation/MC7_problems}
 
 %%%%%%%%%%%%%%%%%%%%
 % Chapter: Filtering
 \chapter{Linear Filtering}
 \label{cha:FiltradoLinea}
+\mainmatter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tableofcontents
 \include{Contents/stochastic_processes/MC8_filtering}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Chapter: Spectral estimation
-\chapter{Spectral Estimation}
-\include{Contents/stochastic_processes/MC9_PSD}
-
-%\include{Contents/estimation/Labo_est}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Chapter: Detection theory
-\chapter{Statistical Detection Theory}
-\label{ch:SDT}
-\include{Contents/decision/M2}
-\include{Contents/decision/M3}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Chapter: Sequential Detection
-\chapter{Sequential Detection}
-\label{sec:seq_det}
-\include{Contents/decision/M4}
-%\includepdf[pages=-]{Contents/decision/LRT_Labo_Clas_problem}
-
-% Appendix
-\include{Contents/probability/appendix}
-%\include{Contents/probability/chapter1}
-
+%\chapter{Spectral Estimation}
+%\include{Contents/stochastic_processes/MC9_PSD}
 
 \backmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\include{Contents/glossary}
@@ -161,6 +146,47 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}
+
+%% Use the following syntax and markup for your references if 
+%% the subject of your book is from the field 
+%% "Computer Science, Economics, Engineering, Geosciences, Life Sciences"
+%% Contribution 
+%\bibitem{basic-contrib} Brown B, Aaron M (2001) The politics of nature. In: Smith J (ed) The rise of modern genomics, 3rd edn. Wiley, New York 
+%% Online Document
+%\bibitem{basic-online} Dod J (1999) Effective Substances. In: The dictionary of substances and their effects. Royal Society of Chemistry. Available via DIALOG. \\
+%\url{http://www.rsc.org/dose/title of subordinate document. Cited 15 Jan 1999}
+%% Journal article by DOI
+%\bibitem{basic-DOI} Slifka MK, Whitton JL (2000) Clinical implications of dysregulated cytokine production. J Mol Med, doi: 10.1007/s001090000086
+%% Journal article
+%\bibitem{basic-journal} Smith J, Jones M Jr, Houghton L et al (1999) Future of health insurance. N Engl J Med 965:325--329
+%% Monograph
+%\bibitem{basic-mono} South J, Blass B (2001) The future of modern genomics. Blackwell, London 
+
+\end{thebibliography}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
