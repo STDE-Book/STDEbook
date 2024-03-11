@@ -12,7 +12,7 @@
 
 The design of an estimator involves creating a real-valued function that, given an input vector, ${\bf x}$ of observational variables, makes predictions about a target variable, $s$.
 
-We will assume that there exists some statistical dependency between the the observations and the target. To do so, we model the observations and the target by means of random variables ${\bf X}$ and $S$, respectively\footnote{Note that we use capital letters to model the random variables, and lowercase letters to denote an arbitrary realization of them.}. The observation is a sample from an \textit{observation space} ${\cal X}$ which, in general, will be a subset of $\mathbb{R}^n$. In general, we will assume that the target variable is real, although the general formulation can be applied to multidimensional cases. A schematic view of the estimation problem is depicted in Fig. \ref{fig:est_overview}.
+We will assume some statistical dependency exists between the observations and the target. To do so, we model the observations and the target by means of random variables ${\bf X}$ and $S$, respectively\footnote{Note that we use capital letters to model the random variables, and lowercase letters to denote an arbitrary realization of them.}. The observation is a sample from an \textit{observation space} ${\cal X}$ which, in general, will be a subset of $\mathbb{R}^n$. We will typically assume that the target variable is real, although the general formulation can be applied to multidimensional cases. A schematic view of the estimation problem is depicted in Fig. \ref{fig:est_overview}.
 \begin{figure}
 \begin{center}
 \includegraphics[width=10cm]{Figures//estimation_overview.png}
@@ -20,9 +20,9 @@ We will assume that there exists some statistical dependency between the the obs
 \caption{Diagram block of estimation problems.\label{fig:est_overview}}
 \end{figure}
 
-The estimation module applies a real output function $f(\cdot)$ that is commonly referred to as the \textit{estimator}, and its output, $\hat{S} = f(\mathbf{X})$, as the \textit{estimation} or \textit{prediction}. The estimator is a deterministic function, meaning that for a given value $\mathbf{x}$, it will consistently produce the same output. Although $f(\cdot)$ is deterministic, if the input $\mathbf{X}$ is a random vector, the prediction $\hat{S}$ is a random variable.
+The estimation module applies a real output function $f(\cdot)$ that is commonly referred to as the \textit{estimator}, and its output, $\hat{S} = f(\mathbf{X})$, as the \textit{estimation} or \textit{prediction}. The estimator is a deterministic function, meaning that for a given value $\mathbf{x}$, it will consistently produce the same output. Although $f(\cdot)$ is deterministic if the input $\mathbf{X}$ is a random vector, the prediction $\hat{S}$ is a random variable.
 
-The estimator is likely to incur in some estimation error that will be quantified by means of a cost (or, alternatively, a reward) function. Designing our estimator will require minimizing (or maximizing) the expected value of this cost (reward).
+The estimator is likely to incur some estimation error that will be quantified by means of a cost (or, alternatively, a reward) function. Designing our estimator will require minimizing (or maximizing) the expected value of this cost (reward).
 
 We identify two main types of problems related to estimation:
 \begin{itemize}
@@ -37,7 +37,7 @@ We identify two main types of problems related to estimation:
 
 The statistical relation between the observations and the target variable is described by the {\bf joint} probability density function (pdf) of ${\bf X}$ and $S$: $p_{{\bf X},S}({\bf x},s)$, or some distribution related to it. 
 
-The join pdf can be factorized as products of conditional and marginal pdfs:
+The joint pdf can be factorized as products of conditional and marginal pdfs:
 \begin{align}
 p_{{\bf X},S}({\bf x},s) = p_{{\bf X}| S}({\bf x}| s) \cdot p_S(s) 
                          = p_{S|{\bf X}}(s|{\bf x}) \cdot p_{\bf X}({\bf x}) 
@@ -70,9 +70,9 @@ p_{S|{\bf X}}(s|{\bf x})
 \subsection{Cost functions for estimation problems}
 \label{subsec_funcion_coste}
 
-The evaluation and design of an estimator requires some objective criteria. In some cases, we will consider that this criterion materializes in the form of a {\bf cost function} whose value we seek to minimize. %We note, however, that there are design strategies that fall outside of this approach, such as the direct maximization of some probability function.
+The evaluation and design of an estimator require some objective criteria. In some cases, we will consider that this criterion materializes in the form of a {\bf cost function} whose value we seek to minimize. %We note, however, that there are design strategies that fall outside of this approach, such as the direct maximization of some probability function.
 
-A cost function $c(s,\hat s)$ is any measure of the discrepancy between the target variable and the estimation. In general, it is non-negative, $c(s,\hat s) \geq 0$, with equality for $s = \hat s$. In some cases, the cost function can be expressed as a function of the estimation error $e= s-\hat s$ and we will write\footnote{Note that the cost function is denoted with a lowercase letter, $c$, because it is a deterministic function, i.e., for fixed values of $s$ and $\hat s$ the cost always takes the same value. However, as with the estimation function, the application of that function to random variables will result in another random variable, i.e., $C = c(S,\hat S)$.} $c(s,\hat s) = c(s - \hat s) = c(e)$. Some frequently used cost functions are:
+A cost function $c(s,\hat s)$ is any measure of the discrepancy between the target variable and the estimation. It is generally non-negative, $c(s,\hat s) \geq 0$, with equality for $s = \hat s$. In some cases, the cost function can be expressed as a function of the estimation error $e= s-\hat s$ and we will write\footnote{Note that the cost function is denoted with a lowercase letter, $c$, because it is a deterministic function, i.e., for fixed values of $s$ and $\hat s$ the cost always takes the same value. However, as with the estimation function, the application of that function to random variables will result in another random variable, i.e., $C = c(S,\hat S)$.} $c(s,\hat s) = c(s - \hat s) = c(e)$. Some frequently used cost functions are:
 \begin{itemize}
 \item Quadratic cost: $c(e) = e^2$.
 \item Absolute value of the error: $c(e) = |e|$.
@@ -80,13 +80,13 @@ A cost function $c(s,\hat s)$ is any measure of the discrepancy between the targ
 \item Cross Entropy: $c(s,\hat s) = - s \ln \hat s - (1-s) \ln (1-\hat s)$, for $s,\hat{s}\in [0,1]$
 \end{itemize}
 
-Since the target variable is unknown, the prediction cannot be computed by the direct minimization of the cost $c(s, \hat s)$, and we have to work with expectations. The expected value of the cost is usually referred as the {\bf risk} of an estimator $\hat{s}=f({\bf x})$:
+Since the target variable is unknown, the prediction cannot be computed by directly minimising the cost $c(s, \hat s)$, and we have to work with expectations. The expected value of the cost is usually referred as the {\bf risk} of an estimator $\hat{s}=f({\bf x})$:
 \begin{align}
 \label{Est:coste_medio_gen}
 R_f = \EE\{c(S,\hat S)\} 
     & = \int_{\bf x} \int_s c(s,f({\bf x})) p_{S,{\bf X}}(s,{\bf x}) ds d{\bf x}
 \end{align}
-By the Law of Large Numbers, this is the average cost that we can expect from a given estimator, after a large number of predictions.
+By the Law of Large Numbers, this is the average cost we can expect from a given estimator, after a large number of predictions.
 
 The {\bf conditional risk} is the conditional mean for a given observation
 \begin{align}

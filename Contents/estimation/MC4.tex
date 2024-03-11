@@ -6,7 +6,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{General principles}
 
-Occasionally, it might be beneficial to prescribe a specific parametric form for the estimator, denoted as $\hat S = f_{\bf w}(\bf X)$, where ${\bf w}$ represents a vector of parameters. For instance, in scenarios involving two observations, ${\bf X} = [X_1, X_2]^T$, a design constraint might necessitate limiting the search for an estimator to the family of quadratic estimators, characterized by $\hat S = w_0 + w_1 X_1^2 + w_2 X_2^2$. In such situations, the task of designing an estimator consists on identifying the optimal parameter vector ${\bf w}^*$ that minimizes the risk, while adhering to the specified constraints on the estimator structure:
+Occasionally, it might be beneficial to prescribe a specific parametric form for the estimator, denoted as $\hat S = f_{\bf w}(\bf X)$, where ${\bf w}$ represents a vector of parameters. For instance, in scenarios involving two observations, ${\bf X} = [X_1, X_2]^T$, a design constraint might necessitate limiting the search for an estimator to the family of quadratic estimators, characterized by $\hat S = w_0 + w_1 X_1^2 + w_2 X_2^2$. In such situations, the task of designing an estimator consists of identifying the optimal parameter vector ${\bf w}^*$ that minimizes the risk, while adhering to the specified constraints on the estimator structure:
 \begin{align}
 {\bf w}^* &= \argmin_{\bf w} \EE\{c(S,\hat S)\}
            = \argmin_{\bf w} \EE\{c(S,f_{\bf w}({\bf X}))\} \nonumber\\
@@ -54,7 +54,7 @@ and therefore the estimator is $\hat{s} = \frac{5}{8}x^2$.
 \subsection{Linear (in the parameters) estimation of minimum MSE}
 \label{sec:est_lineal}
 
-In this section we will focus on the study of estimators that are a linear combination of variables related to the observations, using the minimization of the MSE as design criterion. More specifically, we will consider estimators given by the general expression
+In this section we will focus on the study of estimators that are a linear combination of variables related to the observations, using the minimization of the MSE as a design criterion. More specifically, we will consider estimators given by the general expression
 {\begin{align}
 \label{Est:lin_in_w}
 \hat S = {\bf w}^\intercal {\bf Z}
@@ -80,7 +80,7 @@ is some known transformation of the observations. The nature of this transformat
 \end{equation}
 \end{itemize}}
 
-{Note that in general, the dimensions of ${\bf X}$ and ${\bf Z}$ may be different. Note, also, that, despite the estimator may be a non-linear function of the observation, all estimators given by \eqref{Est:lin_in_w} are linear functions of the parameters. For this reason we will refer to them as estimators that are \textit{linear in the parameters}.}
+{Note that in general, the dimensions of ${\bf X}$ and ${\bf Z}$ may be different. Note, also, that, despite the estimator may be a non-linear function of the observation, all estimators given by \eqref{Est:lin_in_w} are linear functions of the parameters. For this reason, we will refer to them as estimators that are \textit{linear in the parameters}.}
 
 %where $N$ denotes the number of available observable variables, $\{X_i\}_{i=1}^N$, and $\{w_i\}_{i=0}^{N}$ are the weights that characterize the estimator. In this context, it is common to refer to the term independent of the above expression, $w_0$, as a bias term. For analytic simplicity, it is more convenient to enter the following matrix notation:
 %\begin{equation}
@@ -89,7 +89,7 @@ is some known transformation of the observations. The nature of this transformat
 %\end{equation}
 %where ${\bf w} = [w_1,\dots,w_N]^T$ and ${\bf X} = [X_1,\dots,X_N]^T$ are the (column) vectors  of parameters and observations, respectively, and ${\bf w}_{\text{e}} = [w_0, {\bf w}^T]^T$ and ${\bf X}_{\text{e}} = [1, {\bf X}^T]^T$ are extended versions of these vectors.
 
-By imposing a restriction on the analytic form of the estimator, linear-in-the-parameter estimators will generally obtain lower performance than the optimal Bayesian estimator. However, the interest of linear estimators is justified by their simplicity and ease of design. As we shall see, the linear estimator of minimum MSE depends exclusively on first and second order statistical moments (means and covariances) {associated with the target variable and the transformed observation, ${\bf Z}$}.
+By imposing a restriction on the analytic form of the estimator, linear-in-the-parameter estimators will generally obtain lower performance than the optimal Bayesian estimator. However, the interest in linear estimators is justified by their simplicity and ease of design. As we shall see, the linear estimator of minimum MSE depends exclusively on first and second-order statistical moments (means and covariances) {associated with the target variable and the transformed observation, ${\bf Z}$}.
 
 %On the other hand, the use of linear estimators is fully justified in certain circumstances, for example when dealing with variables with Gaussian distributions, since, as we saw in the previous section, in this case the Bayesian estimator with the minimum squared mean error has a linear architecture. 
 
@@ -103,7 +103,7 @@ We will consider as design criteria the squared error, $c(e) = (s-\hat s)^2$, so
 	= \argmin_{\bf w} \; \EE\{(S - \hat S)^2\} 
     = \argmin_{\bf w}\;  \EE\{(S - {\bf w}^\intercal {\bf Z})^2\}
 \end{equation}
-and we will refer to the estimator associated with weight vector as $\hat S_\text{LMSE}$: 
+and we will refer to the estimator associated with the weight vector as $\hat S_\text{LMSE}$: 
 $$\hat S_\text{LMSE} = {{\bf w}^*}^T {\bf Z}$$}
 
 {The MSE can be expanded as
@@ -174,7 +174,7 @@ therefore, the optimal weight vector is any solution of
 \label{ec:ecs_normales_2}
 {\bf R}_{\bf Z} {\bf w}^* = {\bf r}_{S{\bf Z}}
 \end{align}
-If the autocorrelation matrix in invertible, we get
+If the autocorrelation matrix is invertible, we get
 \begin{framed}
 \begin{equation}
 \label{Est.ec:weopt}
@@ -215,7 +215,7 @@ If the autocorrelation matrix in invertible, we get
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Alternative expression for the linear case}
 
-{We can obtain an alternative expression for the optimal weights in the case of the linear estimator with independent term in \eqref{Est:blin}, which is given by ${\bf Z}=(1, {\bf X}^\intercal)^\intercal$ and can thus be written as
+{We can obtain an alternative expression for the optimal weights in the case of the linear estimator with the independent term in \eqref{Est:blin}, which is given by ${\bf Z}=(1, {\bf X}^\intercal)^\intercal$ and can thus be written as
 \begin{align}
 \hat S = w_0 + {\bf w}_{1:}^\intercal {\bf X}
 \end{align}

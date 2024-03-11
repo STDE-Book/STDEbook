@@ -12,7 +12,7 @@ The maximum likelihood estimator (ML) uses the likelihood as the reward function
 \label{ec:est_ML}
 \end{equation}
 
-The ML estimator selects the value of the parameter $s$ that maximizes the likelihood of observing ${\bf x}$ when $S=s$. Loosely speaking, observing ${\bf x}$ when $S=\sML$ is less unexpected than if $S$ takes any other value. Note that $p_{{\bf X}|S}({\bf x}|s)$, which is a density function over random variable ${\bf X}$, is not maximized with respect to ${\bf x}$, but with respect to $s$. 
+The ML estimator selects the value of the parameter $s$ that maximizes the likelihood of observing ${\bf x}$ when $S=s$. Loosely speaking, observing ${\bf x}$ when $S=\sML$ is less unexpected than if $S$ takes any other value. Note that $p_{{\bf X}|S}({\bf x}|s)$, which is a density function over random variable ${\bf X}$, is not maximized with respect to ${\bf x}$, but $s$. 
 % Note that in the estimator definition alternatively includes  the use of the logarithm function (or some other with similar properties) and its use does not affect in any case the value resulting from maximization.
 
 %%%%%%%%%%%%%%%
@@ -23,7 +23,7 @@ We want to estimate the value of a random variable $S$ from an observation $X$ s
 \begin{equation}
 p_{X|S}(x|s) = \frac{2 x}{(1 - s)^2},\;\; 0 \le x \le 1-s,\;\; 0 \le s \le 1
 \end{equation}
-Given the available statistical information, it is decided to construct the ML estimator of $S$. The likelihood is a probability density function of $X$ with unit area, as represented in Figure \ref{fig:est_ML_caso1}(a). However, to carry out the maximization, representing this likelihood as a function\footnote{Note that the integral with respect to $s$ of $p_{X|S}(x|s)$ will not generally be the unit, since this function does not constitute a probability density of $S$.} of $s$ (Fig.\ref{fig:est_ML_caso1}(b)) is more useful, as it shows that the estimator is
+Given the available statistical information, it is decided to construct the ML estimator of $S$. The likelihood function represents the probability density of the random variable $X$, normalized to have unit area, as represented in Figure \ref{fig:est_ML_caso1}(a). However, to carry out the maximization, representing this likelihood as a function\footnote{Note that the integral with respect to $s$ of $p_{X|S}(x|s)$ will not generally be the unit, since this function does not constitute a probability density of $S$.} of $s$ (Fig.\ref{fig:est_ML_caso1}(b)) is more useful, as it shows that the estimator is
 $$\hat s_{\text{ML}} = 1 - x$$
 or, alternatively, if we consider the application of the estimation function on the random variable $X$ instead of on a specific value of it,
 $$\hat S_{\text{ML}} = 1 - X$$
@@ -50,20 +50,20 @@ $$\hat S_{\text{ML}} = 1 - X$$
 
 {Note that the second equality in \eqref{ec:est_ML} states that the maximization of the likelihood is equivalent to the maximization of its logarithm (the \textbf{log-likelihood} function). Since the logarithm function is strictly increasing, $p_{{\bf X}|S}({\bf x}|s_1) > p_{{\bf X}|S}({\bf x}|s_2)$ implies $\ln(p_{{\bf X}|S}({\bf x}|s_1)) > \ln(p_{{\bf X}|S}({\bf x}|s_2))$) and, thus, the logarithm does not alter the outcome of the maximization}. The logarithm is used by practical reasons when the likelihood is a product of several factors or an exponential function, as it will transform products into sums and an exponential into the exponents. In this way, the maximization process can be simplified considerably.
 
-{Note that the maximum likelihood does not need any probability model about the target variable, $S$, which is treated as a deterministic parameter. This is useful in situation where only the likelihood function is known}.
+{Note that the maximum likelihood does not need any probability model about the target variable, $S$, which is treated as a deterministic parameter. This is useful in situations where only the likelihood function is known}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Maximum a posteriori (MAP) estimation}
 
-We define the maximum a posterior (MAP) estimator as the mode of the posterior distribution, that is
+We define the maximum a posteriori (MAP) estimator as the mode of the posterior distribution, that is
 \begin{equation}
 \hat s_{\text{MAP}} = \argmax_{s} p_{{S|\bf X}}(s|{\bf x})
                     = \argmax_{s} \ln(p_{{S|\bf X}}(s|{\bf x}))
                    \label{ec:est_MAP}
 \end{equation}
 
-{Using the definition of conditional pdf and the Bayes' rule, it is easy to see that the MAP estimator can be computed as
+{Using the definition of conditional pdf and Bayes' rule, it is easy to see that the MAP estimator can be computed as
 \begin{align}
 \label{eq:est_smap2}
 \hat s_{\text{MAP}} 
@@ -72,7 +72,7 @@ We define the maximum a posterior (MAP) estimator as the mode of the posterior d
     &= \argmax_{s} \{p_{{\bf X}|S}({\bf x}|s) p_S(s)\}
 \end{align}}
 
-{Eq. \eqref{eq:est_smap3} demonstrates that the MAP estimator seeks to maximize the likelihood function, modulated by the prior distribution. This integration of the prior distribution allows the MAP estimator to incorporate existing knowledge or assumptions about the target $S$ before observing the data, ${\bf x}$. When the prior distribution, is uniform across entire range of possible values of $S$, the distinction between the MAP and ML estimators vanishes, as the MAP estimator effectively reduces to the ML estimator.}
+{Eq. \eqref{eq:est_smap3} demonstrates that the MAP estimator seeks to maximize the likelihood function, modulated by the prior distribution. This integration of the prior distribution allows the MAP estimator to incorporate existing knowledge or assumptions about the target $S$ before observing the data, ${\bf x}$. When the prior distribution, is uniform across the entire range of possible values of $S$, the distinction between the MAP and ML estimators vanishes, as the MAP estimator effectively reduces to the ML estimator.}
 
 {However, when the prior distribution is not uniform, the MAP estimator is biased towards values of the target variable with higher prior probabilities. This shift illustrates the MAP estimator's sensitivity to prior knowledge.}
 
@@ -86,7 +86,7 @@ Considering that
 \begin{equation}
 p_{S|X}(s|x) = \frac{1}{x^2} s \exp\left(-\frac{s}{x}\right), \qquad  x\ge 0,\quad s \ge 0
 \end{equation}
-the MAP estimator can be computed maximizing
+the MAP estimator can be computed by maximizing
 \begin{equation}
 \ln(p_{S|X}(s|x)) = -2\ln(x) + \ln(s)-\frac{s}{x}, \qquad  x\ge 0,\quad s \ge 0,
 \end{equation}
@@ -120,7 +120,7 @@ where $\hat s= f({\bf x})$. That is, the risk is the integral of the conditional
 \label{ec:est_bayesiano}
 {\hat s}^* = \argmin_{\hat s}\;\EE\{c(S,\hat s)|{\bf X} = {\bf x} \}
 \end{equation}
-We will refer to this estimator as the \textbf{Bayesian estimator} associated to cost function $c()$. 
+We will refer to this estimator as the \textbf{Bayesian estimator} associated with cost function $c()$. 
 
 
 %%%%%%%%%%%%%%%
@@ -159,7 +159,7 @@ As a function of $\hat{s}$, conditional risk is a second-degree polynomial, whos
 \frac{d}{d\hat{s}} \mathbb{E}\{c(S,\hat s)|X=x\} 
    &= - x + 2 \hat{s} ,
 \end{align}
-the Bayesian estimator associated to the quadratic error is
+the Bayesian estimator associated with the quadratic error is
 \begin{equation}
 \label{eq:sopt_halfx}
 \hat{s}^* = \frac{1}{2}x,
@@ -168,7 +168,7 @@ which matches the estimator $\hat{S}_1$ from the example \ref{CalculoECM}. There
 \end{example}\vspace{0.4cm}
 %%%%%%%%%%%%%
 
-Based on \eqref{ec:est_bayesiano} we can conclude that, regardless of the cost to be minimized, the knowledge of the posterior distribution of $S$ given ${\bf X}$, $p_{S|{\bf X}}(s|{\bf x})$, is sufficient to design the Bayesian estimator for a given cost. As mentioned above, this distribution is often calculated from the likelihood of $S$ and its a prior distribution using the Bayes Theorem, which is in fact the origin of the denomination of these estimators.
+Based on \eqref{ec:est_bayesiano} we can conclude that, regardless of the cost to be minimized, the knowledge of the posterior distribution of $S$ given ${\bf X}$, $p_{S|{\bf X}}(s|{\bf x})$, is sufficient to design the Bayesian estimator for a given cost. As mentioned above, this distribution is often calculated from the likelihood of $S$ and its a priori distribution using the Bayes Theorem, which is in fact the origin of the denomination of these estimators.
 
 \newpage
 
@@ -190,7 +190,7 @@ The minimum mean squared error (MSE) estimator is the Bayesian estimator associa
   & = \argmin_{\hat s} \; \EE\{(S-\hat s)^2|{\bf X} = {\bf x} \}
 \end{align}
 
-Figure \ref{fig:estimador_cuadratico} illustrates the minimum MSE estimation problem. The risk can be obtained by integrating (with respect to $s$) the product of the square error and the posterior pdf of $S$. The argument for minimization is $\hat s$, which allows to shift the graph corresponding to the cost function (represented with discontinuous stroke) so that the result of that integral is minimal.
+Figure \ref{fig:estimador_cuadratico} illustrates the minimum MSE estimation problem. The risk can be obtained by integrating (with respect to $s$) the product of the square error and the posterior pdf of $S$. The argument for minimization is $\hat s$, which allows shifting the graph corresponding to the cost function (represented with discontinuous stroke) so that the result of that integral is minimal.
 
 %%%%%%%%%%%%%%
 \begin{figure}[th]
@@ -253,7 +253,7 @@ which is consistent with \eqref{eq:sopt_halfx}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Minimum Mean Absolute Deviation Estimator (MAD)}
 
-In the same way as we have proceeded in the case of the estimator $\hat s_\text{MSE}$, we can calculate the estimator associated with the absolute deviation of the estimation error, $c(e) = |e| = |s - \hat s|$. This estimator, which we will refer to as the Mean Absolute Deviation (MAD), is characterized by
+In the same way, as we have proceeded in the case of the estimator $\hat s_\text{MSE}$, we can calculate the estimator associated with the absolute deviation of the estimation error, $c(e) = |e| = |s - \hat s|$. This estimator, which we will refer to as the Mean Absolute Deviation (MAD), is characterized by
 
 \begin{align}
 \label{ec:coste_MAD}
