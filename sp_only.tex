@@ -1,10 +1,8 @@
 \documentclass[graybox,sectrefs]{svmono_mod}
-
 %\documentclass[graybox,envcountchap,sectrefs]{svmono_mod}
 %\documentclass[envcountsame,envcountchap]{svmono}
 
-% choose options for [] as required from the list
-% in the Reference Guide
+% choose options for [] as required from the list in the Reference Guide
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -12,7 +10,6 @@
 \usepackage{helvet}
 \usepackage{courier}
 \usepackage{type1cm}         
-%\usepackage{epsfig}
 \usepackage{makeidx}         % allows index generation
 \usepackage{graphicx}        % standard LaTeX graphics tool
                              % when including figure files
@@ -23,84 +20,50 @@
 
 \usepackage{listings}
 \usepackage[final]{pdfpages}
-% see the list of further useful packages
-% in the Reference Guide
+% see the list of further useful packages in the Reference Guide
 
-%\usepackage{anyfontsize}
 \usepackage{enumerate}
 \usepackage{enumitem}
 
 \usepackage{tikz,pgfplots}
 \usetikzlibrary{arrows.meta,quotes}
-%\usepackage[mode=tex]{standalone}
 \usepackage[mode=buildnew]{standalone}
 
 \usepackage{bbold}
 \usepackage{bm}
 \usepackage{hyperref}
+\usepackage{capt-of}
 
+% Some modifications
 \input{format.tex}
 
-\newcommand{\appropto}{\mathrel{\vcenter{\offinterlineskip\halign{\hfil$##$\cr \propto\cr\noalign{\kern2pt}\sim\cr\noalign{\kern-2pt}}}}}
-
-% From the CD book
-\newcommand{\jw}{j \omega } %jw
-\newcommand{\re}{{\cal R} e } %parte real
-
+% Macros for easier typing
+\input{main_definitions} 
 
 \makeindex             % used for the subject index
                        % please use the style svind.ist with
                        % your makeindex program
 
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\newcommand{\px}{p_X(x)}
-%\newcommand{\py}{p_Y(y)}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
 \author{compiled by Jes\'us Cid-Sueiro}
 \title{Stochastic Processes}
 \subtitle{Year 2021-22}
 
-
-%\maketitle
-
-
-%\frontmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%\include{Contents/init/dedic}
-%\include{Contents/init/foreword}
-%\include{Contents/init/preface}
-%\include{Contents/init/acknow}
-%\pagestyle{empty}
-
-%\tableofcontents
-%\include{Contents/init/acronym}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Stochastic Processes}
 \footnote{\textbf{Note}: This document has been compiled and adapted by Jesús Cid-Sueiro. Secs 1.1-1.4 are an adaptation of material taken from \cite{MITcourse} (Creative Commons license BY-NC-SA 4.0). Sec. 1.5 is a translation, summary and adaptation of a chapter in \cite{ComDig2007} made by the author with permission of the co-authors. Secs. 1.1-1.4 is published under license BY-NC-SA 4.0. Sec. 1.5 cannot be published or redistributed in any form. It cannot be transformed or used partially without permission of the original authors}
 \vspace{11cm}
 
-
-\mainmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\mainmatter 
 \tableofcontents
 
 \include{Contents/stochastic_processes/MC0_IntroSP}
 
-%\backmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%\include{Contents/glossary}
-%\include{Contents/solutions}
-%\printindex
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{thebibliography}{99.}
-% Contribution 
 
 \bibitem{MITcourse}
 Kempthorne, Peter, Choongbum Lee, Vasily Strela, and Jake Xia. "Topics in mathematics with applications in finance." Massachusetts Institute of Technology: MIT OpenCouseWare), https://ocw.mit.edu/courses/18-s096-topics-in-mathematics-with-applications-in-finance-fall-2013/ (Accessed Feb, 2023). License: Creative Commons BY-NC-SA.
@@ -108,31 +71,11 @@ Kempthorne, Peter, Choongbum Lee, Vasily Strela, and Jake Xia. "Topics in mathem
 \bibitem{ComDig2007}
 Artés-Rodríguez, A., Pérez-González, F., Cid-Sueiro, J., López-Valcarce, R., Mosquera-Nartallo, C., Pérez-Cruz, F. (2012). Comunicaciones digitales (\url{http://www.tsc.uc3m.es/~antonio/libro_comunicaciones}).
 
-
-%% Use the following syntax and markup for your references if 
-%% the subject of your book is from the field 
-%% "Computer Science, Economics, Engineering, Geosciences, Life Sciences"
-%% Contribution 
-%\bibitem{basic-contrib} Brown B, Aaron M (2001) The politics of nature. In: Smith J (ed) The rise of modern genomics, 3rd edn. Wiley, New York 
-%% Online Document
-%\bibitem{basic-online} Dod J (1999) Effective Substances. In: The dictionary of substances and their effects. Royal Society of Chemistry. Available via DIALOG. \\
-%\url{http://www.rsc.org/dose/title of subordinate document. Cited 15 Jan 1999}
-%% Journal article by DOI
-%\bibitem{basic-DOI} Slifka MK, Whitton JL (2000) Clinical implications of dysregulated cytokine production. J Mol Med, doi: 10.1007/s001090000086
-%% Journal article
-%\bibitem{basic-journal} Smith J, Jones M Jr, Houghton L et al (1999) Future of health insurance. N Engl J Med 965:325--329
-%% Monograph
-%\bibitem{basic-mono} South J, Blass B (2001) The future of modern genomics. Blackwell, London 
-
 \end{thebibliography}
 
 
-
-
-
-
 \end{document}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 

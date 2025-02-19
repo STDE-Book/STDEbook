@@ -28,25 +28,34 @@ $$\hat s_{\text{ML}} = 1 - x$$
 or, alternatively, if we consider the application of the estimation function on the random variable $X$ instead of on a specific value of it,
 $$\hat S_{\text{ML}} = 1 - X$$
 
-%%%%%%%%%%%%%%
-\begin{figure}[t]
-  \begin{center}
-  \begin{tabular}{cc}
-    %\epsfig{file=Figures/px_s_funcionx, width=6cm} 
-    \includegraphics[width=6cm]{Figures//px_s_funcionx.png} &
-   % \epsfig{file=Figures/px_s_funcions, width=6cm} \\ 
-   
-   \includegraphics[width=6cm]{Figures//px_s_funcions.png}\\
-    (a) & (b)
-  \end{tabular}
-    \caption{Representation of the likelihood distribution of the example \ref{ex:est_ML_varaleat} as a function of $x$ and $s$.}
-    \label{fig:est_ML_caso1}
-  \end{center}
-\end{figure}
-%%%%%%%%%%%%
+% We avoid using figure here, because the example is framed, and no float environments are allowed.
+\centering
+\begin{tabular}{cc}
+\includegraphics[width=6cm]{Figures/px_s_funcionx.png} &
+\includegraphics[width=6cm]{Figures/px_s_funcions.png}\\
+   (a) & (b)
+\end{tabular}
+\captionof{figure}{Representation of the likelihood distribution of the example \ref{ex:est_ML_varaleat} as a function of $x$ and $s$.}
+\label{fig:est_ML_caso1}
+
+%%%%%%%%%%%%%%%
+%\begin{figure}[h]
+%  \begin{center}
+%  \begin{tabular}{cc}
+%    \includegraphics[width=6cm]{Figures//px_s_funcionx.png} &
+%    \includegraphics[width=6cm]{Figures//px_s_funcions.png} \\
+%    (a) & (b)
+%  \end{tabular}
+%    \caption{Representation of the likelihood distribution of the example \ref{ex:est_ML_varaleat} as a function of $x$ and $s$.}
+%    \label{fig:est_ML_caso1}
+%  \end{center}
+%\end{figure}
+%%%%%%%%%%%%%
 
 \end{example}
 %%%%%%%%%%%%%
+
+
 
 {Note that the second equality in \eqref{ec:est_ML} states that the maximization of the likelihood is equivalent to the maximization of its logarithm (the \textbf{log-likelihood} function). Since the logarithm function is strictly increasing, $p_{{\bf X}|S}({\bf x}|s_1) > p_{{\bf X}|S}({\bf x}|s_2)$ implies $\ln(p_{{\bf X}|S}({\bf x}|s_1)) > \ln(p_{{\bf X}|S}({\bf x}|s_2))$) and, thus, the logarithm does not alter the outcome of the maximization}. The logarithm is used by practical reasons when the likelihood is a product of several factors or an exponential function, as it will transform products into sums and an exponential into the exponents. In this way, the maximization process can be simplified considerably.
 
@@ -159,7 +168,7 @@ As a function of $\hat{s}$, conditional risk is a second-degree polynomial, whos
 \frac{d}{d\hat{s}} \mathbb{E}\{c(S,\hat s)|X=x\} 
    &= - x + 2 \hat{s} ,
 \end{align}
-the Bayesian estimator associated with the quadratic error is
+the Bayesian estimator associated with the \textcolor{blue}{square error} is
 \begin{equation}
 \label{eq:sopt_halfx}
 \hat{s}^* = \frac{1}{2}x,

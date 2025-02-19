@@ -1,8 +1,7 @@
 \documentclass[graybox,envcountchap,sectrefs]{svmono_mod}
 %\documentclass[envcountsame,envcountchap]{svmono}
+% choose options for [] as required from the list in the Reference Guide
 
-% choose options for [] as required from the list
-% in the Reference Guide
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -11,7 +10,6 @@
 \usepackage{courier}
 %
 \usepackage{type1cm}         
-%\usepackage{epsfig}
 \usepackage{makeidx}         % allows index generation
 \usepackage{graphicx}        % standard LaTeX graphics tool
                              % when including figure files
@@ -22,30 +20,17 @@
 
 \usepackage{listings}
 \usepackage[final]{pdfpages}
-% see the list of further useful packages
-% in the Reference Guide
+% see the list of further useful packages in the Reference Guide
 
-%\usepackage{anyfontsize}
 \usepackage{enumerate}
-%\usepackage{rotating}
-%\usepackage{psfrag}
-%\usepackage{color}
-%\usepackage{framed}
-%\usepackage{t1enc}
-%\usepackage{times}
-%\usepackage{fancyhdr}
-%\usepackage{float}
-%\usepackage{marvosym}
 \usepackage{tikz,pgfplots}
 \usetikzlibrary{arrows.meta,quotes}
-%\usepackage[mode=tex]{standalone}
 \usepackage[mode=buildnew]{standalone}
 
-
-%\usepackage{enumitem}
 \usepackage{bbold}
 \usepackage{bm}
 \usepackage{hyperref}
+\usepackage{capt-of}
 
 % This is to neutralize the \textcolor command
 % (command \usepackage[monochrome]{xcolor} does not work, likely because the cls file
@@ -53,38 +38,14 @@
 %\let\oldtextcolor\textcolor
 %\renewcommand{\textcolor}[2]{#2}
 
+% Some modifications
 \input{format.tex}
 
-%%% 2) Operadores de decision
-\def\dunodcero{\begin{array}{c} D=1 \\ \gtrless \\ D=0 \end{array}}
-\def\dceroduno{\begin{array}{c} D=0 \\ \gtrless \\ D=1 \end{array}}
-%%%
-%%% 3) Abreviaturas para PFA, PM  y PD.
-\newcommand{\pfa}{P_{\text{FA}}} 
-\newcommand{\pmis}{P_{\text{M}}} 
-\newcommand{\pdet}{P_{\text{D}}} 
-\newcommand{\appropto}{\mathrel{\vcenter{\offinterlineskip\halign{\hfil$##$\cr \propto\cr\noalign{\kern2pt}\sim\cr\noalign{\kern-2pt}}}}}
+% Macros for easier typing
+\input{main_definitions} 
 
-\newcommand{\EE}{\mathbb{E}}
-\DeclareMathOperator*{\argmin}{argmin} % no space, limits underneath in displays
-\DeclareMathOperator*{\argmax}{argmax} % no space, limits underneath in displays
-\newcommand{\sML}{\hat{s}_\text{ML}}
-\newcommand{\SML}{\hat{S}_\text{ML}}
-\newcommand{\sMAP}{\hat{s}_\text{MAP}}
-\newcommand{\SMAP}{\hat{S}_\text{MAP}}
-\newcommand{\sMSE}{\hat{s}_\text{MSE}}
-\newcommand{\SMSE}{\hat{S}_\text{MSE}}
-\newcommand{\sMAD}{\hat{s}_\text{MAD}}
-\newcommand{\SMAD}{\hat{S}_\text{MAD}}
-\makeindex             % used for the subject index
-                       % please use the style svind.ist with
-                       % your makeindex program
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\px}{p_X(x)}
-\newcommand{\py}{p_Y(y)}
-
-
 \begin{document}
 
 \author{Jer\'onimo Arenas-Garc\'ia, Jes\'us Cid-Sueiro, Vanessa G\'omez-Verdejo}
@@ -92,20 +53,11 @@
 \subtitle{Year 2021-22}
 % \maketitle
 
-\frontmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frontmatter
 
-%\include{Contents/init/dedic}
-%\include{Contents/init/foreword}
-%\include{Contents/init/preface}
-%\include{Contents/init/acknow}
-%\pagestyle{empty}
-%\include{Contents/init/acronym}
-
-%\chapter{Stochastic Processes}
-%\include{Contents/stochastic_processes/MC0_IntroSP}
-%\include{Contents/part0}
 \chapter{Stochastic processes}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Statistical Estimation Theory}
 %\input{Contents/estimation/MC1}  % Input instead of include to avoid newpage after the title
 \mainmatter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -118,31 +70,11 @@
 \include{Contents/estimation/MC6}
 \include{Contents/estimation/MC7_problems}
 
-% Chapter: Filtering
-% \include{Contents/stochastic_processes/MC8_filtering}
-
-\backmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\include{Contents/glossary}
-%\include{Contents/solutions}
+\backmatter
 \printindex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}
-
-%% Use the following syntax and markup for your references if 
-%% the subject of your book is from the field 
-%% "Computer Science, Economics, Engineering, Geosciences, Life Sciences"
-%% Contribution 
-%\bibitem{basic-contrib} Brown B, Aaron M (2001) The politics of nature. In: Smith J (ed) The rise of modern genomics, 3rd edn. Wiley, New York 
-%% Online Document
-%\bibitem{basic-online} Dod J (1999) Effective Substances. In: The dictionary of substances and their effects. Royal Society of Chemistry. Available via DIALOG. \\
-%\url{http://www.rsc.org/dose/title of subordinate document. Cited 15 Jan 1999}
-%% Journal article by DOI
-%\bibitem{basic-DOI} Slifka MK, Whitton JL (2000) Clinical implications of dysregulated cytokine production. J Mol Med, doi: 10.1007/s001090000086
-%% Journal article
-%\bibitem{basic-journal} Smith J, Jones M Jr, Houghton L et al (1999) Future of health insurance. N Engl J Med 965:325--329
-%% Monograph
-%\bibitem{basic-mono} South J, Blass B (2001) The future of modern genomics. Blackwell, London 
 
 \end{thebibliography}
 

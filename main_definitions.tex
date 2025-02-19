@@ -1,0 +1,50 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Definiciones de comandos
+
+%%% Operadores de decision
+\def\dunodcero{\,\, \underset{D=0}{\overset{D=1}{\gtrless}}\,\,}
+\def\dceroduno{\,\, \underset{D=1}{\overset{D=0}{\gtrless}}\,\,}
+%\def\dunodcero{\begin{array}{c} D=1 \\ \gtrless \\ D=0 \end{array}}
+%\def\dceroduno{\begin{array}{c} D=0 \\ \gtrless \\ D=1 \end{array}}
+
+%%% Abreviaturas para PFA, PM  y PD.
+\newcommand{\pfa}{P_{\text{FA}}} 
+\newcommand{\pmis}{P_{\text{M}}} 
+\newcommand{\pdet}{P_{\text{D}}} 
+\newcommand{\appropto}{\mathrel{\vcenter{\offinterlineskip\halign{\hfil$##$\cr \propto\cr\noalign{\kern2pt}\sim\cr\noalign{\kern-2pt}}}}}
+
+%%% Abreviaturas para Estimación
+\newcommand{\EE}{\mathbb{E}}
+\DeclareMathOperator*{\argmin}{argmin} % no space, limits underneath in displays
+\DeclareMathOperator*{\argmax}{argmax} % no space, limits underneath in displays
+\newcommand{\sML}{\hat{s}_\text{ML}}
+\newcommand{\SML}{\hat{S}_\text{ML}}
+\newcommand{\sMAP}{\hat{s}_\text{MAP}}
+\newcommand{\SMAP}{\hat{S}_\text{MAP}}
+\newcommand{\sMSE}{\hat{s}_\text{MSE}}
+\newcommand{\SMSE}{\hat{S}_\text{MSE}}
+\newcommand{\sMAD}{\hat{s}_\text{MAD}}
+\newcommand{\SMAD}{\hat{S}_\text{MAD}}
+\newcommand{\ejw}{e^{j\omega}}
+
+%%% Abreviaturas para filtrado
+\newcommand{\x}{{\mathbf x}}
+\newcommand{\s}{{\mathbf s}}
+\newcommand{\uu}{{\mathbf u}}
+\newcommand{\UU}{{\mathbf U}}
+\newcommand{\PP}{{\mathbf P}}
+\newcommand{\Ruu}{{\mathbf R}_{uu}}
+\newcommand{\rux}{{\mathbf r}_{ux}}
+\newcommand{\hRuu}{\hat{\mathbf R}_{uu}}
+\newcommand{\hrux}{\hat {\mathbf r}_{ux}}
+\newcommand{\pp}{{\mathbf r}}
+\newcommand{\eye}{{\mathbf I}}
+\newcommand{\Normal}{{\mathcal N}}
+\newcommand{\bigO	}{{\mathcal O}}
+
+%%% Otras
+\newcommand{\px}{p_X(x)}
+\newcommand{\py}{p_Y(y)}
+
+%%% Para procesos estocasticos
+\newcommand{\jw}{j \omega}

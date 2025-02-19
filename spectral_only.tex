@@ -84,6 +84,8 @@
 \newcommand{\SMSE}{\hat{S}_\text{MSE}}
 \newcommand{\sMAD}{\hat{s}_\text{MAD}}
 \newcommand{\SMAD}{\hat{S}_\text{MAD}}
+\newcommand{\ejw}{e^{j\omega}}
+
 \makeindex             % used for the subject index
                        % please use the style svind.ist with
                        % your makeindex program
@@ -91,22 +93,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\px}{p_X(x)}
 \newcommand{\py}{p_Y(y)}
-
-
-%%% Abreviaturas para filtrado
-\newcommand{\x}{{\mathbf x}}
-\newcommand{\s}{{\mathbf s}}
-\newcommand{\uu}{{\mathbf u}}
-\newcommand{\UU}{{\mathbf U}}
-\newcommand{\PP}{{\mathbf P}}
-\newcommand{\Ruu}{{\mathbf R}_{uu}}
-\newcommand{\rux}{{\mathbf r}_{ux}}
-\newcommand{\hRuu}{\hat{\mathbf R}_{uu}}
-\newcommand{\hrux}{\hat {\mathbf r}_{ux}}
-\newcommand{\pp}{{\mathbf r}}
-\newcommand{\eye}{{\mathbf I}}
-\newcommand{\Normal}{{\mathcal N}}
-\newcommand{\bigO	}{{\mathcal O}}
 
 
 \begin{document}
@@ -147,14 +133,15 @@
 % Chapter: Filtering
 \chapter{Linear Filtering}
 \label{cha:FiltradoLinea}
-\mainmatter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\tableofcontents
-\include{Contents/stochastic_processes/MC8_filtering}
+%\include{Contents/stochastic_processes/MC8_filtering}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Chapter: Spectral estimation
-%\chapter{Spectral Estimation}
-%\include{Contents/stochastic_processes/MC9_PSD}
+\chapter{Spectral Estimation}
+\mainmatter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tableofcontents
+% \include{Contents/stochastic_processes/MC9_PSD_DRG}
+\include{Contents/stochastic_processes/MC9_PSD}
 
 \backmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\include{Contents/glossary}

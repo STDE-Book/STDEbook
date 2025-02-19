@@ -1,8 +1,7 @@
 
-
 This document introduces the concept of stochastic process and analyzes some important examples.
 
-\vspace{2cm}
+\vspace{1.5cm}
 
 %%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
@@ -78,17 +77,20 @@ P(X_{n_0}, X_{n_1}, \ldots, X_{n_{M-1}}) = \prod_{k=0}^{M-1} P(X_{n_k})
 \textbf{Note}: A quick explanation on the mathematical notation. Eq. \eqref{def_indep} should be interpreted as: the joint distribution of the set of $M$ random variables $X_{n_0}, X_{n_1}, \ldots, X_{n_{M-1}}$ is the product of the marginal distribution of each variable. Thus, for instance, the cumulative distribution functions (CDFs) get factorized as follows:
 \begin{equation}
 \label{Findep}
-F_{X_{n_0}, X_{n_1}, \ldots, X_{n_{M-1}}}(x_{n_0}, x_{n_1}, \ldots, x_{n_{M-1}}) = \prod_{k=0}^{M-1} F_{X_{n_k}}(x_{n_k})
+F_{X_{n_0}, X_{n_1}, \ldots, X_{n_{M-1}}}(x_{n_0}, x_{n_1}, \ldots, x_{n_{M-1}}) 
+	= \prod_{k=0}^{M-1} F_{X_{n_k}}(x_{n_k})
 \end{equation}
 for any $x_{n_0}, x_{n_1}, \ldots, x_{n_{M-1}}$ in the respective domains of the variables. If all the random variables in the process are continuous, Eq. \eqref{Findep} is equivalent to the factorization of the density functions
 \begin{equation}
 \label{pdf_indep}
-p_{X_{n_0}, X_{n_1}, \ldots, X_{n_{M-1}}}(x_{n_0}, x_{n_1}, \ldots, x_{n_{M-1}}) = \prod_{k=0}^{M-1} p_{X_{n_k}}(x_{n_k})
+p_{X_{n_0}, X_{n_1}, \ldots, X_{n_{M-1}}}(x_{n_0}, x_{n_1}, \ldots, x_{n_{M-1}}) 
+	= \prod_{k=0}^{M-1} p_{X_{n_k}}(x_{n_k})
 \end{equation}
 Also, if the random variables are discrete, this is equivalent to the factorization of the probability mass functions
 \begin{equation}
 \label{pmf_indep}
-P_{X_{n_0}, X_{n_1}, \ldots, X_{n_{M-1}}}(x_{n_0}, x_{n_1}, \ldots, x_{n_{M-1}}) = \prod_{k=0}^{M-1} P_{X_{n_k}}(x_{n_k})
+P_{X_{n_0}, X_{n_1}, \ldots, X_{n_{M-1}}}(x_{n_0}, x_{n_1}, \ldots, x_{n_{M-1}}) 
+	= \prod_{k=0}^{M-1} P P_{X_{n_k}}(x_{n_k})
 \end{equation}
 
 In general, we will use formulations like \eqref{def_indep} instead of \eqref{Findep}, \eqref{pdf_indep}, or \eqref{pmf_indep} to express relationships between distributions, because it is simpler and encompasses all of them.
@@ -114,34 +116,33 @@ P_{X_n}(x) = p^x (1-p)^{1-x},  \qquad x \in \{0, 1\}
 \end{example}
 %%%%%%%%%%%%%
 
-Note that Eq. \eqref{SP:Bernoulli} is equivalent to stating that $P\{X_n=1\} = p$ and $P\{X_n=0\} = 1-p$). Bernoulli and other IID processes are commonly used as building blocks of other, more complex, processes.
+Note that Eq. \eqref{SP:Bernoulli} is equivalent to stating that $P\{X_n=1\} = p$ and $P\{X_n=0\} = 1-p$. Bernoulli and other IID processes are commonly used as building blocks of other, more complex, processes.
 
 %%%%%%%%%%%%%%%
 \begin{example}
 \label{ejexp}
 Figure \ref{fig:noisy_sin} shows 4 realizations of the independent stochastic process $X_n$, where each sample of the process follows a Gaussian distribution with mean and standard deviation equal to $4 \sin\left(0.05 \pi n \right)$. 
+%%%%%%%%%%%%%%
+%\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=12cm]{Figures/sp_noisy_sin.png} 
+\captionof{figure}{4 realizations of process $X_n$} %  described in example \ref{ejexp}}
+\label{fig:noisy_sin}
+\end{center}
+%\end{figure}
+%%%%%%%%%%%%
+
 \end{example}
 %%%%%%%%%%%%%
 
   
-%%%%%%%%%%%%%
-\begin{figure}[htb]
-\begin{center}
-\includegraphics[width=12cm]{Figures/sp_noisy_sin.png} 
-\caption{4 realizations of process $X_n$ described in example \ref{ejexp}}
-      \label{fig:noisy_sin}
-  \end{center}
-\end{figure}
-%%%%%%%%%%%%
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%
 \section{Random walks}
 
 %%%%%%%%%%%%%%%%%%
 \begin{definition}[Simple random walk (SRW)]
-Let $B_n \in \{-1, 1\}$ be a one-sided IID process with $P\{B_n= 1\}=\frac{1}{2}$. A simple random walk $\{X_n\}$ is defined by $X_0 = 0$ and
+Let $B_n \in \{-1, 1\}$ be a one-sided IID process with $P\{B_n=1\}=\frac12$. A simple random walk $\{X_n\}$ is defined by $X_0 = 0$ and
 \begin{equation}
 X_n = \sum_{k=1}^n B_k,    \qquad n>0
 \label{sp:srw_def}
@@ -163,11 +164,11 @@ Thus, a SRW is not an independent process. It is not an identically distributed 
 Fig. \ref{fig:sp_srw} shows several realizations of the SRW. Note that the realizations are quite far from the bounds. This is because the probability that $X_n$ is close to $n$ or $-n$ vanishes for large $n$.
 %%%%%%%%%%%%%%
 \begin{figure}[htb]
-  \begin{center}
-    \includegraphics[width=14cm]{Figures//sp_random_walk_1d.png} 
-    \caption{20 realizations of a simple random walk. The straight lines represent the boundaries of the region containing all possible trajectories. The shaded area covers two standard deviations: all trajectories tend to be inside the gray area around 95\% of the time.}
-    \label{fig:sp_srw}
-  \end{center}
+\begin{center}
+\includegraphics[width=14cm]{Figures//sp_random_walk_1d.png} 
+\caption{20 realizations of a simple random walk. The straight lines represent the boundaries of the region containing all possible trajectories. The shaded area covers two standard deviations: all trajectories tend to be inside the gray area around 95\% of the time.}
+\label{fig:sp_srw}
+\end{center}
 \end{figure}
 %%%%%%%%%%%%
 
@@ -215,20 +216,21 @@ f(i) =& P\{X_N = U | X_0 = i\}  \nonumber \\
      =& \frac12 P\{X_N = U | X_1 = i+1\} + \frac12 P\{X_N = U | X_1 = i-1\} \nonumber\\
      =& \frac12 f (i+1) + \frac12 f(i-1)
 \end{align}
-Noting, also, that 
-$$f(U)=1,$$
-$$f(-L) = 0,$$
-if we let $f(-L+1) = \alpha$ then it follows that $f(1-L + r) = \alpha r$ for all $r \le U + L$. Therefore, $\alpha = U + L$, and it follows that 
-$$
-f(0) = P\{X_N = U | X_0 = 0\} = \frac{L}{U + L}
-$$
+Noting, also, that $f(U)=1,$ and $f(-L) = 0$, \textcolor{blue}{we can apply standard methods for solving linear difference equations to find the unique solution
+\begin{align}
+f(i) = \frac{L+i}{L+U}
+\end{align}
+so that
+\begin{align}
+f(0) = P\{X_N = U | X_0 = 0\} = \frac{L}{L+U}
+\end{align}}
 Thus, the gambler can increase the probability of scoring $U$ points by increasing $L$. However, this implies a higher risk to suffer large temporal losses. The expected gain becomes:
-$$
-\mathbb{E}\{X_N\} = U f(0) - L (1-f(0)) = 0
-$$
-Thus, the is no way to set the bounds $U$ and $L$ in order to expect a positive gain.
+\begin{align}
+\EE\{X_N\} = U f(0) - L (1-f(0)) = 0
+\end{align}
+Thus, \textcolor{blue}{there} is no way to set the bounds $U$ and $L$ in order to expect a positive gain.
 
-\newpage
+%\newpage
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -237,26 +239,18 @@ Thus, the is no way to set the bounds $U$ and $L$ in order to expect a positive 
 One important property of the simple random walk is that the effect of the past on the future is summarized only by the current state, rather than the whole history of the process. In other words, the distribution of $X_{n+1}$ depends only on the value of $X_n$ and not on the whole set of values of $X_0, X_1, \ldots, X_n$. A stochastic process with such property is called a \textbf{Markov chain}.
 
 %%%%%%%%%%%%%%%%%%
-\begin{definition}[Markov property]
-Let $X_n$ be a one-sided discrete-time SP that, for each $n$, takes value in some discrete set ${\cal S}$, which we call  the \textbf{state space}. We say that the SP has the Markov property if
-\begin{align}
-P\{X_{n+1} = i | X_n, X_{n-1}, \ldots, X_0\} = P\{X_{n+1} = i | X_n\}
-\label{SP:markov_property}
-\end{align}
-for all $n$ in the time-domain of the process and for all $i \in {\cal S}$. 
-
-\end{definition}
-%%%%%%%%%%%%%%%% 
-
-Note that this definition can be extended to two-sided SP, by conditioning over $\{X_k, k\le n\}$ in the left side of \eqref{SP:markov_property}.
-
-%%%%%%%%%%%%%%%%%%
 \begin{definition}[Markov chain]
-
-Let $X_n$ be a discrete-time SP. We say that the SP is a Markov chain (MC) if it satisfies the Markov property. 
+Let $X_n$ be a one-sided discrete-time SP that, for each $n$, takes value in some discrete set ${\cal S}$, which we call  the \textbf{state space}. \textcolor{blue}{We say that $X_n$ is a Markov chain} if
+\textcolor{blue}{\begin{align}
+P(X_{n+1} | X_n, X_{n-1}, \ldots, X_0) = P(X_{n+1} | X_n)
+\label{SP:markov_chain}
+\end{align}}
+for all $n > 0$. 
 
 \end{definition}
 %%%%%%%%%%%%%%%% 
+
+Note that this definition can be extended to two-sided SP, by conditioning over $\{X_k, k\le n\}$ in the left side of \eqref{SP:markov_chain}.
 
 We will say that an MC is \textbf{finite} if ${\cal S}$ is a finite set. In this case, we usually take the elements of ${\cal S}$ as consecutive integers. For instance, for a state space with $m$ elements, we will take ${\cal S} = \{0, 1, \ldots, m-1\}$ or ${\cal S} = \{1, 2, \ldots, m\}$ under our convenience.
 
@@ -318,7 +312,7 @@ $$
 
 %%%%%%%%%%%%%%%
 \begin{example}[SRW]
-A simple random walk is an example of an MC. However, since its sample space is infinity, it cannot be described by a transition probability matrix.
+A simple random walk is an MC. However, since its sample space is infinity, it cannot be described by a transition probability matrix.
 \end{example}
 %%%%%%%%%%%%%
 
@@ -339,18 +333,19 @@ The transition graph of an MC given by state space ${\cal S} = \{0, 1, 2\}$ and 
 \end{pmatrix}
 \end{align}
 is shown in Figure \ref{fig:sp_mc}.
-\end{example}
-%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%
-\begin{figure}[htb]
+%\begin{figure}[htb]
   \begin{center}
     \includegraphics[width=4cm]{Figures/MC0_markov_chan_graph.png} 
-    \caption{The transition graph for the markov chain given by \eqref{sp:MC3example}}
+    \captionof{figure}{The transition graph for the markov chain given by \eqref{sp:MC3example}}
     \label{fig:sp_mc}
   \end{center}
-\end{figure}
+%\end{figure}
 %%%%%%%%%%%%
+
+\end{example}
+%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{State probabilities}
@@ -439,7 +434,7 @@ Finite Markov chains can be shown to have at least one stationary distribution. 
 %%%%%%%%%%%%%%%
 \begin{example}
 
-The MC in example in \ref{sp:MC3ex} has at least two limiting distributions: $\bm{\pi}_A = (0, 1, 0)^\intercal$ and $\bm{\pi}_B = (0, 0, 1)^\intercal$. Also, any convex combination of them $\bm{\pi} = \alpha \bm{\pi}_A + (1-\alpha) \bm{\pi}_B$, with $0\le \alpha \le 1$ is a stationary distribution. 
+The MC in example \ref{sp:MC3ex} has at least two limiting distributions: $\bm{\pi}_A = (0, 1, 0)^\intercal$ and $\bm{\pi}_B = (0, 0, 1)^\intercal$. Also, any convex combination of them $\bm{\pi} = \alpha \bm{\pi}_A + (1-\alpha) \bm{\pi}_B$, with $0\le \alpha \le 1$ is a stationary distribution. 
 
 The limiting distributions depend on the initial state: is is easy to verify that 
 \begin{align}
@@ -454,7 +449,7 @@ The limiting distributions depend on the initial state: is is easy to verify tha
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Computing the stationary distribution}
 
-In general, the stationary distributions are all the solutions of the set of equations \eqref{sp:mc_stat_def} with the probabilistic constraint $\mathbb{1}^\intercal {\bf p} =1$, that is
+In general, the stationary distributions are all the solutions of the set of equations \eqref{sp:mc_stat_def} with the probabilistic constraint $\mathbb{1}^\intercal \bm{\pi} =1$, that is
 \begin{align}
 \label{sp:mc_stat_eq}
 \begin{pmatrix}
@@ -473,12 +468,12 @@ The system of linear equations given by \eqref{sp:mc_stat_eq} is consistent (it 
 \end{equation}
 so that the rank of ${\bf P}^\intercal - {\bf I}$ is at most $m-1$. Thus, we can remove one of the rows in the matrix (any one of them) to solve the system.
 
-\newpage
+%\newpage
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Stationary Processes}
-\footnote{This section is copywrighted. It cannot be published or redistributed in any form. It cannot be transformed or used partially without permission of the original authors}
+\footnote{This section is \textcolor{blue}{copyrighted}. It cannot be published or redistributed in any form. It cannot be transformed or used partially without permission of the original authors}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Stationarity refers to the time invariance of some statistical properties of a stochastic process. We have already seen some forms of time invariance in the previous sections: 
@@ -602,8 +597,8 @@ also
 r_X[n_1,n_2] 
 	&= \mathbb{E}\{X_{n_1}X_{n_2}\}
      = \left[\begin{array}{ll}
-        \mathbb{E}\{X_{n_1}^2\}                     & \mbox{ if } n_1 = n_2 \\
-        \mathbb{E}\{X_{n_1}\} \mathbb{E}\{X_{n_2}\} & \mbox{ if } n_1\neq n_2
+        \EE\{X_{n_1}^2\}              & \mbox{ if } n_1 = n_2 \\
+        \EE\{X_{n_1}\} \EE\{X_{n_2}\} & \mbox{ if } n_1\neq n_2
        \end{array}
       \right]
      = \left[\begin{array}{ll}
@@ -625,16 +620,16 @@ and $c_X[n_1,n_2] = r_X[n_1, n_2]$.
 
 Consider the deterministic process in Example \ref{Ex:SPdeterministic}, we have
 \begin{equation}
-\mu_X[n] = \mathbb{E}\{X_n\} = \mathbb{E}\{2n\} = 2n,
+\mu_X[n] = \EE\{X_n\} = \EE\{2n\} = 2n,
 \end{equation}
 \begin{equation}
-r_X[n_1,n_2] = \mathbb{E}\{X_{n_1} X_{n_2}\} = \mathbb{E}\{4 n_1 n_2\} = 4 n_1 n_2
+r_X[n_1,n_2] = \EE\{X_{n_1} X_{n_2}\} = \EE\{4 n_1 n_2\} = 4 n_1 n_2
 \label{RxDeterministic}
 \end{equation}
 and, using \eqref{SP:cx_vs_rx}
 \begin{equation}
 c_X[n_1,n_2] = 0
-\label{RxDeterministic}
+\label{CxDeterministic}
 \end{equation}
 
 \end{example}
@@ -652,12 +647,12 @@ where $Y$ is a real Gaussian random variable with zero mean and unit variance.
 
 The mean and the autocorrelation of the process can be easily calculated as
 \begin{equation}
-\mu_X[n] = \mathbb{E}\left\{Y\right\} \cdot (1 + n^2) = 0
+\mu_X[n] = \EE\left\{Y\right\} \cdot (1 + n^2) = 0
 \end{equation}
 \begin{equation}
-r_X(n,m) = \mathbb{E}\{X_n X_m\}
-         = (1 + n^2) \cdot (1 + m^2) \cdot \mathbb{E}\left\{Y^2\right\} 
-         =  (1 + n^2) \cdot (1 + m^2) 
+r_X(n,m) = \EE\{X_n X_m\}
+         = (1 + n^2) \cdot (1 + m^2) \cdot \EE\left\{Y^2\right\} 
+         = (1 + n^2) \cdot (1 + m^2) 
 \label{ec:autocorr2}
 \end{equation}
 Since $X_m$ has zero mean, the autocovariance is equal to the autocorrelation, and the variance is
@@ -675,8 +670,8 @@ Since $X_m$ has zero mean, the autocovariance is equal to the autocorrelation, a
 For the SRW $X_n$ given by \eqref{sp:srw_def}, the value of the process at any time $n$ depends on the value of a set of $n$ random variables ($Y_1,\ldots Y_n$). We have seen that the process is zero-mean with variance $n$. The autocorrelation (equal to the autocovariance) can be computed as
 \begin{align}
 r_X[n_1, n_2] 
-	&= \mathbb{E}\{X_{n_1}X_{n_2}\}  
-	 = \sum_{k=1}^{n_1} \sum_{\ell=0}^{n_2} \mathbb{E}\{Y_k Y_\ell\}  
+	&= \EE\{X_{n_1}X_{n_2}\}  
+	 = \sum_{k=1}^{n_1} \sum_{\ell=0}^{n_2} \EE\{Y_k Y_\ell\}  
 	 = \sum_{k=1}^{n_1} \sum_{\ell=0}^{n_2} \delta[k - \ell]   \nonumber\\
 	&= \min(n_1, n_2)
 \label{eq:rx_srw}
@@ -688,7 +683,7 @@ r_X[n_1, n_2]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Wide-Sense Stationarity}
-\label{sec:CaracterizProcStoc}
+\label{sec:WSS}
 
 We are ready to define a weaker form of stationarity:
 
@@ -732,8 +727,9 @@ Let's go back to the examples from the previous section.
 
 \item \textbf{Simple Random Walk}: The SRW from Example \ref{Ex:RandomWalk} is not stationary since its autocorrelation \eqref{eq:rx_srw} is not invariant to a time shift: for any $m>0$
 \begin{align}
-r_X[n_1 + m, n_2 + m] &= \min(n_1 + m, n_2 + m) = \min(n_1, n_2) + m = r_X(n_1, n_2) + m   \nonumber\\
-                      &\neq r_X[n_1, n_2]
+r_X[n_1 + m, n_2 + m] &= \min(n_1 + m, n_2 + m) 
+    = \min(n_1, n_2) + m = r_X(n_1, n_2) + m   \nonumber\\
+    & \neq r_X[n_1, n_2]
 \end{align}
 \end{itemize}
 \end{example}
@@ -747,7 +743,7 @@ r_X[n_1 + m, n_2 + m] &= \min(n_1 + m, n_2 + m) = \min(n_1, n_2) + m = r_X(n_1, 
 The autocorrelation WSS process $X_n$ satisfies the following properties:
 \begin{enumerate}
 \item \textbf{Hermiticity}: $r_X[n]=r_X^*[-n]$. 
-\item $r_X[0]=\mathbb{E}\{|X_n|^2\}$.
+\item $r_X[0]=\EE\{|X_n|^2\}$.
 \item It is \textbf{positive-definite}: for any integer $N>0$ and any coefficients $c_n \in 
 \mathbb{C}, n=0,\ldots,N-1$, 
 \begin{align}
@@ -761,7 +757,7 @@ The autocorrelation WSS process $X_n$ satisfies the following properties:
 \begin{proof}
 The hermiticity and property 2 are a direct consequence of the definition. To prove the positive definiteness, note that, for any coefficients $c_n$, we have
 \begin{align}
-0 \le \mathbb{E}\left\{\left|\sum_{n=0}^{N-1} c_n X_n\right|^2 \right\}  
+0 \le \EE\left\{\left|\sum_{n=0}^{N-1} c_n X_n\right|^2 \right\}  
   =   \sum_{m=0}^{N-1}\sum_{n=0}^{N-1} c_m c_n^* r_X[n-m] 
 \end{align}
 The maximality at the origin is a consequence of the positive definiteness: since \eqref{sp:pos_def} is true for any complex coefficients, we can take $c_0=1$, $c_1=c_2=\ldots =c_{n-1}=0$ to get
@@ -796,7 +792,7 @@ r_Y[n_1,n_2] = (-1)^{n_2-n_1}r_X[n_2-n_1]
 \end{eqnarray}
 which only depends on $n_2-n_1$. Therefore, $Y_n$ is WSS. However, we can check that, for example,
 \begin{eqnarray}
-\mathbb{E}\{Y^3_n\} = (-1)^n \mathbb{E}\{X^3_n\}
+\EE\{Y^3_n\} = (-1)^n \mathbb{E}\{X^3_n\}
 \end{eqnarray}
 which, in general, depends on $n$. For example, if, for all $n$, $X_n$ follows the discrete distribution
 \begin{eqnarray}
@@ -804,7 +800,7 @@ p_X[k] = \frac{3}{4}\delta[k-1]+\frac{1}{4}\delta[k+3]
 \end{eqnarray}
 we have $\mathbb{E}\{X_n\}=0$ and $\mathbb{E}\{X_n^3\}= -3/2$, then
 \begin{eqnarray}
-\mathbb{E}\{Y^3_n\} = -\frac{3}{2}(-1)^n
+\EE\{Y^3_n\} = -\frac{3}{2}(-1)^n
 \end{eqnarray}
 which depends on $n$. Therefore, some statistics from $X_n$ are not invariant to a time shift and, thus, $X_n$ is not SSS.
 \end{example}
@@ -841,27 +837,6 @@ which allows us to describe the cross-correlation function using a single variab
 r_{XY}[n] = r_{XY}[m + n, m]
 \end{equation}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsubsection{Cyclostationary processes.}
-%\label{sec:Cyclostationarity}
-%
-%There is a type of non-stationary processes in which the statistics vary cyclically. These types of processes are known as {\em cyclostationary}. Again, cyclostationarity is defined in the strict sense and in the wide sense.
-%
-%A process $X_n$ is said to be cyclostationary in the strict sense with period $N$ if and only if, for any value of $M$, any time instants $n_0,\ldots,n_{M-1}$,
-%\begin{equation}
-%P(X_{n_0}, \ldots, X_{n_{M-1}}) = P(X_{n_0 + N}, \ldots, X_{n_{M-1} + N})
-%\end{equation}
-%Similarly, a process is said to be cyclostationary in the broad sense with period $N$ if and only if, for all $n\in \mathbb{Z}$,
-%\begin{equation}
-%\mathbb{E}\{X_n\}=\mathbb{E}\{X[n+N]\}
-%\end{equation}
-%and for all $n_1,n_2 \in \mathbb{Z}$,
-%\begin{equation}
-%\label{ec:broad_cycle_2}
-%r_X[n_1,n_2] = r_X[n_1+N,n_2+N]
-%\end{equation}
-%
-%Observe that if we sample a cyclostationary process in discrete time at rate $N$, we will obtain a stationary process.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %%%%%%
 \subsection{Linear systems with stochastic inputs}
@@ -887,8 +862,8 @@ For example, the mean of the output process is
 the cross-correlation of the input and output is
 \begin{align}
 r_{YX}[n_1,n_2] 
-	=& \mathbb{E}\{Y_{n_1} X_{n_2}^*\}
-  	= E\left\{X_{n_2}^* \sum_{k=-\infty}^{\infty} X_k h[n_1-k] \right\} \nonumber \\
+	=& \EE\{Y_{n_1} X_{n_2}^*\}
+  	= \EE\left\{X_{n_2}^* \sum_{k=-\infty}^{\infty} X_k h[n_1-k] \right\} \nonumber \\
     =& \sum_{k=-\infty}^{\infty} h[n_1-k] r_X[k, n_2] \nonumber \\
     =& h[n_1] \ast r_X[n_1, n_2]
 \label{RvuNonStationary}
@@ -896,8 +871,8 @@ r_{YX}[n_1,n_2]
 and the autocorrelation of the output is
 \begin{align}
 r_{Y}[n_1, n_2] 
-   =& \mathbb{E}\{Y_{n_1} Y_{n_2}^* \}
-   =  E\left\{Y_{n_1} \sum_{k=-\infty}^{\infty} h^*[k] X_{n_2-k}^* \right\} \nonumber\\
+   =& \EE\{Y_{n_1} Y_{n_2}^* \}
+   =  \EE\left\{Y_{n_1} \sum_{k=-\infty}^{\infty} h^*[k] X_{n_2-k}^* \right\} \nonumber\\
    =& \sum_{k=-\infty}^{\infty} h^*[k] r_{YX}[n_1, n_2 - k]                 \nonumber\\
    =& r_{YX}[n_1, n_2] \ast h^*[n_2]
   \label{RvvNonStationary}
@@ -925,16 +900,16 @@ Also, by the properties of the convolution operator, for any $m\in \mathbb{Z}$ w
 \begin{align}
 r_Y[n_1 + m, n_2 + m]
 	&= h[n_1]*r_X[n_1 + m, n_2 + m]*h^*[n_2]
-	= h[n_1]*r_X[n_1, n_2]*h^*[n_2]  \nonumber\\
+	 = h[n_1]*r_X[n_1, n_2]*h^*[n_2]  \nonumber\\
 	&= r_Y[n_1, n_2]
 \end{align}
 and, therefore $Y_n$ is also stationary. In such case, we can express the autocorrelation as a function of a single variable. By calling $n=n_1-n_2$, the cross-correlation of the input and output is
 \begin{align}
 r_{YX}[n_1, n_2] 
     =& h[n_1] \ast r_X[n_1 - n_2]
-    = \sum_{k=-\infty}^{\infty} h[n_1 - k] r_X[k - n_2]  \nonumber \\
+    =  \sum_{k=-\infty}^{\infty} h[n_1 - k] r_X[k - n_2]  \nonumber \\
     =& \sum_{k=-\infty}^{\infty} h[n_2 + n - k] r_X[k - n_2]
-    = \sum_{k=-\infty}^{\infty} h[n - k] r_X[k] \nonumber \\
+    =  \sum_{k=-\infty}^{\infty} h[n - k] r_X[k] \nonumber \\
     =& h[n] \ast r_X[n]
   \label{RvuStationary}
 \end{align}
@@ -944,11 +919,11 @@ Finally, the autocorrelation of the output is
 r_Y[n] 
 	=& r_Y[n_1, n_2] = r_{YX}[n_1, n_2] \ast h^*[n_2]   \nonumber \\
   	=& \sum_{k=-\infty}^{\infty} h^*[k] r_{YX}[n_1-n_2+k]  
-  	= \sum_{k=-\infty}^{\infty} h^*[k]
+  	=  \sum_{k=-\infty}^{\infty} h^*[k]
   	   \sum_{\ell=-\infty}^{\infty} h[n+k-\ell] r_X[\ell] \nonumber \\
     =& \sum_{\ell=-\infty}^{\infty} r_X[\ell]
        \sum_{k=-\infty}^{\infty} h^*[k] h[n + k - \ell] 
-  	= r_X[n]*h[n]*h^*[-n] \nonumber \\
+  	=  r_X[n]*h[n]*h^*[-n] \nonumber \\
   	=& r_X[n]*r_h[n]
   \label{RvvStationary}
 \end{align}
@@ -984,7 +959,7 @@ r_Y[n] = r_X[n]*h[n]*h[-n] = \frac{0.6^{|n|}}{0.64}
 \begin{definition}[Gaussian Process]
 A real SP $X_n$ is a Gaussian Process (GP) if, for any value of $N$ and any arbitrary set of $N$ time instants $\{n_0,\ldots, n_{N-1}\}$, the pdf of order $N$, 
 \begin{equation}
-p_{X_{n_0},\ldots, X_{n_ {N-1}}} (x_0,\ldots,x_{N-1})
+p_{X_{n_0},\ldots, X_{n_{N-1}}} (x_0,\ldots,x_{N-1})
 \end{equation}
 is Gaussian.
 \end{definition}
@@ -1130,7 +1105,7 @@ r_X[n] = \frac{1}{2\pi} \int_{-\infty}^\infty S_X(e^{\jw}) e^{\jw n} d\omega
 \end{equation}
 %so that
 %\begin{equation}\label{ec:dep3}
-%\mathbb{E}\{|X_n|^2\} = r_X[0] = \frac{1}{2\pi} \int_{-\infty}^\infty S_X\left(e^{\jw}\right) d\omega
+%\EE\{|X_n|^2\} = r_X[0] = \frac{1}{2\pi} \int_{-\infty}^\infty S_X\left(e^{\jw}\right) d\omega
 %\end{equation}
 
 
@@ -1164,7 +1139,7 @@ S_Y\left(e^{\jw}\right) = S_X\left(e^{\jw}\right) \left| H\left(e^{\jw}\right) \
 
 If the expected value of a random variable $X$ is unknown, it can be estimated as the sample average of $K$ independent realizations $x_0,\ldots, x_{K-1}$
 \begin{equation}
-\mathbb{E}\{X\} \approx \frac{1}{K} \sum_{k=0}^{K-1} x_k
+\EE\{X\} \approx \frac{1}{K} \sum_{k=0}^{K-1} x_k
 \end{equation}
 This estimation is supported by the (weak and strong) laws of large numbers, that guarantee, under quite general conditions, the convergence of the sample average to the mean as the number of samples goes to infinity.
 
@@ -1190,7 +1165,7 @@ converges in squared mean to the mean, $\mu_X$, that is
 
 Note that $S_N$ is itself a random variable with the same mean as the process
 \begin{equation}
-  \mathbb{E}\{S_N\} = \frac{1}{2N+1} \sum_{n=-N}^N \mathbb{E}\{X_n\} = \mu{}_X
+\EE\{S_N\} = \frac{1}{2N+1} \sum_{n=-N}^N \EE\{X_n\} = \mu{}_X
 \end{equation}
 and the expectation in \eqref{sp:ergod_cond} is the variance. Expanding the expression of this variance, it is straightforward to obtain the following condition for ergodicity:
 
@@ -1211,10 +1186,10 @@ A WSS process $X_n$ with mean $\mu$ is mean-ergodic iff
 
 Noting that
 \begin{align}
-\mathbb{E}\{|S_N - \mu_X|^2\} 
-    =& E\left\{\left| \frac{1}{2N+1} \sum_{n=-N}^N (X_n - \mu_X) \right|^2 \right\} =                \nonumber\\
-    =& \frac{1}{(2N+1)^2} \sum_{n=-N}^N \sum_{m=-N}^N \mathbb{E}\{(X_n - \mu_X)(X_m^* - \mu_X^*) \}  \nonumber\\
-    =& \frac{1}{(2N+1)^2} \sum_{n=-N}^N\sum_{m=-N}^N  c_X[n-m]
+\EE\{|S_N - \mu_X|^2\} 
+    =& \EE\left\{\left| \frac{1}{2N+1} \sum_{n=-N}^N (X_n-\mu_X) \right|^2 \right\} =                \nonumber\\
+    =& \frac{1}{(2N+1)^2} \sum_{n=-N}^N \sum_{m=-N}^N \EE\{(X_n-\mu_X)(X_m^*-\mu_X^*) \}  \nonumber\\
+    =& \frac{1}{(2N+1)^2} \sum_{n=-N}^N \sum_{m=-N}^N  c_X[n-m]
 \label{AverageVar1}
 \end{align}
 the proof is completed.
@@ -1241,11 +1216,11 @@ the process is mean-ergodic.
 
 Since $c_X[n]$ is absolutely summable, $B=\sum_{n=-\infty}^{\infty} |c_X[n]|$ is finite, and we can use $B$ to upper bound the variance in \eqref{AverageVar1} as
 \begin{align}
-\left|\mathbb{E}\{|S_N - \mu_X|^2\} \right|
+\left|\EE\{|S_N - \mu_X|^2\} \right|
     \le & \frac{1}{(2N+1)^2} \sum_{n=-N}^N\sum_{m=-N}^N  \left|c_X[n-m]\right|
-    =     \frac{1}{(2N+1)^2} \sum_{n=-N}^N B
+    \le   \frac{1}{(2N+1)^2} \sum_{n=-N}^N B
     =     \frac{B}{2N+1} 
-\label{AverageVar1}
+\label{AverageVar2}
 \end{align}
 Since the upper bound converges to zero for large $N$, the process in mean-ergodic.
 \end{proof}
@@ -1253,37 +1228,6 @@ Since the upper bound converges to zero for large $N$, the process in mean-ergod
 
 Note that all white processes (and, in particular, IID processes) satisfy \eqref{eq:ergodicmean1}. Thus, they are mean-ergodic.
 
-%The independence is not a necessary condition for mean-ergodicity. Noting that \eqref{AverageVar0} is a sum in which the value $c_X[k]$, with $k\ge0$, occurs $2N+1-k$ times  (from $n=k-N$, $m=-N$ to $n=N$, $m=N-k$) and the values $C[k]$ with $k<0$ appear $2N+1+k$ times, we can write \eqref{AverageVar0} as
-%\begin{align}
-%\mathbb{E}\{|S_N-\mu{}_X|^2\} 
-%	=& \frac{1}{(2N+1)^2} \sum_{k=-2N+1}^{2N-1} (2N+1-|k|) c_X[k] \nonumber\\
-%    =& \frac{1}{(2N+1)^2} \sum_{k=-2N+1}^{2N-1} \left(1-\frac{|k|}{2N+1}\right) c_X[k]
-%\label{ec:AverageVar2}
-%\end{align}
-
-% La expresión anterior indica que la varianza es aproximadamente el resultado de promediar las
-% muestras del producto de $c_X[k]$ por una señal triangular, sobre el intervalo en el que se
-% extiende esta. Como puede comprobarse en la Fig.  \ref{fig:condergod}, a medida que $N$
-% aumenta, el promedio debe hacerse sobre un intervalo creciente. Se comprueba de  este modo
-% que, en general, si $c_X[k]$ decrece hacia cero, la varianza tiende a anularse y, por tanto,
-% $X_n$ es ergódico.
-% \begin{figure}[htb]
-% \begin{center}
-% \epsfig{file=jesus/condergod.eps,width=6cm}
-% \caption{Prueba de ergodicidad. La varianza en \eqref{ec:VarPromedio2} es el resultado de 
-% multiplicar la función de autocovarianza (puntos negros) por una señal triangular, y
-% promediar los valores resultantes (en el intervalo sobre el que está definido el triángulo).
-% Si el promedio tiende a cero, el proceso es ergódico}
-% \label{fig:condergod}
-% \end{center}
-% \end{figure}
-% En efecto, aunque no entraremos en los detalles matemáticos, de la expresión
-% \eqref{ec:VarPromedio2}, puede deducirse que un proceso es ergódico en la media sí y solo sí
-% el valor medio de su función de autocovarianza es nulo, es decir, si
-% \begin{eqnarray}
-% \lim_{n\rightarrow \infty} \frac{1}{2n+1} \sum_{k=-n}^{n} c_X(k) = 0   
-% \label{ec:CondErgodicidad}
-% \end{eqnarray}
 
 %%%%%%%%%%%%%%%
 \begin{example}\label{ex:ergodic}
@@ -1293,30 +1237,24 @@ Consider the stationary process given by the causal recursive filter $X_n = 0.8 
 c_X[n] =& \frac{0.8 ^{|n|}}{0.36} 
 \end{align}
 Since the autocovariance vanishes for $|k|>1$,the process is mean-ergodic. Figure \ref{fig:ergodicity} represents the first samples (from $n=0$ to $n=79$) of 5 realizations. The average of 1000 realizations is represented in the lower part. The 80 sample average of each realization is shown on the right margin. As a consequence of stationarity, the average signal in the bottom approaches a constant signal around the mean, which is zero. As a consequence of the ergodicity, the averages of each signal also approaches the mean.
+
+%%%%%%%%%%%%%%%
+%\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=12cm]{Figures/sp_ergodicity.png}
+\captionof{figure}{5 realizations of the stochastic process of the example \ref{ex:ergodic} (top), the average of 1000 realizations (bottom) and the averages of the represented samples (right). Because of the stationarity, the average signal (at the bottom) approaches a to a zero signal, which is mean of the process. Because of the ergodicity, time averages also approximate the mean.}
+\label{fig:ergodicity}
+\end{center}
+%\end{figure}
+%%%%%%%%%%%%
+
 \end{example}
 %%%%%%%%%%%%%
 
-%
-%%%%%%%%%%%%%%%%
-%\begin{example}\label{ex:ergodic}
-%
-%Consider the stationary process given by $X_n = Y_n + 0.8 Y_{n-1}$, where $Y_n$ is a Gaussian IID process of unit variance. It is easy to see that $X_n$ is a stationary process with zero mean and autocovariance
-%\begin{align}
-%c_X[n] =& 1.64 \delta[n] + 0.8 \delta[n-1] + 0.8 \delta[n+1]
-%\end{align}
-%Since the autocovariance vanishes for $|k|>1$,the process is mean-ergodic. Figure \ref{fig:ergodicity} represents the first samples (from $n=0$ to $n=50$) of 4 realizations. The average of 50 realizations is represented in the lower part. The 50 sample average of each realization is shown on the right margin. As a consequence of stationarity, the average signal in the bottom approaches a constant signal around the mean, which is zero. As a consequence of the ergodicity, the averages of each signal also approaches the mean.
-%\end{example}
-%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%
-\begin{figure}[htb]
-\begin{center}
-\includegraphics[width=12cm]{Figures/sp_ergodicity.png}
-\caption{5 realizations of the stochastic process of the example \ref{ex:ergodic} (top), the average of 1000 realizations (bottom) and the averages of the represented samples (right). Because of the stationarity, the average signal (at the bootom) approaches a to a zero signal, which is mean of the process. Because of the ergodicity, time averages also approximate the mean.}
-\label{fig:ergodicity}
-\end{center}
-\end{figure}
-%%%%%%%%%%%%
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Ergodicity in the autocorrelation}

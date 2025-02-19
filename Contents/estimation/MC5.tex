@@ -99,13 +99,28 @@ Generalize the above result for the case where the variables $S$ and $X$ have (n
 In this example, we will consider the case in which the observation is the sum of the target variable and an independent noise component: $X = S + R$. Both the target and the noise are zero-mean Gaussian random variables with variances $v_S$ and $v_R$, respectively.
 
 Figure \eqref{fig:estimacion_caso_gauss} represents the situation described for a case with $v_S < v_R$.
-\begin{figure}[htb]
-  \begin{center}
-  \includegraphics[width=7cm]{Figures//estimacion_caso_gauss.png}
-    \caption{Estimation of Gaussian random variable $S$ contaminated by Gaussian noise $R$.}
-    \label{fig:estimacion_caso_gauss}
-  \end{center}
-\end{figure}
+%\centering
+%\begin{tabular}{cc}
+%\includegraphics[width=6cm]{Figures/px_s_funcionx.png} &
+%\includegraphics[width=6cm]{Figures/px_s_funcions.png}\\
+%   (a) & (b)
+%\end{tabular}
+%\captionof{figure}{Representation of the likelihood distribution of the example %\ref{ex:est_ML_varaleat} as a function of $x$ and $s$.}
+%\label{fig:est_ML_caso1}
+
+\begin{center}
+\includegraphics[width=7cm]{Figures//estimacion_caso_gauss.png}
+\captionof{figure}{Estimation of Gaussian random variable $S$ contaminated by Gaussian noise $R$.}
+\label{fig:estimacion_caso_gauss}
+\end{center}
+
+% \begin{figure}[htb]
+%  \begin{center}
+%  \includegraphics[width=7cm]{Figures//estimacion_caso_gauss.png}
+%    \caption{Estimation of Gaussian random variable $S$ contaminated by Gaussian noise $R$.}
+%    \label{fig:estimacion_caso_gauss}
+%  \end{center}
+% \end{figure}
 
 According to \eqref{ec_estimador_caso_gaussiano_final}, for the resolution of the problem, we must find the variance of $X$ and the covariance between $S$ and $X$ ($\rho$). The variance $v_X$ is obtained simply as the sum of $v_S$ and $v_R$ because both are independent variables. For the covariance calculation,
 \begin{equation}

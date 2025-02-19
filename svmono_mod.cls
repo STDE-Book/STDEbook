@@ -187,6 +187,7 @@
 \definecolor{shadecolor}{gray}{.85}%
 \definecolor{tintedcolor}{gray}{.80}%
 \RequirePackage{framed}%
+
 %
 \newenvironment{tinted}{%
   \def\FrameCommand{\colorbox{tintedcolor}}%
@@ -287,6 +288,8 @@ passing it to article class \MessageBreak
                \itemsep\z@}%
    \belowdisplayskip \abovedisplayskip
 }
+% Size for examples, defined by JCS
+\newcommand{\examplesize}{\fontsize{9.5}{11}\selectfont}
 %
 \let\footnotesize=\small
 %
@@ -330,6 +333,8 @@ passing it to article class \MessageBreak
 \newcommand{\subsecsize}{\fontsize{11}{13}\selectfont}
 \newcommand{\subsecstyle}{\bfseries\boldmath}
 \newcommand{\subsubsecstyle}{\bfseries\boldmath}
+
+
 %
 \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
     \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
@@ -988,93 +993,7 @@ passing it to article class \MessageBreak
 % Names of theorem like environments are already defined
 % but must be translated if another language is chosen
 %
-% French section
-\def\switcht@francais{\svlanginfo
- \def\abstractname{R\'esum\'e}%
- \def\ackname{Remerciements}%
- \def\andname{et}%
- \def\lastandname{ et}%
- \def\appendixname{Appendice}%
- \def\bibname{Bibliographie}%
- \def\chaptername{Chapitre}%
- \def\claimname{Pr\'etention}%
- \def\conjecturename{Hypoth\`ese}%
- \def\contentsname{Table des mati\`eres}%
- \def\corollaryname{Corollaire}%
- \def\definitionname{D\'efinition}%
- \def\emailname{e-mail}%
- \def\examplename{Exemple}%
- \def\exercisename{Exercice}%
- \def\figurename{Fig.}%
- \def\forewordname{Avant-propos}%
- \def\keywordname{{\bf Mots-cl\'e:}}%
- \def\indexname{Index}%
- \def\lemmaname{Lemme}%
- \def\contriblistname{Liste des contributeurs}%
- \def\listfigurename{Liste des figures}%
- \def\listtablename{Liste des tables}%
- \def\mailname{{\it Correspondence to\/}:}%
- \def\noteaddname{Note ajout\'ee \`a l'\'epreuve}%
- \def\notename{Remarque}%
- \def\partname{Partie}%
- \def\prefacename{Pr\'eface}%
- \def\problemname{Probl\`eme}%
- \def\proofname{Preuve}%
- \def\propertyname{Caract\'eristique}%
-%\def\propositionname{Proposition}%
- \def\questionname{Question}%
- \def\refname{Litt\'erature}%
- \def\remarkname{Remarque}%
- \def\seename{voir}%
- \def\solutionname{Solution}%
- \def\subclassname{{\it Subject Classifications\/}:}%
- \def\tablename{Tableau}%
- \def\theoremname{Th\'eor\`eme}%
-}
-%
-% German section
-\def\switcht@deutsch{\svlanginfo
- \def\abstractname{Zusammenfassung}%
- \def\ackname{Danksagung}%
- \def\andname{und}%
- \def\lastandname{ und}%
- \def\appendixname{Anhang}%
- \def\bibname{Literaturverzeichnis}%
- \def\chaptername{Kapitel}%
- \def\claimname{Behauptung}%
- \def\conjecturename{Hypothese}%
- \def\contentsname{Inhaltsverzeichnis}%
- \def\corollaryname{Korollar}%
-%\def\definitionname{Definition}%
- \def\emailname{E-mail}%
- \def\examplename{Beispiel}%
- \def\exercisename{\"Ubung}%
- \def\figurename{Abb.}%
- \def\forewordname{Geleitwort}%
- \def\keywordname{{\bf Schl\"usselw\"orter:}}%
- \def\indexname{Sachverzeichnis}%
-%\def\lemmaname{Lemma}%
- \def\contriblistname{Mitarbeiter}%
- \def\listfigurename{Abbildungsverzeichnis}%
- \def\listtablename{Tabellenverzeichnis}%
- \def\mailname{{\it Correspondence to\/}:}%
- \def\noteaddname{Nachtrag}%
- \def\notename{Anmerkung}%
- \def\partname{Teil}%
- \def\prefacename{Vorwort}%
-%\def\problemname{Problem}%
- \def\proofname{Beweis}%
- \def\propertyname{Eigenschaft}%
-%\def\propositionname{Proposition}%
- \def\questionname{Frage}%
- \def\refname{Literaturverzeichnis}%
- \def\remarkname{Anmerkung}%
- \def\seename{siehe}%
- \def\solutionname{L\"osung}%
- \def\subclassname{{\it Subject Classifications\/}:}%
- \def\tablename{Tabelle}%
-%\def\theoremname{Theorem}%
-}
+
 
 \def\getsto{\mathrel{\mathchoice {\vcenter{\offinterlineskip
 \halign{\hfil
@@ -1375,6 +1294,10 @@ to\z@{\kern0.55\wd0\vrule\@height0.45\ht0\hss}\box0}}}}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%% Packages required by the JCS modifications
+\RequirePackage{mdframed}
+\RequirePackage[x11names]{xcolor}
+
 \def\@thmcountersep{.}
 %\def\@thmcounterend{.}
 \def\@thmcounterend{}%%As per request email dated 27 Feb 2018%%
@@ -1456,21 +1379,58 @@ to\z@{\kern0.55\wd0\vrule\@height0.45\ht0\hss}\box0}}}}
 \def\@Opargbegintheorem#1#2#3#4{#4\trivlist
       \item[\hskip\labelsep{#3#1}]{#3(#2)\@thmcounterend\ }}
 
-% initialize theorem environment
 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorems, redefined by JCS
+
+% initialize theorem environment
 \if@envcntshowhiercnt % show hierarchy counter
    \def\@thmcountersep{.}
-   \spnewtheorem{theorem}{Theorem}[\envankh]{\bfseries}{\itshape}
-   \@addtoreset{theorem}{chapter}
+   \spnewtheorem{basetheorem}{Theorem}[\envankh]{\bfseries}{\itshape}
+   \@addtoreset{basetheorem}{chapter}
 \else          % theorem counter only
-   \spnewtheorem{theorem}{Theorem}{\bfseries}{\itshape}
+   \spnewtheorem{basetheorem}{Theorem}{\bfseries}{\itshape}
    \if@envcntreset
-      \@addtoreset{theorem}{chapter}
+      \@addtoreset{basetheorem}{chapter}
       \if@envcntresetsect
-         \@addtoreset{theorem}{section}
+         \@addtoreset{basetheorem}{section}
       \fi
    \fi
 \fi
+
+% Define box
+\newmdenv[
+  innerleftmargin=10pt,
+  innerrightmargin=10pt,
+  innertopmargin=8pt,
+  innerbottommargin=8pt,
+  skipabove=\topsep,
+  skipbelow=\topsep
+]{defbox}
+
+% Redefine 'theorem' to embed content in 'examplebox'
+\newenvironment{theorem}
+  {\begin{defbox}\begin{basetheorem}}
+  {\end{basetheorem}\end{defbox}}
+  
+% OLD VERSION
+% initialize theorem environment
+%\if@envcntshowhiercnt % show hierarchy counter
+%   \def\@thmcountersep{.}
+%   \spnewtheorem{theorem}{Theorem}[\envankh]{\bfseries}{\itshape}
+%   \@addtoreset{theorem}{chapter}
+%\else          % theorem counter only
+%   \spnewtheorem{theorem}{Theorem}{\bfseries}{\itshape}
+%   \if@envcntreset
+%      \@addtoreset{theorem}{chapter}
+%      \if@envcntresetsect
+%         \@addtoreset{theorem}{section}
+%      \fi
+%   \fi
+%\fi
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 %definition of divers theorem environments
 \spnewtheorem*{claim}{Claim}{\itshape}{\rmfamily}
@@ -1501,8 +1461,6 @@ to\z@{\kern0.55\wd0\vrule\@height0.45\ht0\hss}\box0}}}}
 \spn@wtheorem{case}{Case}{\itshape}{\rmfamily}
 \spn@wtheorem{conjecture}{Conjecture}{\itshape}{\rmfamily}
 \spn@wtheorem{corollary}{Corollary}{\bfseries}{\itshape}
-\spn@wtheorem{definition}{Definition}{\bfseries}{\rmfamily}
-\spn@wtheorem{example}{Example}{\itshape}{\rmfamily}
 \spn@wtheorem{exercise}{Exercise}{\bfseries}{\rmfamily}
 \spn@wtheorem{lemma}{Lemma}{\bfseries}{\itshape}
 \spn@wtheorem{note}{Note}{\itshape}{\rmfamily}
@@ -1512,6 +1470,58 @@ to\z@{\kern0.55\wd0\vrule\@height0.45\ht0\hss}\box0}}}}
 \spn@wtheorem{question}{Question}{\itshape}{\rmfamily}
 \spn@wtheorem{solution}{Solution}{\bfseries}{\rmfamily}
 \spn@wtheorem{remark}{Remark}{\itshape}{\rmfamily}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definitions, redefined by JCS
+
+% Define box
+%\newmdenv[
+%  innerleftmargin=10pt,
+%  innerrightmargin=10pt,
+%  innertopmargin=8pt,
+%  innerbottommargin=8pt,
+%  skipabove=\topsep,
+%  skipbelow=\topsep
+%]{defbox}
+
+% Define base definition environment
+\spn@wtheorem{basedef}{Definition}{\bfseries}{\rmfamily}
+% Redefine 'definition' to embed content in 'examplebox'
+\newenvironment{definition}
+  {\begin{defbox}\begin{basedef}}
+  {\end{basedef}\end{defbox}}
+  
+% OLD VERSION
+%\spn@wtheorem{definition}{Definition}{\bfseries}{\rmfamily}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Examples, redefined by JCS
+
+% Define shade color
+\newmdenv[
+  backgroundcolor=gray!10,
+  linecolor=black,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt,
+  innertopmargin=10pt,
+  innerbottommargin=10pt,
+  skipabove=\topsep,
+  skipbelow=\topsep
+]{examplebox}
+
+% Define base example environment
+\spn@wtheorem{baseexample}{Example}{\itshape\examplesize}{\examplesize}
+% Redefine 'example' to embed content in 'examplebox'
+\newenvironment{example}
+  {\begin{examplebox}\begin{baseexample}}
+  {\end{baseexample}\end{examplebox}}
+
+% OLD VERSION
+%\spn@wtheorem{example}{Example}{\itshape}{\rmfamily}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %
 \newenvironment{theopargself}
     {\def\@spopargbegintheorem##1##2##3##4##5{\trivlist

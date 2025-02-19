@@ -141,8 +141,7 @@ and its magnitude squared is
 |X_w(e^{j \omega})|^2 = \left|P_N\left(e^{j (\omega - \omega_0)}\right)\right|^2.
 \end{equation*}
 Figure \ref{fig:FT_complexexponential} plots, in logarithmic scale, $|X_w(e^{j \omega})|^2$ and $|X_w(e^{j \omega_k})|^2$ for two different values of $N_\text{fft}$.
-
-%\begin{figure}
+\begin{figure}
 	\pgfmathsetmacro{\mypi}{3.141592}
 	\pgfmathsetmacro{\windowlength}{14}
 	\pgfmathsetmacro{\myomega}{\mypi/8}
@@ -196,17 +195,14 @@ ylabel={$|X_w(e^{j \omega})|^2$}]
 \end{axis}
 \end{tikzpicture}
 	\end{center}
-	\captionof{figure}{Fourier transform (in logarithmic scale) of a windowed complex exponential}
+	\caption{Fourier transform (in logarithmic scale) of a windowed complex exponential}
 	\label{fig:FT_complexexponential}
-%\end{figure}
+\end{figure}
 		
-
+As we have seen in this example, the spectral analysis of deterministic signals depends on two factors. First, the number of available samples, which determines the window and, therefore, the shape of the windowed spectrum. As we have seen in Figure \ref{fig:FT_complexexponential}, the rectangular window has a narrow main lobe at the expense of high secondary lobes. This effect could be reduced by pre-multiplying $x_w[n]$ by a different window, which would reduce the height of the secondary lobes, but it would widen the main lobe. Second, the number of frequencies where the estimated PSD is evaluated.
 
 \end{example}
 %%%%%%%%%%%%%
-
-As we have seen in this example, the spectral analysis of deterministic signals depends on two factors. First, the number of available samples, which determines the window and, therefore, the shape of the windowed spectrum. As we have seen in Figure \ref{fig:FT_complexexponential}, the rectangular window has a narrow main lobe at the expense of high secondary lobes. This effect could be reduced by pre-multiplying $x_w[n]$ by a different window, which would reduce the height of the secondary lobes, but it would widen the main lobe. Second, the number of frequencies where the estimated PSD is evaluated.
-
 
 %%%%%%%%%%%%%%%
 \begin{example}[Spectral analysis of two complex exponentials]
@@ -219,22 +215,22 @@ X_w(e^{j \omega})
     + e^{-j (\omega - \omega_1) (N-1)/2} P_N\left(\omega - \omega_1\right).
 \end{equation*}
 and its magnitude squared is
-%\begin{multline*}
-%|X_w(e^{j \omega})|^2 
-%	= \left|P_N\left(e^{j (\omega - \omega_0)}\right)\right|^2 
-%	+ \left|P_N\left(e^{j (\omega - \omega_1)}\right)\right|^2  \\  
-%	+ e^{j (\omega_0 - \omega_1) (N-1)/2} 
-%	  P_N\left(e^{j (\omega - \omega_0)}\right) P_N\left(e^{j (\omega - \omega_1)}\right)\\ 
-%	+ e^{- j (\omega_0 - \omega_1) (N-1)/2} 
-%	  P_N\left(e^{j (\omega - \omega_0)}\right) 
-%	  P_N\left(e^{j (\omega - \omega_1)}\right).
-%\end{multline*}
-%Taking into account Euler's formula, $|X_w(e^{j \omega})|^2$ can be simplified as
+\begin{multline*}
+|X_w(e^{j \omega})|^2 
+	= \left|P_N\left(e^{j (\omega - \omega_0)}\right)\right|^2 
+	+ \left|P_N\left(e^{j (\omega - \omega_1)}\right)\right|^2  \\  
+	+ e^{j (\omega_0 - \omega_1) (N-1)/2} 
+	  P_N\left(e^{j (\omega - \omega_0)}\right) P_N\left(e^{j (\omega - \omega_1)}\right)\\ 
+	+ e^{- j (\omega_0 - \omega_1) (N-1)/2} 
+	  P_N\left(e^{j (\omega - \omega_0)}\right) 
+	  P_N\left(e^{j (\omega - \omega_1)}\right).
+\end{multline*}
+Taking into account Euler's formula, $|X_w(e^{j \omega})|^2$ can be simplified as
 	\begin{multline*}
 |X_w(e^{j \omega})|^2 = \left|P_N\left(e^{j (\omega - \omega_0)}\right)\right|^2 + \left|P_N\left(e^{j (\omega - \omega_1)}\right)\right|^2  \\  + 2 \cos \left(\frac{(\omega_0 - \omega_1) (N-1)}{2} \right) P_N\left(e^{j (\omega - \omega_0)}\right) P_N\left(e^{j (\omega - \omega_1)}\right).
 \end{multline*}
-Figure \ref{fig:FT_twocomplexexponential} plots, in logarithmic scale, $|X_w(e^{j \omega})|^2$ for two different separations between the frequencies of the exponential components. As we can see in this figure, for small frequency separations, it is impossible to identify in the spectrum the two complex exponentials.
-%\begin{figure}
+Figure \ref{fig:FT_twocomplexexponential} plots, in logarithmic scale, $|X_w(e^{j \omega})|^2$ for two different separations between the frequencies of the exponentials. As we can see in this figure, for small frequency separations, it is impossible to identify in the spectrum the two complex exponentials.
+	\begin{figure}
 		\pgfmathsetmacro{\mypi}{3.141592}
 		\pgfmathsetmacro{\windowlength}{14}
 		\pgfmathsetmacro{\myomega}{\mypi/8}
@@ -289,9 +285,9 @@ ylabel={$|X_w(e^{j \omega})|^2$}]
 \end{axis}
 \end{tikzpicture}
 		\end{center}
-		\captionof{figure}{Fourier transform (in logarithmic scale) of the sum of two complex exponentials}
+		\caption{Fourier transform (in logarithmic scale) of the sum of two complex exponentials}
 		\label{fig:FT_twocomplexexponential}
-%	\end{figure}
+	\end{figure}
 	
 \end{example}
 %%%%%%%%%%%%%
@@ -304,110 +300,139 @@ In this section, we turn our attention to the case of stochastic signals and, in
 
 Before proceeding, let us note that throughout this section, we will only consider DTFTs. However, we have to keep in mind that, in practice, we can only compute the DFT (using the FFT algorithm), as we have seen in Section \ref{sec:preliminaries_deterministic_signals}.
 
-Remind that the power spectral density, or power spectrum, of a stochastic process $x[n]$, is defined as
-\begin{equation}
-\label{eq:sp_def1}
-S_x(e^{j \omega})
-	= \lim_{N \rightarrow \infty} 
-	  \frac{1}{2N-1} \EE \left[ \left|\sum_{n=-N+1}^{N-1} x[n] e^{-j \omega n} \right|^2 \right].
-\end{equation}
-
-If the process is WSS and the autocorrelation is absolutely summable (the usual case in practice), this definition is equivalent to the Fourier transform of the autocorrelation, i.e.,
-\begin{equation}
-\label{eq:sp_def2}
-S_x(e^{j \omega}) = \mathcal{F}(r_x[m]),
-\end{equation}
-where
-\begin{equation}
-r_x[m] = \mathbb{E}[x[n] x^{\ast}[n-m]],
-\end{equation}
-
-These alternative expressions for the power spectrum motivate two different strategies for spectral estimation:
-\begin{enumerate}
-\item Drop the limit in \eqref{eq:sp_def1} and estimate the expectation from an finite sample.
-\item Estimate the autocorrelation function and compute its Fourier transform.
-\end{enumerate}
-Both strategies are closely related, as we will see in the following sections.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{The periodogram and the correlogram}
-
-The \textbf{periodogram}, which is a term coined by Arthur Schuster in 1898, is obtained from on \eqref{eq:sp_def1} by simply dropping the expectation and considering a finite number of samples, i.e.,
-\begin{equation}
-\label{eq:periodogram}
-\hat{S}_x^p(e^{j \omega})
-	= \frac1N \left| \sum_{n = 0}^{N-1} x[n] e^{-j \omega n} \right|^2 
-	= \frac1N \left| X_N(e^{j \omega}) \right|^2,
-\end{equation}
-where $X_N(e^{j \omega})  = \mathcal{F}(x_N[n])$ is the Fourier transform of the truncated version of $x[n]$
-\begin{equation}
-x_N[n] = \begin{cases}
-x[n], & 0\le n \le N-1   \\
-0,    & \text{otherwise}
-\end{cases}
-\end{equation}
-
-The \textbf{correlogram}, based on \eqref{eq:sp_def2}, is defined as
+Remind that the power spectral density, or power spectrum, or a strochastic process $x[n]$, is defined as
 \begin{equation*}
-\hat{S}_x^c(e^{j \omega}) = \mathcal{F}(\hat{r}_x[m]),
-\label{eq:correlogram}
+S_x(e^{j \omega})
+	= \lim_{N \rightarrow \infty} \EE \left[\frac{1}{2N -1} \left| \sum_{n = -N+1}^{N-1} x[n] e^{-j \omega n} \right|^2 \right].
+\end{equation*}
+
+If the process is WSS and the autocorrelation is absolutely summable (which is the usual case in practice), this definition is equivalent to the Fourier transform of the autocorrelation, i.e.,
+\begin{equation*}
+S_x(e^{j \omega}) = \mathcal{F}(r_{x}[m]),
 \end{equation*}
 where
-\begin{equation}
-\label{eq:autocorrelation_biased}
-\hat{r}_x[m] = \frac1N \sum_{n=m}^{N-1} x[n] x^{\ast}[n-m], \quad m = 0, \ldots, N-1,
-\end{equation}
-
-Despite the differences in names and definitions, the correlogram and the periodogram are identical estimators: rewriting $\hat{r}_x[m]$ as
 \begin{equation*}
-\label{eq:rxbiased}
-\hat{r}_x[m] = \frac{1}{N} \sum_{n=m}^{N-1} x[n] x^{\ast}[n-m] 
-               = \frac{1}{N} \sum_{n=-\infty}^{\infty} x_N[n] x_N^{\ast}[n-m] 
-               = \frac{1}{N} x_N[n] \ast x_N^{\ast}[-n],
+r_{x}[m] = \mathbb{E}[x[n] x^{\ast}[n-m]],
+\end{equation*}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The periodogram}
+
+The periodogram, which is a term coined by Arthur Schuster in 1898, is based on definition of the power spectral density. This definition states that
+\begin{equation*}
+S_x(e^{j \omega})
+	= \lim_{N \rightarrow \infty} \EE \left[\frac{1}{2N -1} \left| \sum_{n = -N+1}^{N-1} x[n] e^{-j \omega n} \right|^2 \right].
+\end{equation*}
+The periodogram is obtained from the above definition by simply dropping the expectation and considering a finite number of samples, i.e.,
+\begin{equation}
+\label{eq:periodogram}
+\hat{S}_x^{p}(e^{j \omega})
+	= \frac1N \left| \sum_{n = 0}^{N-1} x[n] e^{-j \omega n} \right|^2 = \frac{1}{N} \left| X(e^{j \omega}) \right|^2,
+\end{equation}
+where $X(e^{j \omega})  = \mathcal{F}(x[n])$.
+
+
+
+
+
+
+Despite the title section, we will start with an estimator known as correlogram, which is based on a first definition of the PSD.
+\begin{definition}
+	\label{wiener_khinchin}
+	Given a WSS process $x[n]$, the power spectral density is defined as
+	\begin{equation*}
+	S_x(e^{j \omega}) = \mathcal{F}(r_{x}[m]),
+	\end{equation*}
+	where
+	\begin{equation*}
+	r_{x}[m] = \mathbb{E}[x[n] x^{\ast}[n-m]],
+	\end{equation*}
+	is the auto-correlation function of the process $x[n]$.
+\end{definition}
+
+Based on Definition \ref{wiener_khinchin}, the first estimator of the PSD is given by
+\begin{equation*}
+	\hat{S}_x(e^{j \omega}) = \mathcal{F}(\hat{r}_{x}[m]),
+\end{equation*}
+where $\hat{r}_{x}[m]$ is an estimator of the auto-correlation function. Concretely, we have two alternatives for this estimator: a biased and an unbiased estimator. The biased estimator of the auto-correlation, given the finite length $x[n], n = 0, \ldots, N-1$, is
+\begin{equation}
+	\label{eq:autocorrelation_biased}
+	\hat{r}_{x}^{b}[m] = \frac{1}{N} \sum_{n = m}^{N-1} x[n] x^{\ast}[n-m], \quad m = 0, \ldots, N-1,
+\end{equation}
+and $\hat{r}_{x}^{b}[m] = \left[ \hat{r}_{x}^{b}[-m] \right]^{\ast}, m = -N+1, \ldots, -1$, whereas the unbiased estimator is
+\begin{equation}
+	\label{eq:autocorrelation_unbiased}
+\hat{r}_{x}^{u}[m] = \frac{1}{N-m} \sum_{n = m}^{N-1} x[n] x^{\ast}[n-m], \quad m = 0, \ldots, N-1,
+\end{equation}
+and $\hat{r}_{x}^{u}[m] = \left[ \hat{r}_{x}^{u}[-m] \right]^{\ast}, m = -N+1, \ldots, -1$. Consequently, the PSD estimators are
+\begin{equation}
+\label{eq:correlogram}
+\hat{S}_x^{b}(e^{j \omega}) = \mathcal{F}(\hat{r}_{x}^{b}[m]),
+\end{equation}
+and
+\begin{equation*}
+\hat{S}_x^{u}(e^{j \omega}) = \mathcal{F}(\hat{r}_{x}^{u}[m]).
+\end{equation*}
+Actually, only the estimator in \eqref{eq:correlogram}, which is known as the correlogram, is a valid PSD estimator since it ensures $\hat{S}_x^{b}(e^{j \omega}) \geq 0$, whereas $\hat{S}_x^{u}(e^{j \omega}) \not \geq 0$.
+
+The periodogram, which is a term coined by Arthur Schuster in 1898, is based on a second definition of the power spectral density. This definition states that
+\begin{equation*}
+S_x(e^{j \omega})
+	= \lim_{N \rightarrow \infty} \EE \left[\frac{1}{2N -1} \left| \sum_{n = -N+1}^{N-1} x[n] e^{-j \omega n} \right|^2 \right].
+\end{equation*}
+The periodogram is obtained from the above definition by simply dropping the expectation and considering a finite number of samples, i.e.,
+\begin{equation}
+\label{eq:periodogram}
+\hat{S}_x^{p}(e^{j \omega})
+	= \frac1N \left| \sum_{n = 0}^{N-1} x[n] e^{-j \omega n} \right|^2 = \frac{1}{N} \left| X(e^{j \omega}) \right|^2,
+\end{equation}
+where $X(e^{j \omega})  = \mathcal{F}(x[n])$.
+
+In the following, we will shed some light on why we have started this section with the correlogram. Let us start by rewriting $\hat{r}_{x}^{b}[m]$ as
+\begin{equation*}
+\hat{r}_{x}^{b}[m] = \frac{1}{N} \sum_{n = m}^{N-1} x[n] x^{\ast}[n-m] = \frac{1}{N} \sum_{n = -\infty}^{\infty} x[n] x^{\ast}[n-m]  = \frac{1}{N} \left(x[n] \ast x^{\ast}[-n]\right),
 \end{equation*}
 and taking its Fourier transform yields
 \begin{equation*}
-\hat{S}_x^c(e^{j \omega}) = \mathcal{F}(\hat{r}_x[m]) 
-                        = \frac1N \mathcal{F} \left(x_N[n] \ast x_N^{\ast}[-n]\right).
+\hat{S}_x^{b}(e^{j \omega}) = \mathcal{F}(\hat{r}_{x}^{b}[m]) = \frac{1}{N} \mathcal{F} \left(x[n] \ast x^{\ast}[-n]\right).
 \end{equation*}
-Finally, applying the properties of the Fourier transform, $\hat{S}_x^c(e^{j \omega})$ simplifies to
+Finally, applying the properties of the Fourier transform, $\hat{S}_x^{b}(e^{j \omega})$ simplifies to
 \begin{equation*}
-\hat{S}_x^c(e^{j \omega})
-    = \frac1N \mathcal{F} \left(x_N[n] \right) \mathcal{F} \left(x_N^{\ast}[-n]\right) 
-    = \frac1N X_N(e^{j \omega}) X_N^{\ast}(e^{j \omega}) 
-    = \frac1N \left| X_N(e^{j \omega}) \right|^2 
-    = \hat{S}_x^p(e^{j \omega}),
+\hat{S}_x^{b}(e^{j \omega}) = \frac{1}{N} \mathcal{F} \left(x[n] \right) \mathcal{F} \left(x^{\ast}[-n]\right) = \frac{1}{N} X(e^{j \omega}) X^{\ast}(e^{j \omega}) = \frac{1}{N} \left| X(e^{j \omega}) \right|^2 = \hat{S}_x^{p}(e^{j \omega}),
 \end{equation*}
-which is the periodogram in \eqref{eq:periodogram}. 
+which is the periodogram in \eqref{eq:periodogram}. That is, the periodogram and the correlogram are identical.
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Bias and variance of the periodogram}
 
 To understand why we need more refined estimators of the power spectral density, now we shall perform the statistical analysis of the periodogram (or correlogram), i.e.,  we will compute its bias and variance as we would do with any other estimator.
 
-First, note that the autocorrelation estimate in \eqref{eq:rxbiased} is biased:
-\begin{align}
-\label{eq:meanrx}
-\EE\left[ \hat{r}_x[m]\right] 
-	%= E\left[ \frac{1}{N} \sum_{n=m}^{N-1} x[n] x^{\ast}[n-m] \right] 
-	&= \frac{1}{N} \sum_{n=m}^{N-1} \EE\left[ x[n] x^{\ast}[n-m] \right] 
-	 = \frac{1}{N} \sum_{n=m}^{N-1} r_x[m]     \nonumber\\ 
-	&= \frac{N - |m|}{N} r_x[m],
-\end{align}
-Note that, for $m=0$ or any $m$ such that $r_x[m]=0$, the autocorrelation estimate is unbiased. However,for any other values, $\EE\left[ \hat{r}_x[m]\right] \neq r_x[m]$, and the relative value of the bias increases with $m$.
-
-Seemingly, we can easily remove this bias by replacing the factor $1/N$ in \eqref{eq:autocorrelation_biased} by $1/(N - |m|)$. In this way, we would get unbiased estimates of the autocorrelation values for any $m$. Unfortunately, it can be show that the resulting function is, in general, not a feasible autocorrelation function (i.e. its Fourier transform may take negative values at some frequencies).
-
-As a consequence of the autocorrelation bias, the periodogram is also biased. To see it, it is useful to define the triangular, or Barlett window, as
+The first question is whether the periodogram is a biased estimator of the PSD, that is, 
 \begin{equation*}
-w_{T,N}[m] = \begin{cases} 
-             \frac{N - |m|}{N},  & |m| \leq N-1, \\
-             0,                  & \text{otherwise},
-             \end{cases}
+E\left[\hat{S}_x^{p}(e^{j \omega}) \right] \mathop{=}^{?} S_x(e^{j \omega}).
 \end{equation*}
-which is depicted in Figure \ref{fig:triangularwindow}. 
+To compute the bias of the periodogram, it is easier to consider the equivalence with the correlogram, which allows us to write
+\begin{equation*}
+E\left[\hat{S}_x^{p}(e^{j \omega}) \right] = E\left[\mathcal{F}(\hat{r}_{x}^{b}[m]) \right] = \mathcal{F}\left(E\left[ \hat{r}_{x}^{b}[m]\right]\right),  
+\end{equation*}
+where we have used that the expectation and the Fourier transform are both linear operators. Thus, the periodogram is biased if $\hat{r}_{x}^{b}[m]$ is a biased estimate of the auto-correlation function. Now, using the definition of  $\hat{r}_{x}^{b}[m]$, we get\footnote{It is easy to prove that $\hat{r}_{x}^{u}[m]$ is indeed an unbiased estimate of the auto-correlation function, which is left as an exercise for the student.}
+\begin{multline*}
+E\left[ \hat{r}_{x}^{b}[m]\right] = E\left[ \frac{1}{N} \sum_{n = m}^{N-1} x[n] x^{\ast}[n-m] \right] = \frac{1}{N} \sum_{n = m}^{N-1} E\left[ x[n] x^{\ast}[n-m] \right] \\ = \frac{1}{N} \sum_{n = m}^{N-1} r_{x}[m] = \frac{N - |m|}{N} r_{x}[m] \neq r_{x}[m],
+\end{multline*}
+which shows that $\hat{r}_{x}^{b}[m]$ is indeed a biased estimate of the auto-correlation function, with the exception of $m = 0$, and makes the periodogram a biased estimate of the PSD.
+
+It is possible to obtain a closed-form expression for the bias of the periodogram by noting that
+\begin{equation}
+\label{eq:bias_auto-correlation}
+E\left[\hat{r}_{x}^{b}[m]\right]  = \frac{N - |m|}{N} r_{x}[m] = w_{T,N}[m] r_{x}[m],
+\end{equation}
+where the triangular, or Barlett window, is defined as
+\begin{equation*}
+w_{T,N}[m] = \begin{cases} \frac{N - |m|}{N}, & |m| \leq N-1, \\
+0, & \text{otherwise},
+\end{cases}
+\end{equation*}
+and is depicted in Figure \ref{fig:triangularwindow}. The bias given in \eqref{eq:bias_auto-correlation} shows us that the larger the $m$ the larger the bias.
 \begin{figure}
 	\pgfmathsetmacro{\windowlength}{10}
 	\begin{center}
@@ -436,26 +461,15 @@ which is depicted in Figure \ref{fig:triangularwindow}.
 	\label{fig:triangularwindow}
 \end{figure}
 
-The mean of the autocorrelation in \eqref{eq:meanrx} can then be written as
-\begin{equation}
-\label{eq:bias_auto-correlation}
-\EE\left[\hat{r}_{x}[m]\right]  = \frac{N - |m|}{N} r_{x}[m] = w_{T,N}[m] r_{x}[m],
-\end{equation}
 
 Using \eqref{eq:bias_auto-correlation}, the bias of the periodogram becomes
 \begin{equation}
 \label{eq:bias_periodogram}
-\EE\left[\hat{S}_x^{p}(e^{j \omega}) \right] 
-	= \mathcal{F}\left(w_{T,N}[m] r_{x}[m]\right) 
-	= \frac{1}{2 \pi} W_{T,N}(e^{j \omega}) \circledast S_x(e^{j \omega}),
+E\left[\hat{S}_x^{p}(e^{j \omega}) \right] = \mathcal{F}\left(w_{T,N}[m] r_{x}[m]\right) = \frac{1}{2 \pi} W_{T,N}(e^{j \omega}) \circledast S_x(e^{j \omega}),
 \end{equation}
 where
 \begin{align*}
-W_{T,N}(e^{j \omega}) 
-	&= \mathcal{F}\left(w_{T,N}[m]\right) 
-	 = \frac1N \mathcal{F}\left(w_{R,N}[m] \ast w_{R,N}[-m]\right) 
-	 = |W_{R,N}(e^{j \omega})|^2 \nonumber  \\  
-	&= \frac1N \frac{\sin^2\left(\frac{\omega N}{2}\right)}{\sin^2\left(\frac{\omega}{2}\right)},
+W_{T,N}(e^{j \omega}) &= \mathcal{F}\left(w_{T,N}[m]\right) = \frac{1}{N} \mathcal{F}\left(w_{R,N}[m] \ast w_{R,N}[-m]\right) = |W_{R,N}(e^{j \omega})|^2 \nonumber  \\  &= \frac{1}{N} \frac{\sin^2\left(\frac{\omega N}{2}\right)}{\sin^2\left(\frac{\omega}{2}\right)},
 \end{align*}
 is the Fourier transform of the triangular window and is depicted in Figure \ref{fig:FT_triangularwindow}. Comparing Figures \ref{fig:FT_rectangularwindow} and \ref{fig:FT_triangularwindow}, it can be seen that the level of secondary lobes is smaller for the triangular window. By analogy with Example \ref{ex:spectral_analysis_deterministic_two}, we can say that the bias of the periodogram is related with its resolution.
 
@@ -489,12 +503,15 @@ is the Fourier transform of the triangular window and is depicted in Figure \ref
 	\label{fig:FT_triangularwindow}
 \end{figure}
 
-Note that the width of the main lobe is inversely proportional to $N$. Therefore, by increasing the sample size we can narrow the main lobe and reduce the bias. This is because the periodogram is asymptotically unbiased: the bias reduces to zero as $N$ grows.
+We have shown in \eqref{eq:bias_periodogram} that the periodogram is biased. However, there are some cases when it is not. For instance, considering the asymptotic regime, it is unbiased:
 \begin{equation*}
 \lim_{N \rightarrow \infty} \hat{S}_x^{p}(e^{j \omega}) = S_x(e^{j \omega}).
 \end{equation*}
-
-As a special case, note that the autocorrelation function of a white process is zero for all $m\neq 0$, therefore, the estimate of its autocorrelation is unbiased, and so the periodogram.
+Another case is when the process $x[n]$ is white noise. For this kind of processes, $r_{x}[m] = \sigma^2_x \delta[m]$ and, therefore
+\begin{equation*}
+E\left[\hat{r}_{x}^{b}[m]\right]  = \frac{N - |m|}{N} r_{x}[m] = \sigma^2_x \delta[m] = r_{x}[m].
+\end{equation*}
+Since the estimate of the auto-correlation is unbiased for white processes, it is easy to show that the periodogram is also unbiased.
 
 The analysis of the variance of the periodogram is cumbersome and can only be done in particular cases. For white noise, it can be shown that
 \begin{equation*}
@@ -504,17 +521,15 @@ and in general we can say that
 \begin{equation*}
 \mathop{Var}\left(\hat{S}_x^{p}(e^{j \omega})\right) \appropto S_x^{2}(e^{j \omega}),
 \end{equation*}
-where $\appropto$ denotes approximately proportional to. This expression tells us that the variance does not decrease for larger data records. That is, the periodogram is not a consistent estimate of the PSD.
-
+where $\appropto$ denotes approximately proportional to.  This expression tells us that the variance does not decrease for larger data records. That is, the periodogram is not a consistent estimate of the PSD.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{The Blackman-Tukey estimator}
 
-One of the reasons for the behavior of the periodogram variance is the poor quality of the estimate $\hat{r}_{x}[m]$ for values of $m$ close to $N$. This problem is what the Blackman-Tukey (BT) estimator tries to improve. The idea is to ignore or weight the samples of $\hat{r}_x[m]$ for $m$ close to $N$. Thus, the BT estimator is
+One of the reasons for the behavior of the periodogram variance is the poor quality of the estimate $\hat{r}_{x}^{b}[m]$ for values of $m$ close to $N$. This problem is what the Blackman-Tukey (BT) estimator tries to improve. The idea is to ignore or weight the samples of $\hat{r}_{x}^{b}[m]$ for $m$ close to $N$. Thus, the BT estimator is
 \begin{equation}
 \label{eq:BT_definition}
-\hat{S}_x^{BT}(e^{j \omega}) = \mathcal{F}(w_M[m] \hat{r}_x[m]) 
-                             = \sum_{m=-N+1}^{N-1} w_M[m] \hat{r}_x[m] e^{-j \omega m},
+\hat{S}_x^{BT}(e^{j \omega}) = \mathcal{F}(w_M[m] \hat{r}_{x}^{b}[m]) = \sum_{m = -N + 1}^{N-1} w_M[m] \hat{r}_{x}^{b}[m] e^{-j \omega m},
 \end{equation}
 where $w[m]$ is a window that must fulfill
 \begin{equation*}
@@ -526,15 +541,11 @@ where $f(|m|)$ is a monotonically decreasing function of $|m|$ and $M \leq N$. T
 
 Using the properties of the Fourier transform, we may rewrite $\hat{S}_x^{BT}(e^{j \omega})$ as
 \begin{equation*}
-\hat{S}_x^{BT}(e^{j \omega}) 
-	= \frac{1}{2 \pi} W_M(e^{j \omega}) \circledast \hat{S}_x^{p}(e^{j \omega}) 
-	= \frac{1}{2 \pi} \int_{-\pi}^{\pi} W_{M}(e^{j \psi}) \hat{S}_x^{p}(e^{j (\omega - \psi)}) d \psi,
+\hat{S}_x^{BT}(e^{j \omega}) = \frac{1}{2 \pi} W_M(e^{j \omega}) \circledast \hat{S}_x^{p}(e^{j \omega}) = \frac{1}{2 \pi} \int_{-\pi}^{\pi} W_{M}(e^{j \psi}) \hat{S}_x^{p}(e^{j (\omega - \psi)}) d \psi,
 \end{equation*} 
 where $W_M(e^{j \omega}) = \mathcal{F}(w_M[n])$. Then, the Blackman-Tukey estimator is locally smoothing the periodogram, which reduces its variance. However, there is no free lunch and we will show that this variance reduction translates into lower resolution (or larger bias). Concretely, the bias of the BT estimator is
 \begin{equation*}
-\EE\left[\hat{S}_x^{BT}(e^{j \omega})\right] 
-	= \frac{1}{2 \pi} W_M(e^{j \omega}) \circledast \EE\left[\hat{S}_x^{p}(e^{j \omega})\right] 
-	= \frac{1}{2 \pi} W_M(e^{j \omega}) \circledast W_{T,N}(e^{j \omega}) \circledast S_x(e^{j \omega}).
+E\left[\hat{S}_x^{BT}(e^{j \omega})\right] = \frac{1}{2 \pi} W_M(e^{j \omega}) \circledast E\left[\hat{S}_x^{p}(e^{j \omega})\right] = \frac{1}{2 \pi} W_M(e^{j \omega}) \circledast  W_{T,N}(e^{j \omega}) \circledast S_x(e^{j \omega}).
 \end{equation*}
 Finally, since $w_M[n]$ is shorter than $w_{T,N}[n]$, it can be shown that $W_M(e^{j \omega})$ is wider than $W_{T,M}(e^{j \omega})$, which translates into a lower resolution. This behavior is depicted in Figure \ref{fig:comparison_windows} for $w_M[n] = w_{T,M}[n]$. Note that the $y$-axis is in logarithmic scale.
 \begin{figure}
@@ -577,22 +588,22 @@ Finally, since $w_M[n]$ is shorter than $w_{T,N}[n]$, it can be shown that $W_M(
 The Blackman-Tukey estimator yields a smaller variance than that of the periodogram because, as we have seen, it smooths the periodogram. An alternative to reduce the variance is to average several periodograms. However, the question is: How do we obtain such periodograms? The answer is easy and consists in dividing the $N$ observations into windows of length $M < N$. 
 
 The Barlett method is one of the possible estimators based on the averaged periodogram. First, it divides the $N$ observations into $L$ non-overlapping windows of length $M$ as
-\begin{equation}
+\begin{equation*}
 	x_l[n] = x[(l-1) M + n],
-\end{equation}
+\end{equation*}
 where $n = 0, \ldots, M-1,$ and $l = 1, \ldots, L$, and computes the periodogram of each window, that is,
-\begin{equation}
+\begin{equation*}
 \hat{S}_{x,l}^{p}(e^{j \omega}) = \frac{1}{M} \left| \sum_{n = 0}^{M-1} x_l[n] e^{-j \omega n} \right|^2 = \frac{1}{M} \left| X_l(e^{j \omega}) \right|^2.
-\end{equation}
+\end{equation*}
 Then, the Barlett estimator is given by simply averaging the individual periodograms
-\begin{equation}
+\begin{equation*}
 \hat{S}_{x}^{B}(e^{j \omega}) = \frac{1}{L} \sum_{l = 1}^{L}\hat{S}_{x,l}^{p}(e^{j \omega}).
-\end{equation}
+\end{equation*}
 Although it is out of the scope of these notes, we must point out that $\hat{S}_{x}^{B}(e^{j \omega})$ is somehow related to $\hat{S}_{x}^{BT}(e^{j \omega})$.
 
 There are two further improvements of the periodogram. The first one is based on the Barlett estimator but substituting the individual periodograms by Blackman-Tukey estimates. The second one is based on dividing the $N$ observations into $L$ overlapping windows. The combination of both improvements is known as the Welch method.
 
-One final question remains: What happens to the bias and variance of these methods. Regarding the bias, it is going to be higher (lower resolution) than that of the periodogram since $M < N$, as also happened to the Blackman-Tukey estimate. As for the variance, it is going to be reduced by a factor of $L$, the number of windows. That is,
+One final question remains: What happens to the bias and variance of these methods. Regarding the bias (resolution), it is going to be smaller than that of the periodogram since $M < N$, as also happened to the Blackman-Tukey estimate. As for the variance, it is going to be reduced by a factor of $L$, the number of windows. That is,
 \begin{equation*}
 \mathop{Var}\left(\hat{S}_x^{ap}(e^{j \omega})\right) \approx \frac{1}{L} \mathop{Var}\left(\hat{S}_x^{p}(e^{j \omega})\right),
 \end{equation*}
@@ -659,7 +670,7 @@ Using \eqref{eq:ARpdef}, we can express the auto-correlation function of the AR(
 \begin{align}
 \label{eq:rxneg}
 r_x[m] 
- 	&= \EE\{x[n] x^{\ast}[n-m]\}   \nonumber\\
+ 	&= \EE\{x[n] x^{\ast}[n-m]\}   \\
 	&= \EE\left\{ \left(u[n] - \sum_{k=1}^{p} a_k x[n-k] \right) x^{\ast}[n-m] 
 	      \right\}   
 	   \nonumber \\
@@ -706,7 +717,9 @@ r_{x}^{\ast}[-m],                                      & m < 0.
 \end{cases}
 \end{equation}
 
-We see in \eqref{eq:correlation_AR} that the relationship between the model parameters ($\sigma^2$, $a_1, \ldots, a_p$) and the auto-correlation is linear. which simplifies the estimation of such parameters. The estimation procedure consists in substituting the theoretical auto-correlation by an estimate and then solving a linear system of equations. The PSD estimate is obtained by substituting the estimated parameters in the corresponding model.
+We see in \eqref{eq:correlation_AR} that the relationship between the model parameters ($\sigma^2$, $a_1, \ldots, a_p$) and the auto-correlation is linear, which simplifies the estimation of such parameters.
+
+Once the auto-correlation function is available, which will depend in general on the model parameters in a non-linear fashion, the estimation procedure consists in substituting the theoretical auto-correlation by an estimate and then solving a non-linear system of equations. The PSD estimate is obtained by substituting the estimated parameters in the corresponding model.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -716,7 +729,7 @@ Since we need to obtain $p+1$ parameters, i.e., $a_1, \ldots, a_p$ and $\sigma^2
 \begin{align*}
 r_x[0] &= -a_1 r_x[-1] - a_2 r_x[-2] + \ldots -a_p r_x[-p] + \sigma^2, \\
 r_x[1] &= -a_1 r_x[0] - a_2 r_x[-1] + \ldots -a_p r_x[-p+1], \\
-% r_x[2] &= -a_1 r_x[1] - a_2 r_x[0] + \ldots -a_p r_x[-p+2], \\
+r_x[2] &= -a_1 r_x[1] - a_2 r_x[0] + \ldots -a_p r_x[-p+2], \\
 	&\phantom{=} \vdots \\
 r_x[p] &= -a_1 r_x[p-1] - a_2 r_x[p-2] + \ldots -a_p r_x[0].
 \end{align*}
@@ -746,42 +759,47 @@ The matrix $\mathbf{R}_x$ has a special structure, namely, it is constant along 
 \begin{equation*}
 \hat{\sigma}^2 = r_x[0] + \hat{a}_1 r_x^{\ast}[1] + \hat{a}_2 r_x^{\ast}[2] + \ldots + \hat{a}_p r_x^{\ast}[p].
 \end{equation*}
-Finally, as we have already seen before, in practical scenarios the auto-correlation function is not available and must therefore be replaced by an estimate. The overall procedure consist on three steps:
-\begin{enumerate}
-\item Estimate the autocorrelation function
-\item Compute the model parameters solving the Yule-Walker equations
-\item Estimate the power spectrum using the parameter estimates.
-\end{enumerate}
+Finally, as we have already seen before, in practical scenarios the auto-correlation function is not available and must therefore be replaced by an estimate.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Maximum Likelihood estimation}
+\subsection{Maximun Likelihood estimation}
 
-We can avoid the estimation of the autocorrelation function by applying estimation theory to compute the model parameters from the signal observations. Assume we have recorded a set of $N$ observations from the process, $\{x[n], 0\le n \le N-1\}$. Our goal is to estimate the model parameters based on these observations. To do so, the following vector notation will be useful:
+The estimation of the power spectrum through an AR model and the Yule-Walker equations implies three steps
+
+\begin{enumerate}
+\item Estimate the autocorrelation function
+\item Compute the model parameters solving the Yule-Walker equations
+\item Use the filter coefficients to estimate the power spectrum
+\end{enumerate}
+
+We can avoid the first step by applying estimation theory to compute the model parameters from the signal observations.
+
+Assume we have recorded a set of $N$ observations from the process, $\{x[k], 0\le k \le N-1\}$. Our goal is to estimate the model parameters based on these observations. To do so, the following vector notations will be useful:
 \begin{align}
-{\bf a} &= (a_1, a_2, \ldots, a_{p-1})^\top    \\
-{\bf x} &= (x[p], x[p+1], \ldots, x[N-1])^\top        \\
-{\bf x}_n &= (x[n-1], x[n-2], \ldots, x[n-p])^\top   
+{\bf a} &= (a_1, a_2, \ldots, a_{p-1})^\top
+{\bf x} &= (x[0], x[1], \ldots, x[N-1])^\top
+{\bf x}_n &= (x[n-1], x[n-2], \ldots, x[n-p])^\top
 \end{align}
-Note that ${\bf x}_n$ contains all values from the signal record that multiply the coefficients to determine $x[n]$, in such a way that the signal model \eqref{eq:ARpdef} can be expressed as
+
+Note that ${\bf x}_n$ contains all values from the signal record that multiply the coefficients to determine $x[n]$, in such a way that the signal model \eqref{eq:ARpdef} can be exressed as
 \begin{equation}
 \label{eq:ARpdef2}
 x[n]  = u[n] - {\bf x}_n^\top {\bf a},
 \end{equation}
-Also, note that vector ${\bf x}$ contains all observations from the process starting for $n>p$. We have excluded the observations for $n<p$ because the maximization of the complete likelihood including these values (i.e. $p({\bf x}, {\bf x}_p \mid {\bf a})$) becomes much more complex. To avoid these complications, we will take ${\bf x}_p$ as fixed data, maximizing the likelihood for the rest of observations, that is, we will compute the estimate
-\begin{equation}
-\hat{\bf a}_\text{ML} = \argmax_{\bf a} p({\bf x} \mid {\bf x}_p, {\bf a})
-\end{equation}
-
-To do so, using \eqref{eq:ARpdef2}, we factorize the likelihood as
+Using \eqref{eq:ARpdef2}, the complete likelihood function can be factorized as
 \begin{align}
-p({\bf x} \mid {\bf x}_p, {\bf a}) 
-      =& p(x[N-1],x[N-2],\ldots,x[p] \mid {\bf x}_p, {\bf a})     \nonumber\\
-      =& p(x[N-1] \mid  x[N-2], \ldots,x[p], {\bf x}_p, {\bf a})   
-	    \cdot p(x[N-2] \mid  x[N-3], \ldots,x[p],{\bf x}_p {\bf a})  \nonumber\\
+p({\bf x} \mid {\bf s}) 
+      =& p(x[N-1],x[N-2],\ldots,x[0] \mid {\bf a})     \nonumber\\
+      =& p(x[N-1] \mid  x[N-2], \ldots,x[0 ], {\bf a})         \nonumber\\
+	   &\cdot p(x[N-2] \mid  x[N-3], \ldots,x[0], {\bf a})    \nonumber\\
 	   &\cdot \ldots 
-        \cdot p(x[p] \mid  {\bf x}_p, {\bf a})    \nonumber\\
-      =& \prod_{n=p}^{N-1} p(x[n] \mid  {\bf x}_n, {\bf a})
+        \cdot p(x[p] \mid  x[p-1], \ldots,x[0], {\bf a})      \nonumber\\
+       &\cdot p(x[p-1], x[p-2], \ldots, x[0 ] \mid {\bf a})    \nonumber\\
+      =& p(x[p-1], x[p-2], \ldots, x[0 ] \mid {\bf a})
+         \cdot\prod_{n=p}^{N-1} p(x[n] \mid  x[n-1], \ldots,x[0], {\bf a})         \nonumber\\
+      =& p(x[p-1], x[p-2], \ldots, x[0 ] \mid {\bf a})
+         \cdot\prod_{n=p}^{N-1} p(x[n] \mid  {\bf x}_n, {\bf a})
 \end{align}
 Since the input process is IID, zero-mean, Gaussian, we can write
 \begin{align}
@@ -790,19 +808,21 @@ p(x[n] \mid  {\bf x}_n, {\bf a})
 \end{align}
 therefore
 \begin{align}
-p({\bf x} \mid {\bf x}_p, {\bf a}) 
-      =& \prod_{n=p}^{N-1} {\cal N}\left(x[n] - {\bf x}_n^\top{\bf a}, \sigma^2 \right)  \nonumber\\
-      =& \frac{1}{\sigma^{N-p} (2\pi)^{(N-p)/2}} 
+p({\bf x} \mid {\bf a}) 
+      =& p(x[p-1], x[p-2], \ldots, x[0 ] \mid {\bf a})
+         \cdot\prod_{n=p}^{N-1} {\cal N}\left(x[n] - {\bf x}_n^\top{\bf a}, \sigma^2 \right)
+\end{align}
+therefore
+\begin{align}
+L({\bf a}) 
+      =& p(x[N-1],x[N-2],\ldots,x[p] \mid x[p-1], \ldots, x[0], {\bf a})   \nonumber\\
+      =& \prod_{n=p}^{N-1} {\cal N}\left(x[n] - {\bf x}_n^\top{\bf a}, \sigma^2 \right) \nonumber\\
+      =& \frac{1}{\sigma^p (2\pi)^{p/2}} 
          \exp\left(
               - \frac1{2\sigma^2} \sum_{n=p}^{N-1} \left(x[n] - {\bf x}_n^\top{\bf a}\right)^2 
               \right)
 \end{align}
-Therefore, the ML estimate is the solution of a least squares problem
-\begin{align}
-\hat{\bf a}_\text{ML} 
-	&= \argmin_{\bf a} \sum_{n=p}^{N-1} \left(x[n] - {\bf x}_n^\top{\bf a}\right)^2 
-\end{align}
-which can be expressed in matrix form by defining the observation matrix
+Defining 
 \begin{align}
 {\bf X} = 
 \begin{pmatrix}
@@ -812,21 +832,21 @@ which can be expressed in matrix form by defining the observation matrix
 {\bf x}_{N-1}^\top
 \end{pmatrix}
 \end{align}
-to arrive at
+and
+\begin{align*}
+{\bf x}_{p:} = \left(x[p], x[p+1],\ldots x[N-1]\right)^\top
+\end{align*}
+we can write
 \begin{align}
 \hat{\bf a}_\text{ML}
-	= \argmin_{\bf a} \left\|{\bf x} - {\bf X}{\bf a}\right\|^2 
-	= \left({\bf X}{\bf X}^\top \right)^{-1}{\bf X}^\top {\bf x} 
+	&= \argmax_{\bf a} L({\bf a})     \nonumber\\ 
+	&= \argmin_{\bf a} \sum_{n=p}^{N-1} \left(x[n] - {\bf x}_n^\top{\bf a}\right)^2 
+                                      \nonumber\\
+	&= \argmin_{\bf a} \left\|{\bf x}_{p:} - {\bf X}{\bf a}\right\|^2 
+              \nonumber\\
+	&= \left({\bf X}{\bf X}\right)^{-1}{\bf X}{\bf x}_{p:} 
+              \nonumber\\
 \end{align}
-The same approach can be applied to the estimation of the variance, $\sigma^2$:
-\begin{align}
-\hat{\sigma}^2_\text{ML} 
-	&= \argmax_{\sigma}  \frac{1}{\sigma^{N-p} (2\pi)^{(N-p)/2}} 
-         \exp\left(- \frac1{2\sigma^2} \sum_{n=p}^{N-1} \left(x[n] - {\bf x}_n^\top{\bf a}\right)^2 
-              \right)   \nonumber\\
-	&= \frac1{N-p} \sum_{n=p}^{N-1} \left(x[n] - {\bf x}_n^\top{\bf a}\right)^2 
-\end{align}
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -840,4 +860,4 @@ we note that they can be used to predict future samples by ignoring the input, i
 \begin{equation*}
 x[n]  =  - \sum_{k = 1}^{p} \hat{a}_k x[n -k],
 \end{equation*}
-where the coefficients of the model have been replaced by some estimates. That is, from a record of $N$ samples, $x[0], \ldots, x[N-1]$, we can estimate the model parameters and, afterwards, we can predict $x[N], x[N+1], \ldots$.
+where the coefficient of the model have been replaced by some estimates. That is, from a record of $N$ samples, $x[0], \ldots, x[N-1]$, we can estimate the model parameters and, afterwards, we can predict $x[N], x[N+1], \ldots$.

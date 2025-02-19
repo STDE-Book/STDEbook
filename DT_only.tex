@@ -23,11 +23,12 @@
 % see the list of further useful packages in the Reference Guide
 
 \usepackage{enumerate}
+
 \usepackage[mode=buildnew]{standalone}
+\usepackage{etoolbox}
 
 \usepackage{tikz,pgfplots}
 \usetikzlibrary{arrows.meta,quotes, positioning, calc}
-
 % Definición de estilos para los bloques
 \tikzset{
     block/.style = {draw, rectangle, minimum height=3em, minimum width=3em},
@@ -40,16 +41,16 @@
 
 % Some modifications
 \input{format.tex}
-
 % Macros for easier typing
 \input{main_definitions} 
-%
+
 
 \makeindex             % used for the subject index
                        % please use the style svind.ist with
                        % your makeindex program
 
-%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{document}
 
 \author{Jer\'onimo Arenas-Garc\'ia, Jes\'us Cid-Sueiro, Vanessa G\'omez-Verdejo, Miguel L\'azaro-Gredilla, and David Ram{\'\i}rez}
@@ -57,22 +58,12 @@
 \subtitle{Year 2021-22}
 \maketitle
 
-\frontmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frontmatter
 
-%\include{Contents/init/dedic}
-%\include{Contents/init/foreword}
-%\include{Contents/init/preface}
-%\include{Contents/init/acknow}
-
-%\pagestyle{empty}
-
-\tableofcontents
-%\include{Contents/init/acronym}
-\mainmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Chapter: Stochastic processes
-%\chapter{Stochastic Processes}
+\chapter{Stochastic Processes}
 %\include{Contents/stochastic_processes/MC0_IntroSP}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -80,44 +71,51 @@
 
 %\include{Contents/part0}
 \chapter{Statistical Estimation Theory}
-%\input{Contents/estimation/MC1}  % Input instead of include to avoid newpage after the title
-\include{Contents/estimation/MC2}
-\include{Contents/estimation/MC3}
-\include{Contents/estimation/MC4}
-\include{Contents/estimation/MC5}
-\include{Contents/estimation/MC6}
-\include{Contents/estimation/MC7_problems}
+
 
 %%%%%%%%%%%%%%%%%%%%
 % Chapter: Filtering
 \chapter{Linear Filtering}
 \label{cha:FiltradoLinea}
-\include{Contents/stochastic_processes/MC8_filtering}
+%\include{Contents/stochastic_processes/MC8_filtering}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Chapter: Spectral estimation
 \chapter{Spectral Estimation}
-\include{Contents/stochastic_processes/MC9_PSD}
-
+%\include{Contents/stochastic_processes/MC9_PSD}
 %\include{Contents/estimation/Labo_est}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Chapter: Detection theory
-\chapter{Statistical Detection Theory}
+\chapter{Statistical Decision Theory}
 \label{ch:SDT}
-\include{Contents/decision/M2}
+
+
+\tableofcontents
+%\include{Contents/init/acronym}
+\mainmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
 \include{Contents/decision/M3}
+%\includepdf[pages=-]{Contents/decision/LRT_Labo_Clas_problem}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Chapter: Sequential Detection
-\chapter{Sequential Detection}
-\label{sec:seq_det}
-\include{Contents/decision/M4}
-%\includepdf[pages=-]{Contents/decision/LRT_Labo_Clas_problem}
+%\chapter{Sequential Detection}
+%\label{sec:seq_det}
+%\include{Contents/decision/M4}
+
 
 % Appendix
 \include{Contents/probability/appendix}
 %\include{Contents/probability/chapter1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Introductory examples}
+\label{introB}
+\include{Contents/decision/M2}
 
 
 \backmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
