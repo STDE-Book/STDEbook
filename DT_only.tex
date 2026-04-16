@@ -37,25 +37,32 @@
     output/.style = {coordinate}
 }
 
+\usepackage{hyperref}
 \usepackage{capt-of}
+
+% This is to neutralize the \textcolor command
+% (command \usepackage[monochrome]{xcolor} does not work, likely because the cls file
+%  modifies it)
+\let\oldtextcolor\textcolor
+\renewcommand{\textcolor}[2]{#2}
+%\let\oldcolor\color
+%\renewcommand{\color}[2]{#2}
 
 % Some modifications
 \input{format.tex}
 % Macros for easier typing
 \input{main_definitions} 
 
-
-\makeindex             % used for the subject index
+%\makeindex             % used for the subject index
                        % please use the style svind.ist with
                        % your makeindex program
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{document}
 
 \author{Jer\'onimo Arenas-Garc\'ia, Jes\'us Cid-Sueiro, Vanessa G\'omez-Verdejo, Miguel L\'azaro-Gredilla, and David Ram{\'\i}rez}
 \title{Estimation and Detection Theory}
-\subtitle{Year 2021-22}
+\subtitle{Year 2024-25}
 \maketitle
 
 \frontmatter
@@ -64,42 +71,23 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Chapter: Stochastic processes
 \chapter{Stochastic Processes}
-%\include{Contents/stochastic_processes/MC0_IntroSP}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Chapter: Estimation theory
-
-%\include{Contents/part0}
 \chapter{Statistical Estimation Theory}
-
-
-%%%%%%%%%%%%%%%%%%%%
-% Chapter: Filtering
 \chapter{Linear Filtering}
 \label{cha:FiltradoLinea}
-%\include{Contents/stochastic_processes/MC8_filtering}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Chapter: Spectral estimation
 \chapter{Spectral Estimation}
-%\include{Contents/stochastic_processes/MC9_PSD}
-%\include{Contents/estimation/Labo_est}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Chapter: Detection theory
 \chapter{Statistical Decision Theory}
 \label{ch:SDT}
 
-
+\mainmatter
 \tableofcontents
 %\include{Contents/init/acronym}
 \mainmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-
-\include{Contents/decision/M3}
+\input{Contents/decision/M3}
 %\includepdf[pages=-]{Contents/decision/LRT_Labo_Clas_problem}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Chapter: Sequential Detection
@@ -107,16 +95,14 @@
 %\label{sec:seq_det}
 %\include{Contents/decision/M4}
 
-
 % Appendix
-\include{Contents/probability/appendix}
+% \include{Contents/probability/appendix}
 %\include{Contents/probability/chapter1}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Introductory examples}
-\label{introB}
-\include{Contents/decision/M2}
-
+% \chapter{Introductory examples}
+% \label{introB}
+% \include{Contents/decision/M2}
 
 \backmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\include{Contents/glossary}

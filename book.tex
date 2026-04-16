@@ -28,6 +28,8 @@
 \usepackage{tikz,pgfplots}
 \usetikzlibrary{arrows.meta,quotes, positioning, calc}
 
+\usepackage{minitoc}
+
 % Definición de estilos para los bloques
 \tikzset{
     block/.style = {draw, rectangle, minimum height=3em, minimum width=3em},
@@ -78,8 +80,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Chapter: Estimation theory
 
+\dominitoc
+
 %\include{Contents/part0}
 \chapter{Statistical Estimation Theory}
+\minitoc
 %\input{Contents/estimation/MC1}  % Input instead of include to avoid newpage after the title
 \include{Contents/estimation/MC2}
 \include{Contents/estimation/MC3}
@@ -91,12 +96,14 @@
 %%%%%%%%%%%%%%%%%%%%
 % Chapter: Filtering
 \chapter{Linear Filtering}
+\minitoc
 \label{cha:FiltradoLinea}
 \include{Contents/stochastic_processes/MC8_filtering}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Chapter: Spectral estimation
 \chapter{Spectral Estimation}
+\minitoc
 \include{Contents/stochastic_processes/MC9_PSD}
 
 %\include{Contents/estimation/Labo_est}
@@ -104,6 +111,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Chapter: Detection theory
 \chapter{Statistical Detection Theory}
+\minitoc
 \label{ch:SDT}
 \include{Contents/decision/M2}
 \include{Contents/decision/M3}

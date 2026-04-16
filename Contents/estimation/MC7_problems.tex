@@ -10,7 +10,7 @@
 The posterior distribution of $S$ given $X$ is 
 \[p_{S|X}(s|x) = x^2 \exp(-x^2 s), \qquad s\ge 0
 \]
-Compute estimators $\hat{S}_{\text{MMSE}}$, $\hat{S}_{\text{MAD}}$ y $\hat{S}_{\text{MAP}}$.
+Compute estimators $\hat{S}_{\text{MSE}}$, $\hat{S}_{\text{MAD}}$ y $\hat{S}_{\text{MAP}}$.
 
 \end{prob}
 %%%%%%%%%%
@@ -24,7 +24,7 @@ Consider an estimation problem given by the following posterior distribution:
 \begin{equation}
 p_{S|{X}}(s|{x}) = x \exp({-x s}),\;\; s>0
 \end{equation}
-Compute estimators $\hat{S}_{\text{MMSE}}$, $\hat{S}_{\text{MAD}}$ y $\hat{S}_{\text{MAP}}$.
+Compute estimators $\hat{S}_{\text{MSE}}$, $\hat{S}_{\text{MAD}}$ y $\hat{S}_{\text{MAP}}$.
 
 \end{prob}
 %%%%%%%%%%
@@ -36,10 +36,10 @@ Compute estimators $\hat{S}_{\text{MMSE}}$, $\hat{S}_{\text{MAD}}$ y $\hat{S}_{\
 
 A r.v. $S$ must be estimated from the observation of another r.v. $X$ by means of a linear mean square error estimator given by:
 \[\hat S_{\text{LMSE}} = w_0 + w_1 X \]
-Knowing that $\mathbb E \lbrace X \rbrace= 1$, $\mathbb E \lbrace S \rbrace= 0$, $\mathbb E \lbrace X^2 \rbrace= 2$, $\mathbb E \lbrace S^2 \rbrace= 1$ y $\mathbb E \lbrace SX \rbrace= 1/2$, compute:
+Knowing that $\EE \lbrace X \rbrace= 1$, $\EE \lbrace S \rbrace= 0$, $\EE \lbrace X^2 \rbrace= 2$, $\EE \lbrace S^2 \rbrace= 1$ y $\EE \lbrace SX \rbrace= 1/2$, compute:
 \begin{enumerate}[a)]
 \item The values for $w_0$ y $w_1$.
-\item The mean square error of the estimator, $\mathbb E \left\lbrace  \left( S-\hat S_{\text{LMSE}}\right)^2 \right\rbrace$.
+\item The mean square error of the estimator, $\EE \left\lbrace  \left( S-\hat S_{\text{LMSE}}\right)^2 \right\rbrace$.
 \end{enumerate}
 
 \end{prob}
@@ -65,8 +65,8 @@ Let $X$ and $S$ be two random variables with joint pdf
 p_{X,S}(x,s) \left \{ \begin{array}{ll} 2 & 0<x<1, 0<s<x\\ 0 & \mbox{resto} \end{array} \right.
 \]
 \begin{enumerate}[a)]
-\item Compute the minimum mean square error estimate of $S$ given $X$, $\hat S_{\text{MMSE}}$.
-\item Compute the risk of estimator $\hat S_\text{MMSE}$.
+\item Compute the minimum mean square error estimate of $S$ given $X$, $\hat S_{\text{MSE}}$.
+\item Compute the risk of estimator $\hat S_\text{MSE}$.
 \end{enumerate}
 
 \end{prob}
@@ -107,17 +107,17 @@ $$
 
 Company {\em Like2Call} offers hosting services for call centers. In order to dimension the staff of operators the company is designing a statistical model to characterize the activity in the hosted call centers. One of the components of such a model relies on the well-known fact that the times between incoming calls follow an exponential distribution
 $$p_{X|S}(x|s) = s \; \exp(-s\; x), \qquad x>0$$
-where random variable $X$ represents the time before a new call arrives, and $S$ is the parameter of such distribution, that depends on the time of the day and each particular call-center service (e.g., attention to the clients of an insurance company, customers of an online bank, etc). 
+where random variable $X$ represents the time before a new call arrives, and $S$ is \textcolor{blue}{a parameter} that depends on the time of the day and each particular call-center service (e.g., attention to the clients of an insurance company, customers of an online bank, etc). 
 
 For random variable $S$, the following {\em a priori} model is assumed:
 $$p_S(s) = \exp(-s), \qquad s>0.$$
 
-With this information, we would like to design an estimator of S that is based on the first $K$ incoming calls for each implemented service and time interval, i.e., the observation vector is given by ${\bf x} = \left[x^{(0)}, x^{(1)}, \cdots, x^{(K-1)}\right]$, where all observations in the vector are assumed i.i.d.
+With this information, we would like to design an estimator of S that is based on the first $K$ incoming calls for each implemented service and time interval, i.e., \textcolor{blue}{represented by a vector of i.i.d. observations} ${\bf X} = \left[X_0, X_1, \cdots, X_{K-1}\right]$,.
 
 \begin{enumerate}[a)]
-    \item Obtain the maximum likelihood estimator or $S$ based on the observation vector $\bf X$ and verify that it depends just on the sum of all observations, $z=\sum_{k=0}^{K-1} x^{(k)}$.
+    \item Obtain the maximum likelihood estimator or $S$ based on the observation vector $\bf X$ and verify that it depends just on the sum of all observations, $z=\sum_{k=0}^{K-1} x_k$.
     
-    \item Calculate the posterior distribution of $S$ given $\bf X$, $p_{S|{\bf X}}(s|{\bf x})$.
+    \item Compute the posterior distribution of $S$ given $\bf X$, $p_{S|{\bf X}}(s|{\bf x})$.
     
     \item Obtain the maximum {\em a posteriori} estimator of $S$ given $\bf X$, ${\hat s}_\text{MAP}$.
     
@@ -125,7 +125,7 @@ With this information, we would like to design an estimator of S that is based o
     
     \item Calculate the mean square error given ${\bf X}$ of a generic estimator $\hat S$, and particularize the result for estimators of the following analytical shape $\hat{s}_c = \frac{c}{z+1}$.
 
-    \item Find expressions for the following probability density functions: $p_{Z|S}(z|s)$, $p_{Z,S}(z,s)$, and $p_{Z}(z)$.
+    \item Find expressions for $p_{Z|S}(z|s)$, $p_{Z,S}(z,s)$, and $p_{Z}(z)$.
     
     \item Calculate the mean square error of a generic estimator $\hat{s}_c = \frac{c}{z+1}$. Study how the result changes with $c$ and $K$.
     
@@ -148,29 +148,35 @@ You can use the following results:
 %%%%%%%%%%
 
 
-\begin{solution}
-~
+\begin{solution}[\textcolor{blue}{Solution to problem 2.8}]
+
 \begin{enumerate}[a)]
-    \item 
-    \begin{align}
-    & p_{{\bf X}|S}({\bf x}|s) = s^K \; \exp(-s\; z), \qquad z>0 \nonumber\\
-    & \ln{p_{{\bf X}|S}({\bf x}|s)} = K \ln{s} - s\; z \nonumber\\ 
-    & \frac{d}{ds} \ln{p_{{\bf X}|S}({\bf x}|s)} = \frac{K}{s} - z \nonumber\\
-    & {\hat s}_\text{ML} = \frac{K}{z} \nonumber
-    \end{align}
+\item Since $p_{{\bf X}|S}({\bf x}|s) = s^K \; \exp(-s\; z)$, with $z>0$, we have $\ln{p_{{\bf X}|S}({\bf x}|s)} = K \ln{s} - s\; z$ and, thus,
+\begin{align*}
+\frac{d}{ds} \ln{p_{{\bf X}|S}({\bf x}|s)} = \frac{K}{s} - z
+\end{align*}
+Therefore,
+\begin{align*}
+\hat{s}_\text{ML} = \frac{K}{z}
+\end{align*}
 
-    \item
-    \begin{align}
-        & p_{{\bf X},S}({\bf x},s) = p_{{\bf X}|S}({\bf x}|s) p_S(s) = s^K \; \exp[-s(z+1)] \nonumber \\
-        & \text{(note the expression above is not the joint pdf of $Z$ and $S$)} \nonumber \\
-        & p_{\bf X}({\bf x}) = \int p_{{\bf X},S}({\bf x},s)\; ds = \int_0^\infty s^K \; \exp[-s(z+1)]\;ds \nonumber
-    \end{align}
-    With the change of variable $s' = s(z+1)$ the previous integral can be simplified using expression (i), and we get
-    \begin{align}
-        & p_{S|{\bf X}}(s|{\bf x}) = \displaystyle\frac{p_{{\bf X},S}({\bf x},s)}{p_{\bf X}({\bf x})} = \displaystyle\frac{(z+1)^{K+1}\;p_{{\bf X},S}({\bf x},s)}{K !} = \displaystyle\frac{s^K(z+1)^{K+1}\; \exp[-s(z+1)]}{K !} \nonumber
-    \end{align}
+\item The joint distribution of $S$ and $X$ is
+\begin{align*}
+p_{{\bf X},S}({\bf x},s) = p_{{\bf X}|S}({\bf x}|s) p_S(s) = s^K \; \exp[-s(z+1)]
+\end{align*}
+therefore
+\begin{align*}
+p_{\bf X}({\bf x}) = \int p_{{\bf X},S}({\bf x},s)\; ds = \int_0^\infty s^K \; \exp[-s(z+1)]\;ds 
+\end{align*}
+With the change of variable $s' = s(z+1)$ the integral can be simplified using expression (i), and we get
+\begin{align*}
+p_{S|{\bf X}}(s|{\bf x}) 
+	= \frac{p_{{\bf X},S}({\bf x},s)}{p_{\bf X}({\bf x})} 
+	= \frac{(z+1)^{K+1}\;p_{{\bf X},S}({\bf x},s)}{K !} 
+	= \frac{s^K(z+1)^{K+1}\; \exp[-s(z+1)]}{K !}
+\end{align*}
 
-    \item
+\item The MAP estimate is
     \begin{align}
         & {\hat s}_\text{MAP} = \arg\max_s p_{S|{\bf X}}(s|{\bf x}) = \arg\max_s p_{{\bf X},S}({\bf x},s) \nonumber \\
         & \ln{p_{{\bf X},S}({\bf x},s)} = K \ln{s} - s\;(z+1) \nonumber \\
@@ -178,7 +184,7 @@ You can use the following results:
     & {\hat s}_\text{MAP} = \frac{K}{z+1} \nonumber
     \end{align}
     
-    \item
+\item The minimum MSE estimate is
     \begin{align}
         \hat{s}_\text{MSE} = & \mathbb{E}\left\{ S | {\bf x}\right\} = \int s\; p_{S|{\bf X}}(s|{\bf x})\; ds = \displaystyle\frac{(z+1)^{K+1}}{K!} \int_{0}^{\infty} s^{K+1} \; \exp[-s(z+1)]\; ds \nonumber
     \end{align}
@@ -209,7 +215,7 @@ You can use the following results:
     \item
     $$\mathbb{E}\left\{ (S-\hat{S}_c)^2\right\} = \int \mathbb{E}\left\{ (S-\hat{s}_c)^2|z\right\} \; p_Z(z) dz$$
     
-    Using the results from the previous two sections we can obtain an expression that depends on the value of an integral over $z$:
+    Using the results from the previous two sections we can obtain
     
     $$\mathbb{E}\left\{ (S-\hat{S}_c)^2\right\} = \left[(K+2)(K+1) + c^2 - 2 c(K+1)\right] \int_0^\infty \frac{K\;z^{K-1}}{(z+1)^{K+3}} dz$$
     

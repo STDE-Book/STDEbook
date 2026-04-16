@@ -58,3 +58,74 @@ which is the sample variance. Note that, if instead of applying the estimation f
 
 \end{example}\vspace{0.4cm}
 %%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Some key results on Estimation Theory}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\textcolor{blue}{In estimation theory, an estimator should ideally satisfy certain desirable properties to ensure its reliability and optimality. This section introduces three fundamental concepts: \textit{consistency}, the \textit{Cramér-Rao lower bound}, and \textit{efficiency}.}
+
+\textcolor{blue}{Throughout this section, we assume that the parameter $S$ is \textbf{deterministic} (frequentist setting), meaning it is an unknown but fixed quantity that does not vary across different samples.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Consistency}
+
+\textcolor{blue}{An estimator is consistent if it converges to the true parameter as the sample size increases. This property ensures that, with enough data, the estimator provides an accurate estimate.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{definition}[Mean Square Consistency]
+An estimator $\hat{S}_n$ of a target variable $S$, based on a set on $n$ i.i.d. observational variables $X_0,\ldots, X_{n-1}$  is \textbf{mean square consistent} (or, simply, consistent) if
+\begin{equation}
+\lim_{n \to \infty} \EE\{(\hat{S}_n - S)^2 | S=s\} = 0.
+\end{equation}
+\end{definition}}
+%%%%%%%%%%%%%%%%
+
+\textcolor{blue}{Using the bias-variance decomposition in \eqref{eq:biasvar}, we can conclude that mean square consistency is equivalent to require the variance to vanish as $n \to \infty$, and the estimator to be asymptotically unbiased, that is:
+\begin{align}
+& \lim_{n \to \infty} \text{var}\{\hat{S}_n|S=s\}  = 0,   \\
+& \lim_{n \to \infty} \text{bias}\{\hat{S}_n|S=s\} = 0.
+\end{align}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Cramér-Rao Lower Bound}
+
+\textcolor{blue}{The Cramér-Rao lower bound (CRLB) provides a fundamental limit on the variance of any unbiased estimator, establishing the best possible precision an estimator can achieve.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{theorem}[Cramér-Rao Lower Bound]
+Let $\hat{S}$ be an unbiased estimator of a parameter $S$ based on a sample $X_0, X_1, \dots, X_{n-1}$ with likelihood function $p_{X|S}(x|s)$. The conditional variance of any unbiased estimator satisfies:
+\begin{equation}
+\text{var}\{\hat{S}|S=s\} \geq \frac{1}{I(s)},
+\end{equation}
+where $I(s)$ is the \textbf{Fisher information}, given by:
+\begin{equation}
+I(s) = \EE \left\{ \left( \frac{\partial}{\partial s} \log p_{X|S}(x|s) \right)^2 \right\}.
+\end{equation}
+\end{theorem}
+%%%%%%%%%%%%%
+This result establishes a theoretical lower bound on the variance of an unbiased estimator, providing a benchmark for evaluating estimator performance.}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Efficiency}
+
+\textcolor{blue}{An estimator is efficient if it attains the Cramér-Rao lower bound, meaning it achieves the minimum possible variance among all unbiased estimators.
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{definition}[Efficiency]
+An unbiased estimator $\hat{S}$ of $S$ is said to be \textbf{efficient} if it attains the Cramér-Rao lower bound:
+\begin{equation}
+\text{var}\{\hat{S}|S=s\} = \frac{1}{I(s)}.
+\end{equation}
+An estimator is \textbf{asymptotically efficient} if its variance asymptotically approaches the CRLB, i.e.,
+\begin{equation}
+\lim_{n \to \infty} n \cdot \text{Var}(\hat{S}_n) = \frac{1}{I(S)}.
+\end{equation}
+\end{definition}
+%%%%%%%%%%%%%%%%%%%%%%%
+Efficiency is a desirable property since it ensures that an estimator makes optimal use of the available information, achieving the lowest possible variance.
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{theorem}[Asymptotic Efficiency of Maximum Likelihood Estimation]
+Let \( \hat{S}_{\text{ML}} \) be the maximum likelihood estimator of a deterministic parameter \( S \), based on an i.i.d. sample \( X_1, X_2, \dots, X_n \) with likelihood function $p_{X|S}(x|s)$. Under regularity\footnote{The regularity conditions are assumptions that ensure the MLE behaves well as the sample size increases. This refers to some conditions on the differentiability of the log-likelihood function, and others.} conditions, the maximum likelihood estimate is asymptotically efficient.
+\end{theorem}
+%%%%%%%%%%%%%%%%%%%%%%%
+}

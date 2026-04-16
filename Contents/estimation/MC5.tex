@@ -9,17 +9,15 @@ When the joint distribution $p_{S,{\bf X}} (s, {\bf x})$ is Gaussian, all margin
 Besides, we will demonstrate that the minimum MSE estimator and, consequently, the MAP and MAD estimators are linear, which will allow us to use the results shown in the previous section for minimum MSE estimation.
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{One dimensional case}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{One dimensional variables}
 
-We will consider as a starting point a case with one-dimensional random variables with zero means, in which the joint distribution of $X$ and $S$ has the following form:
+\textcolor{blue}{Assume that the joint} distribution of $X$ and $S$ is Gaussian:
 \begin{equation}
 p_{S,X}(s,x) \sim G\left(\begin{bmatrix} s \\ x \end{bmatrix},
                          \begin{bmatrix} v_X & \rho \\ \rho & v_S \end{bmatrix}\right)
 \end{equation}
-where $\rho$ is the covariance between the two random variables.
-
-From this joint distribution, we can obtain any other distribution involving the variables $S$ and $X$; specifically, the posterior distribution can be obtained as:
+where $\rho$ is the covariance between the two random variables. From the joint distribution, we can obtain any other distribution involving the variables $S$ and $X$; specifically, the posterior distribution can be obtained as:
 \begin{align}
 \label{Est_psxgauss}
 p_{S|X}(s|x) 
@@ -33,7 +31,7 @@ p_{S|X}(s|x)
 \end{align}
 where it has been necessary to calculate the inverse of the covariance matrix of $S$ and $X$. 
 
-{Noting that, as a function of $s$, $p_{S|X}(s|x)$ differs from $p_{S,X}(s,x)$ in the scale factor $p_X(x)$, which does not depend on $s$,  $p_{S|X}(s|x)$ should be a Gaussian pdf too. Therefore, it must be expressed as
+{Noting that, as a function of $s$, $p_{S|X}(s|x)$ differs from $p_{S,X}(s,x)$ in the scale factor $p_X(x)$, which does not depend on $s$,  $p_{S|X}(s|x)$ should be a Gaussian pdf too. Therefore, it must be writable as
 \begin{align}
 \label{Est_postsxgauss}
 p_{S|X}(s|x) = \frac{1}{\sqrt{2\pi v_{S|X}}} \exp\left[ -\frac{(s - m_{S|X})^2}{2 v_{S|X}}\right] 
@@ -138,8 +136,8 @@ This result can be interpreted quite intuitively: when the variance of the noise
 %%%%%%%%%%%%%
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Case with multidimensional variables}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Multidimensional variables}
 
 {In a general multidimensional case, ${\bf S}$ and ${\bf X}$ can be random vectors of dimensions $N$ and $M$, respectively, with joint Gaussian distribution.
 \begin{equation}

@@ -230,7 +230,7 @@ From previous chapter, we know that if $p_{{\bf S},{\bf X}}(\s,\x) $ is Gaussian
        - \sigma_s^2\UU 
          \left(\UU^\top \UU + \tfrac{\sigma_\varepsilon^2}{\sigma_s^2}\eye\right)^{-1} \UU^\top   
 \end{align}
-The above expressions involve the computation of the inverse of an $N\times N$ matrix, which may be not feasible for large signal records (the computational cost is $\bigO (N^3)$. However, using the {\em matrix inversion lemma} (see the Appendix in Sec. \ref{Sec:mil}), we can obtain the following alternative expressions:
+The above expressions involve the computation of the inverse of an $N\times N$ matrix, which may be not feasible for large signal records (the computational cost is $\bigO (N^3)$. However, using the {\em matrix inversion lemma} (see the Appendix in Sec. \ref{Sec:mil}), we can obtain the alternative expressions
 \begin{framed}\begin{align}
 \label{Filt:sMMSEgaussMN2}
 {\bf m}_{{\bf S}|{\bf X}} &= \PP \UU \x         \\
@@ -321,9 +321,6 @@ Eq. \eqref{Filt:xpred} shows that the optimal prediction of the output at any ti
 \caption{The best prediction of future values of the output (knowing the input) can be computed by passing the input signal through a filter with the coefficients of the Bayesian estimation of $\s$.}
 \label{fig:linear_filter2}
 \end{figure}
-
-
-
 
 % Para ello, calculamos
 %\begin{align*}
@@ -428,7 +425,7 @@ $$
 \section{Appendix: the matrix inversion lemma}
 \label{Sec:mil}
 
-In this section we apply the matrix inversion lemma (also known as the Woodbury matrix identity) to obtain expression. This lemma states that, for any matrices ${\bf U}$, ${\bf C}$, ${bf V}$ and any non-singular matrix ${\bf A}$, 
+In this section we apply the matrix inversion lemma (also known as the Woodbury matrix identity) to obtain Eqs. \eqref{Filt:sMMSEgaussMN2}. This lemma states that, for any matrices ${\bf U}$, ${\bf C}$, ${\bf V}$ and any non-singular matrix ${\bf A}$, 
 \begin{align}
 \left({\bf A} + {\bf V}{\bf C}{\bf U} \right)^{-1}
     = {\bf A}^{-1} 

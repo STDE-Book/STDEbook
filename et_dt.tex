@@ -1,0 +1,125 @@
+\documentclass[graybox,envcountchap,sectrefs]{svmono_mod}
+%\documentclass[envcountsame,envcountchap]{svmono}
+% choose options for [] as required from the list in the Reference Guide
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathptmx}
+\usepackage{helvet}
+\usepackage{courier}
+%
+\usepackage{type1cm}         
+\usepackage{makeidx}         % allows index generation
+\usepackage{graphicx}        % standard LaTeX graphics tool
+                             % when including figure files
+\graphicspath{{Figures/}}
+\usepackage{multicol}        % used for the two-column index
+\usepackage[bottom]{footmisc}% places footnotes at page bottom
+\usepackage{array,booktabs,calc}
+
+\usepackage{listings}
+\usepackage[final]{pdfpages}
+% see the list of further useful packages in the Reference Guide
+
+\usepackage{enumerate}
+\usepackage{tikz,pgfplots}
+\usetikzlibrary{arrows.meta,quotes}
+\usepackage[mode=buildnew]{standalone}
+
+\usepackage{bbold}
+\usepackage{bm}
+\usepackage{hyperref}
+\usepackage{capt-of}
+
+% To insert a table of contents at the begining of each chapter
+\usepackage{etoc}
+
+% This is to neutralize the \textcolor command
+% (command \usepackage[monochrome]{xcolor} does not work, likely because the cls file
+%  modifies it)
+\let\oldtextcolor\textcolor
+\renewcommand{\textcolor}[2]{#2}
+%\let\oldcolor\color
+%\renewcommand{\color}[2]{#2}
+
+% Some modifications
+\input{format.tex}
+
+
+% Macros for easier typing
+\input{main_definitions} 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\author{Jer\'onimo Arenas-Garc\'ia, Jes\'us Cid-Sueiro, Vanessa G\'omez-Verdejo}
+\title{Estimation Theory}
+\subtitle{Year 2021-22}
+% \maketitle
+
+\frontmatter
+
+\mainmatter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Statistical Estimation Theory}
+%\input{Contents/estimation/MC1}  % Input instead of include to avoid newpage after the title
+
+\localtableofcontents
+\newpage
+\input{Contents/estimation/MC2}
+\input{Contents/estimation/MC3}
+\input{Contents/estimation/MC4}
+\input{Contents/estimation/MC5}
+\input{Contents/estimation/MC6}
+\input{Contents/estimation/MC7_problems}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Chapter: Detection theory
+\chapter{Statistical Decision Theory}
+\label{ch:SDT}
+
+\localtableofcontents
+%\newpage
+\input{Contents/decision/M3}
+%\includepdf[pages=-]{Contents/decision/LRT_Labo_Clas_problem}
+
+\backmatter
+\printindex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+
+\end{thebibliography}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

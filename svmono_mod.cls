@@ -1468,8 +1468,14 @@ to\z@{\kern0.55\wd0\vrule\@height0.45\ht0\hss}\box0}}}}
 \spn@wtheorem{property}{Property}{\itshape}{\rmfamily}
 \spn@wtheorem{proposition}{Proposition}{\bfseries}{\itshape}
 \spn@wtheorem{question}{Question}{\itshape}{\rmfamily}
-\spn@wtheorem{solution}{Solution}{\bfseries}{\rmfamily}
 \spn@wtheorem{remark}{Remark}{\itshape}{\rmfamily}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definitions, redefined by JCS
+\spn@wtheorem{solution}{Solution}{\bfseries}{\rmfamily\small}
+% OLD VERSION:
+% \spn@wtheorem{solution}{Solution}{\bfseries\small}{\rmfamily}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

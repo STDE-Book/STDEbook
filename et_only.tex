@@ -35,11 +35,14 @@
 % This is to neutralize the \textcolor command
 % (command \usepackage[monochrome]{xcolor} does not work, likely because the cls file
 %  modifies it)
-%\let\oldtextcolor\textcolor
-%\renewcommand{\textcolor}[2]{#2}
+\let\oldtextcolor\textcolor
+\renewcommand{\textcolor}[2]{#2}
+%\let\oldcolor\color
+%\renewcommand{\color}[2]{#2}
 
 % Some modifications
 \input{format.tex}
+
 
 % Macros for easier typing
 \input{main_definitions} 
@@ -55,7 +58,7 @@
 
 \frontmatter
 
-\chapter{Stochastic processes}
+%\chapter{Stochastic processes}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Statistical Estimation Theory}
@@ -63,12 +66,13 @@
 \mainmatter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \tableofcontents
 
-\include{Contents/estimation/MC2}
-\include{Contents/estimation/MC3}
-\include{Contents/estimation/MC4}
-\include{Contents/estimation/MC5}
-\include{Contents/estimation/MC6}
-\include{Contents/estimation/MC7_problems}
+\newpage
+\input{Contents/estimation/MC2}
+\input{Contents/estimation/MC3}
+\input{Contents/estimation/MC4}
+\input{Contents/estimation/MC5}
+\input{Contents/estimation/MC6}
+\input{Contents/estimation/MC7_problems}
 
 \backmatter
 \printindex

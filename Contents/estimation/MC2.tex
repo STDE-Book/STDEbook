@@ -10,14 +10,13 @@ Estimation theory plays a central role in many data science applications by prov
 \subsection{The estimation problem}
 \label{subsec:hypotheses_problems}
 
-{\color{blue} In its most general form, the estimation problem consists of designing a function, known as an \textit{estimator}, that maps an input vector of observations to an estimate of a target variable. This target may represent an unknown physical quantity, a model parameter, or a latent variable in a probabilistic model.
+\textcolor{blue}{In its most general form, the estimation problem consists of designing a function, known as an \textit{estimator}, that maps an input vector of observations to an estimate of a target variable. This target may represent an unknown physical quantity, a model parameter, or a latent variable in a probabilistic model.}
 
-Mathematically, we denote the observed data as a random vector $\mathbf{X}$, drawn from some observation space $\mathcal{X}$, and the target variable to be estimated as $S$. We will generally assume that the target variable is a scalar, although we will analyze some multidimensional scenarios.\footnote{Note that we use capital letters to model the random variables, and we will use lowercase letters to denote an arbitrary realization of them.} 
+\textcolor{blue}{Mathematically, we denote the observed data as a random vector $\mathbf{X}$, drawn from some observation space $\mathcal{X}$, and the target variable to be estimated as $S$. We will generally assume that the target variable is a scalar, although we will analyze some multidimensional scenarios.\footnote{Note that we use capital letters to model the random variables, and we will use lowercase letters to denote an arbitrary realization of them.} }
 
-The goal of estimation is to construct a function $f: \mathcal{X} \to \mathbb{R}$, called the \textit{estimator}, that produces an estimate $\hat{S} = f(\mathbf{X})$ of the unknown $S$, named the \textit{estimation} or \textit{prediction}. The estimator is a deterministic function, meaning that for a given input $\mathbf{x}$, it will consistently produce the same output. However, when the input $\mathbf{X}$ is random vector, the prediction $\hat{S}$ is also a random variable.
+\textcolor{blue}{The goal of estimation is to construct a function $f: \mathcal{X} \to \mathbb{R}$, called the \textit{estimator}, that produces an estimate $\hat{S} = f(\mathbf{X})$ of the unknown $S$, named the \textit{estimation} or \textit{prediction}. The estimator is a deterministic function, meaning that for a given input $\mathbf{x}$, it will consistently produce the same output. However, when the input $\mathbf{X}$ is random vector, the prediction $\hat{S}$ is also a random variable.}
 
-Figure \ref{fig:est_overview} provides a schematic representation of the estimation problem
-
+\textcolor{blue}{Figure \ref{fig:est_overview} provides a schematic representation of the estimation problem}
 \begin{figure}
 \begin{center}
 \includegraphics[width=10cm]{Figures//estimation_overview.png}
@@ -25,9 +24,7 @@ Figure \ref{fig:est_overview} provides a schematic representation of the estimat
 \caption{Diagram block of estimation problems.\label{fig:est_overview}}
 \end{figure}
 
-The estimator's performance is evaluated by how well $\hat{S}$ approximates $S$, typically using a predefined cost function that quantifies the estimation error. A well-designed estimator seeks to minimize the expected value of this cost.
-
-There are two primary tasks in estimation problems:
+\textcolor{blue}{The estimator's performance is evaluated by how well $\hat{S}$ approximates $S$, typically using a predefined cost function (or, alternatively, a reward function) that quantifies the estimation error. A well-designed estimator seeks to minimize the expected cost (or to maximize the expected reward). There are two primary tasks in estimation problems:
 \begin{itemize}
 \item Analysis: given an estimator, assess its performance based on statistical criteria.
 \item Design: find an estimator $f()$ that optimizes a predefined performance goal.
@@ -38,9 +35,7 @@ There are two primary tasks in estimation problems:
 \subsection{\textcolor{blue}{Probability model}}
 \label{subsec:statistical_info}
 
-The statistical relation between the observations and the target variable is described by the {\bf joint} probability density function (pdf) of ${\bf X}$ and $S$: $p_{{\bf X},S}({\bf x},s)$, or some distribution related to it. 
-
-The joint pdf can be factorized as \textcolor{blue}{a product} of conditional and marginal pdfs:
+The statistical relation between the observations and the target variable is described by the {\bf joint} probability density function (pdf), $p_{{\bf X},S}({\bf x},s)$, or some distribution related to it. The joint pdf can be factorized as \textcolor{blue}{a product} of conditional and marginal pdfs:
 \begin{align}
 p_{{\bf X},S}({\bf x},s) = p_{{\bf X}| S}({\bf x}| s) \cdot p_S(s) 
                          = p_{S|{\bf X}}(s|{\bf x}) \cdot p_{\bf X}({\bf x}) 
@@ -82,11 +77,11 @@ A cost function $c(s,\hat s)$ is any measure of the discrepancy between the targ
 
 Since the target variable is unknown, the prediction cannot be computed by directly minimizing the cost $c(s, \hat s)$, and we have to work with expectations. The expected value of the cost is usually referred as the {\bf risk} of an estimator $\hat{s}=f({\bf x})$:
 \begin{align}
-\label{Est:coste_medio_gen}
+\label{Est:risk_def}
 R_f = \EE\{c(S,\hat S)\} 
     & = \int_{\bf x} \int_s c(s,f({\bf x})) p_{S,{\bf X}}(s,{\bf x}) ds d{\bf x}
 \end{align}
-By the Law of Large Numbers, this is the average cost we can expect from a given estimator, after a large number of predictions.
+By the \textit{Law of Large Numbers}, this is the average cost we can expect from a given estimator, after a large number of predictions.
 
 The {\bf conditional risk} is the conditional mean for a given observation
 \begin{align}
@@ -169,13 +164,12 @@ The \textit{conditional bias} of an estimator $\hat{S}$ given that $S = s$ is de
 
 The conditional bias quantifies the expected deviation of the estimate from the true value of the target variable, $s$. 
 
-The conditional \textbf{mean squared error (MSE)} of an estimator can be decomposed into its bias and variance components.
-
 %%%%%%%%%%%%%%%%%%
 \begin{theorem}[Bias-Variance decomposition]
-For any estimator, $\hat{S}$ of random variable $S$, the conditional mean square error is
+For any estimator, $\hat{S}$ of random variable $S$, the conditional mean square error can be decomposed as
 \begin{align}
 \EE\{(\hat{S}-S)^2|S=s\} = {\rm bias}^2\{\hat{S} | S=s\} + {\rm var}\{\hat{S} | S=s\}
+\label{eq:biasvar}
 \end{align}
 \end{theorem}
 %%%%%%%%%%%%%
@@ -191,13 +185,12 @@ Since, for any random variable, $V$, $\EE\{V^2\} = \EE\{V\}^2 + {\rm var}\{V\}$,
 \end{align}
 \end{proof}
 
-This decomposition highlights the bias-variance tradeoff:
+The bias-variance decomposition highlights a major tradeoff in estimation:
 \begin{itemize}
 \item Low-bias estimators tend to have high variance, leading to unstable predictions.
 \item Low-variance estimators may introduce \textbf{bias} to improve stability.
 \end{itemize}
-
-
+y
 Note that, in the above expressions, the bias, variance and mean square error are conditioned over a specific value of the target variable. We can extend these definitions to measures defined from unconditional means:
 
 %%%%%%%%%%%%%%%%%%
