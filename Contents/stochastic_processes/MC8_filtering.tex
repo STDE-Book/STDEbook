@@ -5,7 +5,7 @@
 %%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
-A common challenge in estimation involves determining the coefficients of a linear filter with $M$ coefficients based solely on the observation of its inputs and outputs. This task, along with related ones, falls under the generic term 'linear filtering.' In this chapter, we will demonstrate how the techniques described in Chapter \ref{Estimation Theory} can be applied to design ML, MAP, MAD and MMSE estimators for the coefficients of the aforementioned filter. This will also include the estimation of future filter outputs, provided that the corresponding inputs are known.
+A common challenge in estimation involves determining the coefficients of a linear filter with $M$ coefficients based solely on the observation of its inputs and outputs. This task, along with related ones, falls under the generic term 'linear filtering.' In this chapter, we will demonstrate how the techniques described in Chapter \ref{ch:ET} can be applied to design ML, MAP, MAD and MMSE estimators for the coefficients of the aforementioned filter. This will also include the estimation of future filter outputs, provided that the corresponding inputs are known.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The filtering problem}
@@ -40,7 +40,7 @@ For simplicity, we will assume that the input signal starts at $n=0$, that is, $
 
 The filtering problem consists in estimating the filter $s[n]$ from the input signal and a finite set of $N$ samples from the output, $x[0],\ldots, x[N-1]$. Also, we will tackle the output prediction problem: predicting unobserved values of the output for a given input signal $u[n]$.
 
-Our goal is to solve the filtering problem using the tools from estimation theory developed in Chapter \ref{Estimation Theory}. To do so, we will first represent the target variables (the filter coefficients) and the observations (the output signal) in vector form, and the relation between them using a vector equation. Thus, we will join the nonzero coefficients in an $M$-dimensional vector
+Our goal is to solve the filtering problem using the tools from estimation theory developed in Chapter \ref{ch:ET}. To do so, we will first represent the target variables (the filter coefficients) and the observations (the output signal) in vector form, and the relation between them using a vector equation. Thus, we will join the nonzero coefficients in an $M$-dimensional vector
 \begin{align}
 \s &= \begin{bmatrix}
 		s[0] \\ s[1] \\ \vdots \\ s[M-1]
@@ -87,12 +87,10 @@ and the noise vector
                   \end{bmatrix}_{N\times 1},
 \end{align}
 Using \eqref{f:defx}, \eqref{f:defU} \eqref{f:defeps}, we can write the signal model \eqref{eq:signal_model} as
-\begin{framed}
 \begin{equation}
 \label{eq:signal_model_vec}
-\x =\UU^\top \s + \pmb{\epsilon}
+\boxed{\x =\UU^\top \s + \pmb{\epsilon}}
 \end{equation}
-\end{framed}
 
 The filtering problem reduces to the problem of estimating $\s$ given $\x$ knowing \eqref{eq:signal_model_vec} and the noise statistics.
 
@@ -155,12 +153,10 @@ The value of $\s$ that maximizes $p(\x | \s)$ is
 \end{align}
 
 This minimum can be easily obtained by taking the gradient with respect to $\s$, equalizing to zero and clearing, leading to
-\begin{framed}
 \begin{align}
-\hat\s_\text{ML} &= (\UU \UU^\top)^{-1} \UU\x.
+\boxed{\sML = (\UU \UU^\top)^{-1} \UU\x.}
 \label{sml}
 \end{align}
-\end{framed}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Bayesian Solution}
@@ -231,28 +227,25 @@ From previous chapter, we know that if $p_{{\bf S},{\bf X}}(\s,\x) $ is Gaussian
          \left(\UU^\top \UU + \tfrac{\sigma_\varepsilon^2}{\sigma_s^2}\eye\right)^{-1} \UU^\top   
 \end{align}
 The above expressions involve the computation of the inverse of an $N\times N$ matrix, which may be not feasible for large signal records (the computational cost is $\bigO (N^3)$. However, using the {\em matrix inversion lemma} (see the Appendix in Sec. \ref{Sec:mil}), we can obtain the alternative expressions
-\begin{framed}\begin{align}
+\begin{framed}
+\begin{align}
 \label{Filt:sMMSEgaussMN2}
 {\bf m}_{{\bf S}|{\bf X}} &= \PP \UU \x         \\
 {\bf V}_{{\bf S}|{\bf X}} &= \sigma_\varepsilon^2 \PP   
 \end{align}\end{framed}
 where
-\begin{framed}
 \begin{equation}
 \label{Filt:Pdef}
-\PP = (\UU\UU^\top  + \tfrac{\sigma_\varepsilon^2}{\sigma_s^2}\eye)^{-1}.
+\boxed{\PP = (\UU\UU^\top  + \tfrac{\sigma_\varepsilon^2}{\sigma_s^2}\eye)^{-1}.}
 \end{equation}
-\end{framed}
 
 Eq. \eqref{Filt:Pdef} involves the inversion of a matrix $M \times M$, which is usually much smaller than $N\times N$. 
 
 Using these expressions, the MMSE, MAP and MAD estimates of $\s$ are:
-\begin{framed}
 \begin{equation}
-\hat\s_\text{MSE} =\hat\s_\text{MAP} =\hat\s_\text{MAD} = \PP  \UU \x
+\boxed{\hat\s_\text{MSE} =\hat\s_\text{MAP} =\hat\s_\text{MAD} = \PP  \UU \x}
 \label{smmse}
 \end{equation}
-\end{framed}
 
 Also, note that taking $\sigma_\varepsilon^2\rightarrow 0$ (negligible noise) and/or $\sigma_s^2\rightarrow\infty$ (which can be interpreted as assuming an infinitely wide uniform prior) these Bayesian solutions become equivalent to the ML in \eqref{sml}.
 
@@ -286,14 +279,13 @@ Therefore, the Bayesian prediction of the output is succinctly given by
 %p(x[k] \mid \x) = \Normal(x[k] \mid \uu[k]^\top\PP  \UU \x,~~
 %                    \sigma_\varepsilon^2+\sigma_\varepsilon^2\uu[k]^\top\PP \uu[k])
 %\end{equation}.
-\begin{framed}
 \begin{equation}
+\boxed{
 \hat{x}_{\text{MSE} }[k] = \hat{x}_{\text{MAP} }[k] 
                          = \hat{x}_{\text{MAD} }[k]
-                         = \uu[k]^\top\hat\s_\text{MSE}.
+                         = \uu[k]^\top\hat\s_\text{MSE}.}
 \label{Filt:xpred}
 \end{equation}
-\end{framed}
 
 Eq. \eqref{Filt:xpred} shows that the optimal prediction of the output at any time $k>N$ can be computed by passing the input signal $u[n]$ though the filter with the coefficients in the Bayesian estimation of $\s$ (see Fig. \ref{fig:linear_filter2}).
 
